@@ -1,0 +1,190 @@
+<!--
+Daniel Campo
+FSO - Mobile Development
+Mobile Interfaces & Usability
+
+App Name: Game Collector
+App Description: Keep track of your extensive game library.
+-->
+
+<!doctype html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<meta name="keywords" content="Games, Library" />
+<meta name="description" content="Game Collector allows you to keep track of your extensive collection of games on all platforms." />
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="user-scalable=no, width=device-width" />
+
+<link href="css/styles.css" rel="stylesheet">
+
+<title>Game Collector</title>
+
+</head>
+
+<body>
+
+<!-- App : Header -->
+<header>
+	<hgroup>
+		<h1>
+			<a href="index.html">Game Collector</a>
+		</h1>
+	</hgroup>
+</header>
+<!-- END App : Header -->
+
+
+<!-- App : Add Coupon Form -->
+<section id="game_form">
+
+	<form action="#" id="gameForm" method="post">
+
+		<fieldset>
+
+			<legend>Coupon Details</legend>
+			<p>* denotes required field</p>
+
+			<ul>
+
+				<li>
+					<label for="pname">Game Title:</label>
+					<input id="pname" type="text" name="name_product">
+				</li>
+				<!-- END Product Name -->
+
+				<li>
+					<fieldset>
+					<legend>Game Details</legend>
+
+						<ul>
+
+							<li>
+								<fieldset>
+								<legend>Game Genre</legend>
+									<input id="genre_action" type="radio" name="genre_action"> <label for="genre_action">Action</label><br>
+									<input id="genre_adventure" type="radio" name="genre_adventure"> <label for="genre_adventure">Adventure</label><br>
+									<input id="genre_dancemusic" type="radio" name="genre_dancemusic"> <label for="genre_dancemusic">Dance / Music</label><br>
+									<input id="genre_fighting" type="radio" name="genre_fighting"> <label for="genre_fighting">Fighting</label><br>
+									<input id="genre_rpg" type="radio" name="genre_rpg"> <label for="genre_rpg">RPG</label><br>
+									<input id="genre_sports" type="radio" name="genre_sports"> <label for="genre_sports">Sports</label><br>
+								</fieldset>
+							</li>
+							<!-- END Game Genre -->
+
+
+							<li>
+								<span class="title">Publisher</span>
+								<input id="publisher" name="publisher" type="text">
+							</li>
+							<!-- END Publisher -->
+
+							<li>
+								<span class="title">Developer</title>
+								<input id="developer" name="developer" type="text">
+							</li>
+							<!-- END Publisher -->
+
+
+						</ul>
+
+					</fieldset>
+				</li>
+				<!-- END Game Details -->
+
+
+
+				<li>
+					<fieldset>
+						<legend>Have you completed the game?</legend>
+							<label for="completion_yes">Yes</label>
+							<input id="completion_yes" type="radio" name="completion_yes">
+
+							<label for="completion_no">No</label>
+							<input id="completion_no" type="radio" name="completion_no">
+					</fieldset>
+
+				</li>
+				<!-- END Game Completion -->
+
+				<li>
+					<fieldset>
+					<legend>Purchased</legend>
+						<label for="effective">Date Purchased:</label>
+						<input id="effective" type="date" name="effective">
+
+						<br />
+
+						<label for="purchase_amount">Purchase Amount (USD):</label>
+						<input id="purchase_amount" type="number" name="purchased_amount">
+					</fieldset>
+				</li>
+				<!-- END Date Purchased -->
+
+				<li>
+					<fieldset>
+					<legend>Sold (If Applicable)</legend>
+						<label for="effective">Date Sold:</label>
+						<input id="effective" type="date" name="effective">
+
+						<br />
+
+						<label for="purchase_amount">Sell Amount (USD):</label>
+						<input id="purchase_amount" type="number" name="purchased_amount">
+					</fieldset>
+				</li>
+				<!-- END Date Purchased -->
+
+				<li>
+					<label for="notes">Special Notes</label>
+					<textarea id="notes"></textarea>
+				</li>
+				<!-- END Special Notes -->
+
+			</ul>
+
+		</fieldset>
+		<!-- END Coupon Details -->
+
+		<br />
+
+		<input id="submit" type="submit" value="[+] Add Game" />
+
+	</form>
+
+</section>
+<!-- END App : Add Coupon Form -->
+
+<!-- App : Coupon List -->
+<section id="games_list"></section>
+
+
+<!-- App : Footer -->
+<footer>
+	<nav>
+		<ul>
+			<li>
+				<a href="#" id="clear_games">Clear Stored Games</a>
+			</li>
+			<li>
+				<a href="#" id="display_games">Display All Games</a>
+			</li>
+			<li>
+				<a href="additem.html" id="add_game" style="display:none">[+] Add a Game</a>
+			</li>
+		</ul>
+	</nav>
+</footer>
+<!-- END App : Footer -->
+
+
+<!-- App : Scripts -->
+<script src="js/json.js"></script>
+<script src="js/main.js"></script>
+<!-- END App : Scripts -->
+
+
+</body>
+
+</html>
