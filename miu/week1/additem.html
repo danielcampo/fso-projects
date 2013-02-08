@@ -49,8 +49,8 @@ App Description: Keep track of your extensive game library.
 			<ul>
 
 				<li>
-					<label for="pname">Game Title:</label>
-					<input id="pname" type="text" name="name_product">
+					<label for="title">Game Title:</label>
+					<input id="title" type="text" name="title">
 				</li>
 				<!-- END Product Name -->
 
@@ -61,15 +61,36 @@ App Description: Keep track of your extensive game library.
 						<ul>
 
 							<li>
-								<fieldset>
-								<legend>Game Genre</legend>
-									<input id="genre_action" type="radio" name="genre_action"> <label for="genre_action">Action</label><br>
-									<input id="genre_adventure" type="radio" name="genre_adventure"> <label for="genre_adventure">Adventure</label><br>
-									<input id="genre_dancemusic" type="radio" name="genre_dancemusic"> <label for="genre_dancemusic">Dance / Music</label><br>
-									<input id="genre_fighting" type="radio" name="genre_fighting"> <label for="genre_fighting">Fighting</label><br>
-									<input id="genre_rpg" type="radio" name="genre_rpg"> <label for="genre_rpg">RPG</label><br>
-									<input id="genre_sports" type="radio" name="genre_sports"> <label for="genre_sports">Sports</label><br>
-								</fieldset>
+								<label for="platform">Platform</label>
+								<select id="platform" name="platform">
+									<option value="platform_3ds">Choose a Platform</option>
+									<option value="platform_3ds">3DS / DS</option>
+									<option value="platform_ios">iOS</option>
+									<option value="platform_pc">PC</option>
+									<option value="platform_ps3">PlayStation 3</option>
+									<option value="platform_psvitapsp">PlayStation Vita / PSP</option>
+									<option value="platform_wii">Wii / Wii U</option>
+									<option value="platform_xbox360">XBOX 360</option>
+								</select>
+							</li>
+							<!-- END Platform -->
+
+							<li id="genre">
+								<label for="genre">Game Genre</label>
+								<select id="genre" name="genre">
+									<option value="genre_action">Choose a Genre</option>
+									<option value="genre_action">Action</option>
+									<option value="genre_adventure">Adventure</option>
+									<option value="genre_dancemusic">Dance / Music</option>
+									<option value="genre_fighting">Fighting</option>
+									<option value="genre_platform">Platform</option>
+									<option value="genre_puzzle">Puzzle</option>
+									<option value="genre_rpg">RPG</option>
+									<option value="genre_shooter">Shooter</option>
+									<option value="genre_simulation">Simulation</option>
+									<option value="genre_sports">Sports</option>
+									<option value="genre_strategy">Strategy</option>
+								</select>
 							</li>
 							<!-- END Game Genre -->
 
@@ -141,6 +162,10 @@ App Description: Keep track of your extensive game library.
 					<textarea id="notes"></textarea>
 				</li>
 				<!-- END Special Notes -->
+
+				<li>
+					<input type="checkbox" value="Yes"> Favorite
+				</li>
 
 			</ul>
 

@@ -60,10 +60,9 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
 				var makeSubList = document.createElement("ul");
-					makeSubList.setAttribute("data-role", "listview");
 				makeLi.appendChild(makeSubList);
 
-				getImage(obj.ctype[1], makeSubList);
+				// getImage(obj.genre[1], makeSubList);
 
 					for(var n in obj) {
 
@@ -74,11 +73,16 @@ window.addEventListener("DOMContentLoaded", function() {
 							var optName = "<strong>"+obj[n][0]+"</strong>";
 							li_optionName.innerHTML = optName;
 
-						var li_optionValue = document.createElement("li");
-						makeSubList.appendChild(li_optionValue);
+							var li_optionValue = document.createElement("li");
+							makeSubList.appendChild(li_optionValue);
 
 							var optValue = obj[n][1];
-							li_optionValue.innerHTML = optValue;
+							if (optValue == "") {
+								li_optionValue.innerHTML = "n/a";
+							} else {
+								li_optionValue.innerHTML = optValue;
+							};
+
 
 						makeSubList.appendChild(editCouponListLi);
 					}
@@ -211,42 +215,34 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
 		// Save Coupon to Local Storage
-		function saveCoupon() {
+		function saveGame() {
 			var id = Math.round(new Date().getTime() / 1000);
 			// Store Form Fields Value Into an Object
 			// Label & Value Will Be Stored.
 
-			// Set Button Values
-			getAmountMinimum(); // @output amountMinimum
+			var game = {};
 
+				game.title = ["Title", $("title").value];
 
-			var coupon = {};
+				game.platform = ["Platform", $("platform").value];
 
-				// Coupon Type
-				coupon.ctype = ["Coupon Type", $("ctype").value];
+				game.genre = ["Genre", $("genre").value];
 
-				// Coupon Name
-				coupon.pname = ["Product Name", $("pname").value];
+				game.publisher = ["Publisher", $("publisher").value];
+				game.developer = ["Developer", $("developer").value];
 
-				// TODO - Create these form items dynamically with the array function
-				// TODO - Hide items until corresponding option is select in the dropdown
-				coupon.manufacturer = ["Manufacturer Name", $("manufacturer").value];
-				coupon.store = ["Store Name", $("store").value];
+				game.completed = ["Completed", $("completed").value];
 
 				// Dates
-				coupon.effective = ["Start Date", $("effective").value];
-				coupon.expiration = ["Expiration Date", $("expiration").value];
-
-				// Discount
-				coupon.minimum = ["Minimum Purchase", amountMinimum];
-				coupon.amount = ["Discount Amount", $("amount").value];
+				game.purchased = ["Purchased", $("purchased").value];
+				game.sold = ["Sold", $("sold").value];
 
 				// Special Notes
-				coupon.notes = ["Special Notes", $("notes").value];
+				game.notes = ["Special Notes", $("notes").value];
 
 			// Save Date into Local Storage: Stringify converts Coupon object to a string for local storage capability.
-			localStorage.setItem(id, JSON.stringify(coupon));
-			alert("Coupon Has Been Saved!");
+			localStorage.setItem(id, JSON.stringify(game));
+			alert("Game Has Been Saved!");
 		};
 
 
@@ -285,7 +281,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 		/* Save Game */
 		var saveGameLink = $("submit");
-		saveGameLink.addEventListener("click", saveCoupon);
+		saveGameLink.addEventListener("click", saveGame);
 
 
 
