@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
 				// Link List
-				var editCouponListLi = document.createElement("li");
+				var editGameListLi = document.createElement("li");
 				var key = localStorage.key(i);
 				var value = localStorage.getItem(key);
 				var obj = JSON.parse(value);
@@ -84,11 +84,11 @@ window.addEventListener("DOMContentLoaded", function() {
 							};
 
 
-						makeSubList.appendChild(editCouponListLi);
+						makeSubList.appendChild(editGameListLi);
 					}
 
 
-					makeEditList(localStorage.key(i), editCouponListLi); // Callback to function that creates the edit coupon link list.
+					makeEditList(localStorage.key(i), editGameListLi); // Callback to function that creates the edit coupon link list.
 				}
 
 				return false;
@@ -124,7 +124,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 		// Make edit coupon link list
 		// Create the edit and delete links for each store coupon when displayed
-		function makeEditList(key, editCouponListRow) {
+		function makeEditList(key, editGameListRow) {
 
 			// Edit Coupon
 			var editLinkCell = document.createElement("td");
@@ -132,14 +132,14 @@ window.addEventListener("DOMContentLoaded", function() {
 				editLink.href = "#";
 				editLink.key = key; // Key value of the display coupon
 
-				editLink.addEventListener("click", editCoupon);
+				editLink.addEventListener("click", editGame);
 
 			var editText = "Edit Coupon";
 
 			editLink.innerHTML = editText;
 
 			editLinkCell.appendChild(editLink);
-			editCouponListRow.appendChild(editLinkCell);
+			editGameListRow.appendChild(editLinkCell);
 
 
 
@@ -155,36 +155,17 @@ window.addEventListener("DOMContentLoaded", function() {
 				deleteLink.innerHTML = deleteText;
 
 			deleteLinkCell.appendChild(deleteLink);
-			editCouponListRow.appendChild(deleteLinkCell);
+			editGameListRow.appendChild(deleteLinkCell);
 
 		};
 
-		function editCoupon() {
+		function editGame() {
 			// Grab the data from our item in Local Storage
 			var value = localStorage.getItem(this.key);
 			var coupon = JSON.parse(value);
 
 			// populate form fields with data from local storage
 
-				// Coupon Type
-				$("ctype").value = coupon.ctype[1];
-
-				// Coupon Name
-				$("pname").value = coupon.pname[1];
-
-				$("manufacturer").value = coupon.manufacturer[1];
-				$("store").value = coupon.store[1];
-
-				// Dates
-				$("effective").value = coupon.effective[1];
-				$("expiration").value = coupon.expiration[1];
-
-				// Discount
-				coupon.minimum = ["Minimum Purchase", amountMinimum];
-				coupon.amount = ["Discount Amount", $("amount").value];
-
-				// Special Notes
-				coupon.notes = ["Special Notes", $("notes").value];
 		};
 
 
@@ -231,7 +212,11 @@ window.addEventListener("DOMContentLoaded", function() {
 				game.publisher = ["Publisher", $("publisher").value];
 				game.developer = ["Developer", $("developer").value];
 
-				game.completed = ["Completed", $("completed").value];
+				if ($("completion_yes").checked) {
+					game.completion = ["Completed", "Yes"];
+				} else {
+					game.completion = ["Completed", "No"];
+				};
 
 				// Dates
 				game.purchased = ["Purchased", $("purchased").value];
@@ -239,6 +224,13 @@ window.addEventListener("DOMContentLoaded", function() {
 
 				// Special Notes
 				game.notes = ["Special Notes", $("notes").value];
+
+				// Favorite
+				if ($("favorite").checked) {
+					game.favorite = ["Favorite", "Yes"];
+				} else {
+					game.favorite = ["Favorite", "No"];
+				};
 
 			// Save Date into Local Storage: Stringify converts Coupon object to a string for local storage capability.
 			localStorage.setItem(id, JSON.stringify(game));

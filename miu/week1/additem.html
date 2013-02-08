@@ -120,10 +120,10 @@ App Description: Keep track of your extensive game library.
 					<fieldset>
 						<legend>Have you completed the game?</legend>
 							<label for="completion_yes">Yes</label>
-							<input id="completion_yes" type="radio" name="completion_yes">
+							<input id="completion_yes" type="radio" name="completion">
 
 							<label for="completion_no">No</label>
-							<input id="completion_no" type="radio" name="completion_no">
+							<input id="completion_no" type="radio" name="completion">
 					</fieldset>
 
 				</li>
@@ -132,13 +132,13 @@ App Description: Keep track of your extensive game library.
 				<li>
 					<fieldset>
 					<legend>Purchased</legend>
-						<label for="effective">Date Purchased:</label>
-						<input id="effective" type="date" name="effective">
+						<label for="purhcased">Date Purchased:</label>
+						<input id="purchased" type="date" name="purchased">
 
 						<br />
 
-						<label for="purchase_amount">Purchase Amount (USD):</label>
-						<input id="purchase_amount" type="number" name="purchased_amount">
+						<label for="purchased_amount">Purchase Amount (USD):</label>
+						<input id="purchased_amount" type="number" name="purchased_amount">
 					</fieldset>
 				</li>
 				<!-- END Date Purchased -->
@@ -146,13 +146,13 @@ App Description: Keep track of your extensive game library.
 				<li>
 					<fieldset>
 					<legend>Sold (If Applicable)</legend>
-						<label for="effective">Date Sold:</label>
-						<input id="effective" type="date" name="effective">
+						<label for="sold">Date Sold:</label>
+						<input id="sold" type="date" name="sold">
 
 						<br />
 
-						<label for="purchase_amount">Sell Amount (USD):</label>
-						<input id="purchase_amount" type="number" name="purchased_amount">
+						<label for="sold_amount">Sell Amount (USD):</label>
+						<input id="sold_amount" type="number" name="sold_amount">
 					</fieldset>
 				</li>
 				<!-- END Date Purchased -->
@@ -164,7 +164,7 @@ App Description: Keep track of your extensive game library.
 				<!-- END Special Notes -->
 
 				<li>
-					<input type="checkbox" value="Yes"> Favorite
+					<input id="favorite" type="checkbox" value="Yes"> Favorite
 				</li>
 
 			</ul>
@@ -174,7 +174,7 @@ App Description: Keep track of your extensive game library.
 
 		<br />
 
-		<input id="submit" type="submit" value="[+] Add Game" />
+		<input id="submit" type="submit" value="[+] Add Game">
 
 	</form>
 
