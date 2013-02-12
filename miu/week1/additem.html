@@ -59,38 +59,14 @@ App Description: Keep track of your extensive game library.
 					<legend>Game Details</legend>
 
 						<ul>
+							
+							<li id="platform_list">
 
-							<li>
-								<label for="platform">Platform</label>
-								<select id="platform" name="platform">
-									<option value="platform_3ds">Choose a Platform</option>
-									<option value="platform_3ds">3DS / DS</option>
-									<option value="platform_ios">iOS</option>
-									<option value="platform_pc">PC</option>
-									<option value="platform_ps3">PlayStation 3</option>
-									<option value="platform_psvitapsp">PlayStation Vita / PSP</option>
-									<option value="platform_wii">Wii / Wii U</option>
-									<option value="platform_xbox360">XBOX 360</option>
-								</select>
 							</li>
 							<!-- END Platform -->
 
-							<li id="genre">
-								<label for="genre">Game Genre</label>
-								<select id="genre" name="genre">
-									<option value="genre_action">Choose a Genre</option>
-									<option value="genre_action">Action</option>
-									<option value="genre_adventure">Adventure</option>
-									<option value="genre_dancemusic">Dance / Music</option>
-									<option value="genre_fighting">Fighting</option>
-									<option value="genre_platform">Platform</option>
-									<option value="genre_puzzle">Puzzle</option>
-									<option value="genre_rpg">RPG</option>
-									<option value="genre_shooter">Shooter</option>
-									<option value="genre_simulation">Simulation</option>
-									<option value="genre_sports">Sports</option>
-									<option value="genre_strategy">Strategy</option>
-								</select>
+							<li id="genre_list">
+
 							</li>
 							<!-- END Game Genre -->
 
@@ -119,11 +95,11 @@ App Description: Keep track of your extensive game library.
 				<li>
 					<fieldset>
 						<legend>Have you completed the game?</legend>
-							<label for="completion_yes">Yes</label>
-							<input id="completion_yes" type="radio" name="completion">
+							<label for="completed_yes">Yes</label>
+							<input id="completed_yes" type="radio" name="completion">
 
-							<label for="completion_no">No</label>
-							<input id="completion_no" type="radio" name="completion">
+							<label for="completed_no">No</label>
+							<input id="completed_no" type="radio" name="completion">
 					</fieldset>
 
 				</li>
@@ -138,7 +114,7 @@ App Description: Keep track of your extensive game library.
 						<br />
 
 						<label for="purchased_amount">Purchase Amount (USD):</label>
-						<input id="purchased_amount" type="number" name="purchased_amount">
+						<input id="purchased_amount" type="number" name="purchased_amount" step="any" min="0">
 					</fieldset>
 				</li>
 				<!-- END Date Purchased -->
