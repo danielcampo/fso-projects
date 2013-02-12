@@ -127,75 +127,119 @@ window.addEventListener("DOMContentLoaded", function() {
 		function makeEditList(key, editGameListRow) {
 
 			// Edit Coupon
-			var editLinkCell = document.createElement("td");
+			var editLinkLi = document.createElement("li");
 			var editLink = document.createElement("a");
 				editLink.href = "#";
 				editLink.key = key; // Key value of the display coupon
 
 				editLink.addEventListener("click", editGame);
 
-			var editText = "Edit Coupon";
+			var editText = "Edit Game";
 
 			editLink.innerHTML = editText;
 
-			editLinkCell.appendChild(editLink);
-			editGameListRow.appendChild(editLinkCell);
+			editLinkLi.appendChild(editLink);
+			editGameListRow.appendChild(editLinkLi);
 
 
 
-			// Delete Coupon
-			var deleteLinkCell = document.createElement("td");
+			// Delete Game
+			var deleteLinkLi = document.createElement("li");
 			var deleteLink = document.createElement("a");
 				deleteLink.href = "#";
 				deleteLink.key = key; // Key value of the display gameGenres
 
-				// deleteLink.addEventListener("click", deleteCoupon);
+				deleteLink.addEventListener("click", deleteGame);
 
-			var deleteText = "Delete Coupon";
+			var deleteText = "Delete Game";
 				deleteLink.innerHTML = deleteText;
 
-			deleteLinkCell.appendChild(deleteLink);
-			editGameListRow.appendChild(deleteLinkCell);
+			deleteLinkLi.appendChild(deleteLink);
+			editGameListRow.appendChild(deleteLinkLi);
 
 		};
 
 		function editGame() {
+		// Edit saved game's details
+			toggleControls("game_form", "show")
+
 			// Grab the data from our item in Local Storage
 			var value = localStorage.getItem(this.key);
-			var coupon = JSON.parse(value);
+			var game = JSON.parse(value);
+
+			alert(game.completion[1]);
 
 			// populate form fields with data from local storage
+			$("title").value = game.title[1];
 
+			$("platform").value = game.platform[1];
+
+			$("genre").value = game.genre[1];
+
+			$("publisher").value = game.publisher[1];
+			$("developer").value = game.developer[1];
+
+			if (game.completion[1] === "Yes") {
+				$("completion_yes") = $("completion_yes").checked;
+			};
+
+			// Purchased
+			$("purchased").value = game.purchased[1];
+			$("purchased_amount").value = game.purchasedAmount[1];
+
+
+			// Sold
+			if (game.sold[1] != "n/a") {
+				$("sold_amount").value = game.sold[1];
+			};
+
+			if (game.soldAmount[1] != "n/a") {
+				$("sold_amount").value = game.soldAmount[1];
+			};
+
+			// Special Notes
+			$("notes").value = game.notes[1];
+
+			// Favorite
+			if (game.favorite === "Yes") {
+				$("favorite") = $("favorite").checked;
+			};
+
+		};
+
+		function deleteGame() {
+		// Delete game from local storage
+			var value = this.key;
+
+			var confirmDelete = confirm("Are you sure you want to delete this game?")
+			if (confirmDelete) {
+				localStorage.removeItem(value);
+				alert("Your game has been deleted.");
+				window.location.reload();
+			} else {
+				alert("Game was not deleted.")
+			}
+			return false;
 		};
 
 
 
 
 
-		// Clear Game(s) From Local Storage
-		function clearCoupons() {
+		// Deleted ALL Game(s) From Local Storage
+		function deleteCoupons() {
 			if (localStorage.length === 0){
 				alert("There are no games saved.");
 			}else {
 				localStorage.clear();
-				alert("Your games have been cleared.");
+				alert("Your games have been deleted.");
 				window.location.reload();
 				return false;
 			};
 
 		};
 
-
-		// Delete Single Game
-		function clearCouponsSingle() {
-			localStorage.clear();
-			alert("Your game has been cleared.");
-			window.location.reload();
-			return false;
-		};
-
-
-		// Save Coupon to Local Storage
+		// Save Game to Local Storage
 		function saveGame() {
 			var id = Math.round(new Date().getTime() / 1000);
 			// Store Form Fields Value Into an Object
@@ -218,9 +262,14 @@ window.addEventListener("DOMContentLoaded", function() {
 					game.completion = ["Completed", "No"];
 				};
 
-				// Dates
+				// Purchased
 				game.purchased = ["Purchased", $("purchased").value];
+				game.purchasedAmount = ["Purchase Amount", $("purchased_amount").value];
+
+				// Sold
 				game.sold = ["Sold", $("sold").value];
+				game.soldAmount = ["Sold Amount", $("sold_amount").value];
+
 
 				// Special Notes
 				game.notes = ["Special Notes", $("notes").value];
@@ -269,7 +318,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
 		/* Clear Games */
 		var clearGamesLink = $("clear_games");
-		clearGamesLink.addEventListener("click", clearCoupons);
+		clearGamesLink.addEventListener("click", deleteCoupons);
 
 		/* Save Game */
 		var saveGameLink = $("submit");
