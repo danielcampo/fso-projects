@@ -289,5 +289,19 @@ p {
 	width: 96px;
 }
 
+/* JQM */
+
+/* Fixes search box from being covered by list content */
+.ui-listview-filter-inset {
+	margin: 0 -5px 5px -5px;
+	background: transparent;
+}
+
+/* Better aligns images with text in listview */
+.ui-li-thumb, .ui-listview .ui-li-icon, .ui-li-content {
+float: left;
+margin-right: 10px;
+padding: 6px;
+}
 
 
