@@ -48,13 +48,17 @@ a {
 	color: #a22503
 }
 
-body > header, body > section, body > footer, nav {
-	overflow: hidden;
+header[data-role="header"] {
+	text-align: center;
 }
 
-body > header {
-	background: #f9f9f9;
-	margin-bottom: 10px;
+header[data-role="header"] h1 a {
+	color: #f93500 !important;
+	text-decoration: none;
+}
+
+.pagecontent {
+	margin-top: 4px;
 }
 
 
@@ -72,12 +76,12 @@ body > header a {
 }
 
 
-body > header h1, body > header h2 {
+header h1, header h2 {
 	margin: 0;
 	padding: 5px;
 }
 
-body > section {
+section {
 	background-color: #fff;
 	font-size: .85em;
 	padding: 5px;
@@ -138,7 +142,6 @@ form textarea {
 	border-radius: 10px;
 }
 
-
 form input[type=submit] {
 	background-color: #f93500;
 	border: 0;
@@ -157,6 +160,7 @@ form input[type=submit]:hover {
 footer {
 	background-color: #ddd;
 	padding: 10px 0;
+	text-align: center;
 }
 
 footer nav a {
@@ -221,6 +225,7 @@ p {
 /* CTA */
 
 #cta img {
+	display: block;
 	height: auto;
 	max-width: 620px;
 	width: 100%;
@@ -245,7 +250,6 @@ p {
 	margin: 0;
 	padding: 0;
 	text-indent: 5px;
-	width: 50%;
 }
 
 #search input[type=submit] {
@@ -266,24 +270,14 @@ p {
 }
 
 #browse ul {
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 }
 
 #browse ul li {
 	color: #fff;
-	display: inline-block;
-	float: left;
-	height: 150px;
 	overflow: hidden;
-	text-align: center;
 	vertical-align: middle;
-	width: 150px;
-}
-
-#browse img {
-	height: 128px;
-	width: 128px;
 }
 
 
