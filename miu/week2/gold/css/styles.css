@@ -48,24 +48,31 @@ a {
 	color: #a22503
 }
 
-header[data-role="header"] {
-	text-align: center;
-}
-
-header[data-role="header"] h1 a {
-	color: #f93500 !important;
-	text-decoration: none;
-}
-
 .pagecontent {
 	margin-top: 4px;
 }
 
+body > header {
+	text-align: center;
+}
+
+header[data-role=header] {
+	font-size: 1em;
+	text-align: center;
+}
+
+header[data-role=header] h1 a {
+	color: #f93500 !important;
+	font-size: .65em;
+	font-weight: normal !important;
+	text-decoration: none;
+}
 
 body > header h1 {
 	background-color: #f93500;
 	border-bottom: #a22503 solid 4px;
 	color: #fff;
+	font-weight: normal;
 	font-size: 1em;
 	text-indent: 5px;
 }
@@ -157,8 +164,9 @@ form input[type=submit]:hover {
 	background-color: #a22503;
 }
 
-footer {
+div[data-role=page] > footer {
 	background-color: #ddd;
+	font-size: x-small;
 	padding: 10px 0;
 	text-align: center;
 }
@@ -258,6 +266,10 @@ p {
 }
 
 /* Browse */
+#browse {
+	overflow: hidden;
+}
+
 #browse h2 {
 	background-color: #ffcea3;
 	margin-bottom: 4px;
@@ -276,7 +288,6 @@ p {
 
 #browse ul li {
 	color: #fff;
-	display: inline-block;
 	height: 128px;
 	overflow: hidden;
 	text-align: center;
@@ -285,8 +296,8 @@ p {
 }
 
 #browse img {
-	height: 96px;
-	width: 96px;
+	height: 64px;
+	width: 64px;
 }
 
 /* JQM */
