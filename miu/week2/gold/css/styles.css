@@ -57,7 +57,7 @@ body > header {
 }
 
 header[data-role=header] {
-	font-size: 1em;
+	font-size: .8em;
 	text-align: center;
 }
 
@@ -240,11 +240,14 @@ p {
 }
 
 /* Search */
-#search h2 {
-	background-color: #ffcea3;
+#search h2, #browse h2 {
+	background-color: #a12211 !important;
+	color: #fff;
+	border-radius: 30px;
 	padding: 10px 5px;
+	text-indent: 6px;
+	text-shadow: none;
 }
-
 #search div {
 	background-color: #fafafa;
 	padding: 5px;
