@@ -1,0 +1,893 @@
+<!--
+Daniel Campo
+FSO - Mobile Development
+Mobile Interfaces & Usability
+
+App Name: Game Collector
+App Description: Keep track of your extensive game library.
+-->
+
+<!doctype html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<meta name="keywords" content="Games, Library" />
+<meta name="description" content="Game Collector allows you to keep track of your extensive collection of games on all platforms." />
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="user-scalable=no, width=device-width" />
+
+<script src="js/libs/modernizr.custom.min.js"></script>
+
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+<link rel="stylesheet" href="css/styles.css">
+
+<title>Game Collector</title>
+
+</head>
+
+<body>
+
+<!-- App : Home -->
+<div id="home" data-role="page">
+
+
+	<!-- App : Home : Header -->
+	<header data-role="header" data-position="fixed">
+		<hgroup>
+			<h1>
+				<a href="index.html">Game Collector</a>
+			</h1>
+		</hgroup>
+		<nav data-role="navbar">
+			<ul>
+				<li>
+					<a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a>
+				</li>
+				<li>
+					<a href="#info" data-icon="info" data-transition="slide">Information</a>
+				</li>
+				<li>
+					<a href="additem.html" data-ajax="false" data-icon="plus" data-transition="slide">Add a Game</a>
+				</li>
+
+			</ul>
+		</nav>
+	</header>
+	<!-- END App : Home : Header -->
+
+
+	<!-- App : Home : Body -->
+	<div id="home_content" class="pagecontent">
+
+		<!-- App : Home : Body : Content : CTA -->
+		<section id="cta">
+			<a href="additem.html">
+				<img alt="All of your games. All in one place." src="img/gc_cta.png" title="Game Collector" />
+			</a>
+			<a href="additem.html" data-ajax="false" data-role="button" data-icon="plus" data-theme="a">Start Adding Games</a>
+
+		</section>
+		<!-- END App : Home : Body : Content : CTA -->
+
+
+
+		<!-- App : Home : Body : Content : Search -->
+		<section id="search">
+			<header>
+				<h2>Game Quick Search</h2>
+			</header>
+			<div>
+				<form action="#" id="page_search">
+					<input id="search" placeholder="Enter Game Title, Platform or Genre" type="text">
+					<input type="submit" value="Search Games" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="e">
+				</form>
+			</div>
+		</section>
+		<!-- END App : Home : Body : Content : Search -->
+
+
+
+		<!-- App : Home : Body : Content : Browse -->
+		<section id="browse">
+			<header>
+				<h2>Browse Games By...</h2>
+			</header>
+
+			<nav>
+				<ul data-role="listview" data-inset="true">
+					<li>
+						<a href="#game-title">
+							Title
+						</a>
+					</li>
+					<li>
+						<a href="#game-platform">
+							Platform
+						</a>
+					</li>
+					<li>
+						<a href="#game-genre">
+							Genre
+						</a>
+					</li>
+					<li>
+						<a href="#game-publisher">
+							Publisher
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</section>
+		<!-- END App : Home : Body : Content : Browse -->
+
+	</div>
+	<!-- END App : Home : Body -->
+
+
+	<!-- App : Home : Footer -->
+	<footer data-role="footer" data-position="fixed">
+		<p>Copyright &copy;2012 Daniel Campo. All Rights Reserved.</p>
+	</footer>
+	<!-- END App : Home : Footer -->
+
+</div>
+<!-- END App : Home -->
+
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+
+<!-- App : Info -->
+<div id="info" data-role="page" data-add-back-btn="true" data-transition="slide">
+
+	<!-- App : Info : Header -->
+	<header data-role="header" data-position="fixed">
+		<hgroup>
+			<h1>
+				<a href="index.html">Game Collector</a>
+			</h1>
+		</hgroup>
+		<nav data-role="navbar">
+			<ul>
+				<li>
+					<a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a>
+				</li>
+				<li>
+					<a href="#info" data-icon="info" data-transition="slide">Information</a>
+				</li>
+				<li>
+					<a href="additem.html" data-ajax="false" data-icon="plus" data-transition="slide">Add a Game</a>
+				</li>
+
+			</ul>
+		</nav>
+	</header>
+	<!-- END App : Info : Header -->
+
+	<!-- App : Info : Body -->
+	<div id="content">
+
+		<section>
+			<h2>Do you collect games?</h2>
+			<p>
+
+			</p>
+
+			<p>
+				With Game Collector you'll be able to keep track of your entire game collection <strong>all in one, easy-to-use interface</strong>.
+			</p>
+
+			<h2>Purpose</h2>
+
+			<p>Game Collector is essentially an inventory keeping application that is strictly tailored for games. Categorize your games by genre, publisher, developer and your favorites.</p>
+
+			<p>As Game Collector is further developed you'll be able to gain an overview of your <em>entire collection</em> including the value of your collection, your favorite genre and your favorite publishers and developers.</p>
+		</section>
+
+		<section>
+			<h2>Quick Links</h2>
+
+			<nav>
+				<ul data-role="listview" data-inset="true">
+					<li>
+						<a href="index.html">Home</a>
+					</li>
+					<li>
+						<a href="http://github.com/danielcampo/fso-projects/" rel="external">Git Repo</a>
+					</li>
+					<li data-theme="d">
+						<a href="https://github.com/danielcampo/fso-projects/tree/master/miu/week2/bronze" rel="external">Bronze App (Source)</a>
+					</li>
+					<li data-theme="d">
+						<a href="http://danielcampo.github.com/fso-projects/miu/week2/bronze" rel="external">Bronze App (Live)</a>
+					</li>
+					<li data-theme="e">
+						<a href="https://github.com/danielcampo/fso-projects/tree/master/miu/week2/gold" rel="external">Gold App (Source)</a>
+					</li>
+					<li data-theme="e">
+						<a href="http://danielcampo.github.com/fso-projects/miu/week2/gold" rel="external">Gold App (Live)</a>
+					</li>
+				</ul>
+			</nav>
+		</section>
+
+	</div>
+	<!-- END App : Info : Body -->
+
+	<!-- App : Info : Footer -->
+	<footer data-role="footer" data-position="fixed">
+		<p>Copyright &copy;2012 Daniel Campo. All Rights Reserved.</p>
+	</footer>
+	<!-- END App : Info : Footer -->
+
+
+</div>
+<!-- END App : Info -->
+
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+
+<!-- App : Game Title -->
+<div id="game-title" data-role="page" data-add-back-btn="true" data-transition="slide">
+
+	<!-- App : Game Title : Header -->
+	<header data-role="header" data-position="fixed">
+		<hgroup>
+			<h1>
+				<a href="index.html">Game Collector</a>
+			</h1>
+		</hgroup>
+		<nav data-role="navbar">
+			<ul>
+				<li>
+					<a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a>
+				</li>
+				<li>
+					<a href="#info" data-icon="info" data-transition="slide">Information</a>
+				</li>
+				<li>
+					<a href="additem.html" data-ajax="false" data-icon="plus" data-transition="slide">Add a Game</a>
+				</li>
+
+			</ul>
+		</nav>
+	</header>
+	<!-- END App : Game Title : Header -->
+
+	<!-- App : Game Title : Body -->
+	<div id="content">
+
+		<section>
+			<nav>
+				<ul data-role="listview" data-inset="true" data-filter="true">
+					<li data-role="list-divider">A</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>Armored Core V</h3>
+							<ul>
+								<li>Platform: PlayStation 3</li>
+								<li>Genre: Action</li>
+								<li>Publisher: FromSoftware, Inc.</li>
+								<li>Developer: FromSoftware, Inc.</li>
+								<li>Completed: No</li>
+								<li>Purchase Date: 2012-03-20</li>
+								<li>Purchase Amount: 59.99</li>
+								<li>Sold Date: n/a</li>
+								<li>Sold Amount: n/a</li>
+								<li>Special Notes: n/a</li>
+								<li>Favorite: No</li>
+							</ul>
+						</div>
+					</li>
+					<li data-role="list-divider">H</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>Half-Life 2</h3>
+							<ul>
+								<li>Platform: PC</li>
+								<li>Genre: Shooter</li>
+								<li>Publisher: Sierra Entertainment, Inc.</li>
+								<li>Developer: Valve Corporation</li>
+								<li>Completed: Yes</li>
+								<li>Purchase Date: 2004-11-16</li>
+								<li>Purchase Amount: 49.99</li>
+								<li>Sold Date: n/a</li>
+								<li>Sold Amount: n/a</li>
+								<li>Special Notes: n/a</li>
+								<li>Favorite: n/a</li>
+							</ul>
+						</div>
+					</li>
+					<li data-role="list-divider">S</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>Sly 2: Band of Thieves</h3>
+							<ul>
+								<li>Platform: PlayStation 3</li>
+								<li>Genre: Action</li>
+								<li>Publisher: Sony Computer Entertainment America, Inc.</li>
+								<li>Developer: Sucker Punch Productions LLC</li>
+								<li>Completed: No</li>
+								<li>Purchase Date: 2012-08-18</li>
+								<li>Purchase Amount: 9.99</li>
+								<li>Sold Date: n/a</li>
+								<li>Sold Amount: n/a</li>
+								<li>Special Notes: n/a</li>
+								<li>Favorite: Yes</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>Spy Mouse</h3>
+							<ul>
+								<li>Platform: iOS</li>
+								<li>Genre: Puzzle</li>
+								<li>Publisher: Firemint</li>
+								<li>Developer: Firemint</li>
+								<li>Completed: No</li>
+								<li>Purchase Date: 2011-11-03</li>
+								<li>Purchase Amount: 0</li>
+								<li>Sold Date: n/a</li>
+								<li>Sold Amount: n/a</li>
+								<li>Special Notes: Received free from Starbucks promotion</li>
+								<li>Favorite: No</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>Superbrothers: Sword & Sworcery EP</h3>
+							<ul>
+								<li>Platform: iOS</li>
+								<li>Genre: Adventure</li>
+								<li>Publisher: Capybara Games, Inc.</li>
+								<li>Developer: Superbrothers, Inc.</li>
+								<li>Completed: Yes</li>
+								<li>Purchase Date: 2011-03-23</li>
+								<li>Purchase Amount: 4.99</li>
+								<li>Sold Date: n/a</li>
+								<li>Sold Amount: n/a</li>
+								<li>Special Notes: n/a</li>
+								<li>Favorite: n/a</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</section>
+
+	</div>
+	<!-- END App : Game Title : Body -->
+
+	<!-- App : Game Title : Footer -->
+	<footer data-role="footer" data-position="fixed">
+		<p>Copyright &copy;2012 Daniel Campo. All Rights Reserved.</p>
+	</footer>
+	<!-- END App : Game Title : Footer -->
+
+
+</div>
+<!-- END App : Game Title -->
+
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+
+<!-- App : Game Platform -->
+<div id="game-platform" data-role="page" data-add-back-btn="true" data-transition="slide">
+
+	<!-- App : Game Platform : Header -->
+	<header data-role="header" data-position="fixed">
+		<hgroup>
+			<h1>
+				<a href="index.html">Game Collector</a>
+			</h1>
+		</hgroup>
+		<nav data-role="navbar">
+			<ul>
+				<li>
+					<a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a>
+				</li>
+				<li>
+					<a href="#info" data-icon="info" data-transition="slide">Information</a>
+				</li>
+				<li>
+					<a href="additem.html" data-ajax="false" data-icon="plus" data-transition="slide">Add a Game</a>
+				</li>
+
+			</ul>
+		</nav>
+	</header>
+	<!-- END App : Game Platform : Header -->
+
+	<!-- App : Game Platform : Body -->
+	<div id="content">
+
+		<section>
+				<div data-role="collapsible">
+					<h3>iOS</h3>
+					<ul>
+						<li>
+							<a href="#">
+								<h3>Spy Mouse</h3>
+							</a>
+							<ul>
+								<li>Platform: iOS</li>
+								<li>Genre: Puzzle</li>
+								<li>Publisher: Firemint</li>
+								<li>Developer: Firemint</li>
+								<li>Completed: No</li>
+								<li>Purchase Date: 2011-11-03</li>
+								<li>Purchase Amount: 0</li>
+								<li>Sold Date: n/a</li>
+								<li>Sold Amount: n/a</li>
+								<li>Special Notes: Received free from Starbucks promotion</li>
+								<li>Favorite: No</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<h3>Superbrothers: Sword & Sworcery EP</h3>
+							</a>
+							<ul>
+								<li>Platform: iOS</li>
+								<li>Genre: Adventure</li>
+								<li>Publisher: Capybara Games, Inc.</li>
+								<li>Developer: Superbrothers, Inc.</li>
+								<li>Completed: Yes</li>
+								<li>Purchase Date: 2011-03-23</li>
+								<li>Purchase Amount: 4.99</li>
+								<li>Sold Date: n/a</li>
+								<li>Sold Amount: n/a</li>
+								<li>Special Notes: n/a</li>
+								<li>Favorite: n/a</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<div data-role="collapsible">
+					<h3>PC</h3>
+						<ul>
+							<li>
+								<a href="#">
+									<h3>Half-Life 2</h3>
+								</a>
+								<ul>
+									<li>Platform: PC</li>
+									<li>Genre: Shooter</li>
+									<li>Publisher: Sierra Entertainment, Inc.</li>
+									<li>Developer: Valve Corporation</li>
+									<li>Completed: Yes</li>
+									<li>Purchase Date: 2004-11-16</li>
+									<li>Purchase Amount: 49.99</li>
+									<li>Sold Date: n/a</li>
+									<li>Sold Amount: n/a</li>
+									<li>Special Notes: n/a</li>
+									<li>Favorite: n/a</li>
+								</ul>
+							</li>
+						</ul>
+				</div>
+				<div data-role="collapsible">
+					<h3>PlayStation 3</h3>
+						<ul>
+							<li>
+								<a href="#">
+									<h3>Armored Core V</h3>
+								</a>
+								<ul>
+									<li>Platform: PlayStation 3</li>
+									<li>Genre: Action</li>
+									<li>Publisher: FromSoftware, Inc.</li>
+									<li>Developer: FromSoftware, Inc.</li>
+									<li>Completed: No</li>
+									<li>Purchase Date: 2012-03-20</li>
+									<li>Purchase Amount: 59.99</li>
+									<li>Sold Date: n/a</li>
+									<li>Sold Amount: n/a</li>
+									<li>Special Notes: n/a</li>
+									<li>Favorite: No</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">
+									<h3>Sly 2: Band of Thieves</h3>
+								</a>
+								<ul>
+									<li>Platform: PlayStation 3</li>
+									<li>Genre: Action</li>
+									<li>Publisher: Sony Computer Entertainment America, Inc.</li>
+									<li>Developer: Sucker Punch Productions LLC</li>
+									<li>Completed: No</li>
+									<li>Purchase Date: 2012-08-18</li>
+									<li>Purchase Amount: 9.99</li>
+									<li>Sold Date: n/a</li>
+									<li>Sold Amount: n/a</li>
+									<li>Special Notes: n/a</li>
+									<li>Favorite: Yes</li>
+								</ul>
+							</li>
+						</ul>
+				</div>
+		</section>
+
+	</div>
+	<!-- END App : Game Platform : Body -->
+
+	<!-- App : Game Platform : Footer -->
+	<footer data-role="footer" data-position="fixed">
+		<p>Copyright &copy;2012 Daniel Campo. All Rights Reserved.</p>
+	</footer>
+	<!-- END App : Game Platform : Footer -->
+
+
+</div>
+<!-- END App : Game Platform -->
+
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+
+<!-- App : Game Genre -->
+<div id="game-genre" data-role="page" data-add-back-btn="true" data-transition="slide">
+
+	<!-- App : Game Genre : Header -->
+	<header data-role="header" data-position="fixed">
+		<hgroup>
+			<h1>
+				<a href="index.html">Game Collector</a>
+			</h1>
+		</hgroup>
+		<nav data-role="navbar">
+			<ul>
+				<li>
+					<a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a>
+				</li>
+				<li>
+					<a href="#info" data-icon="info" data-transition="slide">Information</a>
+				</li>
+				<li>
+					<a href="additem.html" data-ajax="false" data-icon="plus" data-transition="slide">Add a Game</a>
+				</li>
+
+			</ul>
+		</nav>
+	</header>
+	<!-- END App : Game Genre : Header -->
+
+	<!-- App : Game Genre : Body -->
+	<div id="content">
+
+		<section>
+			<div data-role="collapsible">
+				<h3>Action</h3>
+				<ul>
+					<li>
+						<a href="#">
+							<h3>Armored Core V</h3>
+						</a>
+						<ul>
+							<li>Platform: PlayStation 3</li>
+							<li>Genre: Action</li>
+							<li>Publisher: FromSoftware, Inc.</li>
+							<li>Developer: FromSoftware, Inc.</li>
+							<li>Completed: No</li>
+							<li>Purchase Date: 2012-03-20</li>
+							<li>Purchase Amount: 59.99</li>
+							<li>Sold Date: n/a</li>
+							<li>Sold Amount: n/a</li>
+							<li>Special Notes: n/a</li>
+							<li>Favorite: No</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">
+							<h3>Sly 2: Band of Thieves</h3>
+						</a>
+						<ul>
+							<li>Platform: PlayStation 3</li>
+							<li>Genre: Action</li>
+							<li>Publisher: Sony Computer Entertainment America, Inc.</li>
+							<li>Developer: Sucker Punch Productions LLC</li>
+							<li>Completed: No</li>
+							<li>Purchase Date: 2012-08-18</li>
+							<li>Purchase Amount: 9.99</li>
+							<li>Sold Date: n/a</li>
+							<li>Sold Amount: n/a</li>
+							<li>Special Notes: n/a</li>
+							<li>Favorite: Yes</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+				<h3>Adventure</h3>
+				<ul>
+					<li>
+						<a href="#">
+							<h3>Superbrothers: Sword & Sworcery EP</h3>
+						</a>
+						<ul>
+							<li>Platform: iOS</li>
+							<li>Genre: Adventure</li>
+							<li>Publisher: Capybara Games, Inc.</li>
+							<li>Developer: Superbrothers, Inc.</li>
+							<li>Completed: Yes</li>
+							<li>Purchase Date: 2011-03-23</li>
+							<li>Purchase Amount: 4.99</li>
+							<li>Sold Date: n/a</li>
+							<li>Sold Amount: n/a</li>
+							<li>Special Notes: n/a</li>
+							<li>Favorite: n/a</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+				<h3>Puzzle</h3>
+				<ul>
+					<li>
+						<a href="#">
+							<h3>Spy Mouse</h3>
+						</a>
+						<ul>
+							<li>Platform: iOS</li>
+							<li>Genre: Puzzle</li>
+							<li>Publisher: Firemint</li>
+							<li>Developer: Firemint</li>
+							<li>Completed: No</li>
+							<li>Purchase Date: 2011-11-03</li>
+							<li>Purchase Amount: 0</li>
+							<li>Sold Date: n/a</li>
+							<li>Sold Amount: n/a</li>
+							<li>Special Notes: Received free from Starbucks promotion</li>
+							<li>Favorite: No</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div data-role="collapsible">
+				<h3>Shooter</h3>
+				<ul>
+					<li>
+						<a href="#">
+							<h3>Half-Life 2</h3>
+						</a>
+						<ul>
+							<li>Platform: PC</li>
+							<li>Genre: Shooter</li>
+							<li>Publisher: Sierra Entertainment, Inc.</li>
+							<li>Developer: Valve Corporation</li>
+							<li>Completed: Yes</li>
+							<li>Purchase Date: 2004-11-16</li>
+							<li>Purchase Amount: 49.99</li>
+							<li>Sold Date: n/a</li>
+							<li>Sold Amount: n/a</li>
+							<li>Special Notes: n/a</li>
+							<li>Favorite: n/a</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+	</div>
+	<!-- END App : Game Genre : Body -->
+
+	<!-- App : Game Genre : Footer -->
+	<footer data-role="footer" data-position="fixed">
+		<p>Copyright &copy;2012 Daniel Campo. All Rights Reserved.</p>
+	</footer>
+	<!-- END App : Game Genre : Footer -->
+
+
+</div>
+<!-- END App : Game Genre -->
+
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+
+<!-- App : Game Publisher -->
+<div id="game-publisher" data-role="page" data-add-back-btn="true" data-transition="slide">
+
+	<!-- App : Game Publisher : Header -->
+	<header data-role="header" data-position="fixed">
+		<hgroup>
+			<h1>
+				<a href="index.html">Game Collector</a>
+			</h1>
+		</hgroup>
+		<nav data-role="navbar">
+			<ul>
+				<li>
+					<a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a>
+				</li>
+				<li>
+					<a href="#info" data-icon="info" data-transition="slide">Information</a>
+				</li>
+				<li>
+					<a href="additem.html" data-ajax="false" data-icon="plus" data-transition="slide">Add a Game</a>
+				</li>
+
+			</ul>
+		</nav>
+	</header>
+	<!-- END App : Game Publisher : Header -->
+
+	<!-- App : Game Publisher : Body -->
+	<div id="content">
+
+		<section>
+			<nav>
+				<ul data-role="listview" data-inset="true" data-filter="true">
+					<li data-role="list-divider">C</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>Capybara Games, Inc.</h3>
+							<ul>
+								<li>
+									<a href="#">
+										<h3>Superbrothers: Sword & Sworcery EP</h3>
+									</a>
+									<ul>
+										<li>Platform: iOS</li>
+										<li>Genre: Adventure</li>
+										<li>Publisher: Capybara Games, Inc.</li>
+										<li>Developer: Superbrothers, Inc.</li>
+										<li>Completed: Yes</li>
+										<li>Purchase Date: 2011-03-23</li>
+										<li>Purchase Amount: 4.99</li>
+										<li>Sold Date: n/a</li>
+										<li>Sold Amount: n/a</li>
+										<li>Special Notes: n/a</li>
+										<li>Favorite: n/a</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li data-role="list-divider">F</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>Firemint</h3>
+							<ul>
+								<li>
+									<a href="#">
+										<h3>Spy Mouse</h3>
+									</a>
+									<ul>
+										<li>Platform: iOS</li>
+										<li>Genre: Puzzle</li>
+										<li>Publisher: Firemint</li>
+										<li>Developer: Firemint</li>
+										<li>Completed: No</li>
+										<li>Purchase Date: 2011-11-03</li>
+										<li>Purchase Amount: 0</li>
+										<li>Sold Date: n/a</li>
+										<li>Sold Amount: n/a</li>
+										<li>Special Notes: Received free from Starbucks promotion</li>
+										<li>Favorite: No</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>FromSoftware, Inc.</h3>
+							<ul>
+								<li>
+									<a href="#">
+										<h3>Armored Core V</h3>
+									</a>
+									<ul>
+										<li>Platform: PlayStation 3</li>
+										<li>Genre: Action</li>
+										<li>Publisher: FromSoftware, Inc.</li>
+										<li>Developer: FromSoftware, Inc.</li>
+										<li>Completed: No</li>
+										<li>Purchase Date: 2012-03-20</li>
+										<li>Purchase Amount: 59.99</li>
+										<li>Sold Date: n/a</li>
+										<li>Sold Amount: n/a</li>
+										<li>Special Notes: n/a</li>
+										<li>Favorite: No</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li data-role="list-divider">S</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>Sierra Entertainment, Inc.</h3>
+							<ul>
+								<li>
+									<a href="#">
+										<h3>Half-Life 2</h3>
+									</a>
+									<ul>
+										<li>Platform: PC</li>
+										<li>Genre: Shooter</li>
+										<li>Publisher: Sierra Entertainment, Inc.</li>
+										<li>Developer: Valve Corporation</li>
+										<li>Completed: Yes</li>
+										<li>Purchase Date: 2004-11-16</li>
+										<li>Purchase Amount: 49.99</li>
+										<li>Sold Date: n/a</li>
+										<li>Sold Amount: n/a</li>
+										<li>Special Notes: n/a</li>
+										<li>Favorite: n/a</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div data-role="collapsible">
+							<h3>Sony Computer Entertainment America, Inc.</h3>
+							<ul>
+								<li>
+									<a href="#">
+										<h3>Sly 2: Band of Thieves</h3>
+									</a>
+									<ul>
+										<li>Platform: PlayStation 3</li>
+										<li>Genre: Action</li>
+										<li>Publisher: Sony Computer Entertainment America, Inc.</li>
+										<li>Developer: Sucker Punch Productions LLC</li>
+										<li>Completed: No</li>
+										<li>Purchase Date: 2012-08-18</li>
+										<li>Purchase Amount: 9.99</li>
+										<li>Sold Date: n/a</li>
+										<li>Sold Amount: n/a</li>
+										<li>Special Notes: n/a</li>
+										<li>Favorite: Yes</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</section>
+
+	</div>
+	<!-- END App : Game Publisher : Body -->
+
+	<!-- App : Game Publisher : Footer -->
+	<footer data-role="footer" data-position="fixed">
+		<p>Copyright &copy;2012 Daniel Campo. All Rights Reserved.</p>
+	</footer>
+	<!-- END App : Game Publisher : Footer -->
+
+
+</div>
+<!-- END App : Game Publisher -->
+
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+<!-- ############################################################# -->
+
+
+
+<!-- App : Scripts -->
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="js/jqm_config.js"></script>
+<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+<!-- END App : Scripts -->
+
+</body>
+
+</html>
