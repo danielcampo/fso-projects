@@ -319,3 +319,10 @@ padding: 6px;
 }
 
 
+.hint {
+	color: #888;
+	display: inline-block;
+	font-size: small;
+	margin: 0 auto 10px auto;
+}
+
