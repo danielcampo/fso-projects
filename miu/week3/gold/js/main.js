@@ -163,28 +163,432 @@ $('#add').on('pageinit', function(){
 			};
 		};
 	};
+	
+	// ##################################
+	// ##################################
+	// Event Listeners
+	// ##################################
+	// ##################################
+	
+		/* Display Games */
+		$("#display_games").click(displayGames);
 
+		/* Clear Games */
+		$("#clear_games").click(deleteGames);
+
+		/* Save Game */
+		$("#submit").click(saveGame);
+		
+	// ##################################
+	// Event Listeners
+	// ##################################
+
+	
+		var autofillData = function (){
+			 
+		};
+		
+		// ####################################################################
+		// Create
+		// ####################################################################
+		
+		// ##################################
+		// ##################################
+		// Save Game to Local Storage
+		// ##################################
+		// ##################################
+		function saveGame(key) {
+			if (!key) {
+				var id = Math.round(new Date().getTime() / 1000);
+			} else {
+				var id = key;
+			};
+			// Store Form Fields Value Into an Object
+			// Label & Value Will Be Stored.
+
+			var game = {};
+
+				game.title = ["Title", $("#title").value];
+
+				game.platform = ["Platform", getOptionText(platformList,$("#platform").value)];
+
+				game.genre = ["Genre", getOptionText(genreList,$("#genre").value)];
+
+				game.publisher = ["Publisher", $("#publisher").value];
+				game.developer = ["Developer", $("#developer").value];
+
+				if ($("#completed_yes").checked) {
+					game.completed = ["Completed", "Yes"];
+				} else {
+					game.completed = ["Completed", "No"];
+				};
+
+				// Purchased
+				game.purchased = ["Purchased", $("#purchased").value];
+				game.purchased_amount = ["Purchase Amount", $("#purchased_amount").value];
+
+				// Sold
+				game.sold = ["Sold", $("#sold").value];
+				game.sold_amount = ["Sold Amount", $("#sold_amount").value];
+
+
+				// Special Notes
+				game.notes = ["Special Notes", $("#notes").value];
+
+				// Favorite
+				if ($("#favorite").checked) {
+					game.favorite = ["Favorite", "Yes"];
+				} else {
+					game.favorite = ["Favorite", "No"];
+				};
+
+			// Save Date into Local Storage: Stringify converts Coupon object to a string for local storage capability.
+			localStorage.setItem(id, JSON.stringify(game));
+			
+			alert("Game Has Been Saved!");
+
+		};
+		// ##################################
+		// Save Game to Local Storage
+		// ##################################
+
+		// ####################################################################
+		// END Create
+		// ####################################################################
+		
+
+		// ####################################################################
+		// Read
+		// ####################################################################
+		
+		// ##################################
+		// ##################################
+		// Display Game(s) From Local Storage
+		// ##################################
+		// ##################################
+		function displayGames() {
+			toggleControls("game_form","hide");
+
+			if (localStorage.length === 0) {
+				alert("There are no games saved so examples were added.");
+				exampleCouponData();
+			} else {
+
+			// Create the Coupon List Div
+			var gameListDiv = $("<div></div>");
+				gameListDiv.attr("id", "games");
+
+			// Add A List to Div
+			var gameListUl = $("<ul></ul>");
+
+				// Add List to Div
+				gameListDiv.append(gameListUl);
+
+				// Add Div to Body
+				$("#games_list").append(gameListDiv);
+
+			for(var i = 0, storageLength = localStorage.length; i < storageLength; i++) {
+
+				// Add New Row to Table
+				var makeLi = $("<li></li>");
+				gameListUl.append(makeLi);
+
+
+
+				// Link List
+				var editGameListLi = $("<li></li>");
+				var key = localStorage.key(i);
+				var value = localStorage.getItem(key);
+				var obj = JSON.parse(value);
+
+
+				var makeSubList = $("<ul></ul>");
+				makeLi.append(makeSubList);
+
+				// getImage(obj.genre[1], makeSubList);
+
+					for(var n in obj) {
+
+						// Add New Row to Table
+						var li_optionName = $("<li></li>");
+						makeSubList.append(li_optionName);
+
+							var optName = "<strong>"+obj[n][0]+"</strong>";
+							li_optionName.html(optName);
+
+							var li_optionValue = $("<li></li>");
+							makeSubList.append(li_optionValue);
+
+							var optValue = obj[n][1];
+							if (optValue == "") {
+								li_optionValue.html("n/a");
+							} else {
+								li_optionValue.html(optValue);
+							};
+
+
+						makeSubList.append(editGameListLi);
+					}
+
+
+					makeEditList(localStorage.key(i), editGameListLi); // Callback to function that creates the edit game link list.
+				}
+
+				return false;
+			}
+
+		}
+		// ##################################
+		// Display Game(s) From Local Storage
+		// ##################################
+
+		// ##################################
+		// ##################################
+		// Make edit coupon link list
+		// ##################################
+		// ##################################
+		
+		// Create the edit and delete links for each store coupon when displayed
+		function makeEditList(key, editGameListRow) {
+
+			// Edit Coupon
+			var editLinkLi = $("<li></li>");
+			var editLink = $("<a></a>");
+				editLink.href = "#";
+				editLink.key = key; // Key value of the display coupon
+
+				editLink.click(function() {
+					editGame(key);
+				});
+
+			var editText = "Edit Game";
+
+			editLink.html(editText);
+
+			editLinkLi.append(editLink);
+			editGameListRow.append(editLinkLi);
+
+
+
+			// Delete Game
+			var deleteLinkLi = $("<li></li>");
+			var deleteLink = $("<a></a>");
+				deleteLink.href = "#";
+				deleteLink.key = key; // Key value of the display gameGenres
+
+				deleteLink.click(function() {
+					deleteGame(key);
+				});
+
+			var deleteText = "Delete Game";
+				deleteLink.html(deleteText);
+
+			deleteLinkLi.append(deleteLink);
+			editGameListRow.append(deleteLinkLi);
+
+		};
+		// ##################################
+		// Make edit coupon link list
+		// ##################################
+		
+		
+		// ####################################################################
+		// END Read
+		// ####################################################################
+		
+		
+		// ####################################################################
+		// Update
+		// ####################################################################
+		
+		// ##################################
+		// ##################################
+		// Edit saved game
+		// ##################################
+		// ##################################
+		function editGame(key) {
+		// Edit saved game's details
+			toggleControls("game_form", "show")
+
+			// Grab the data from our item in Local Storage
+			var value = localStorage.getItem(key);
+			var game = JSON.parse(value);
+
+			// populate form fields with data from local storage
+			$("#title").val(game.title[1]);
+			
+			$("#platform").selectedIndex = getOptionValueIndex(platformList,game.platform[1]);
+
+			$("#genre").selectedIndex = getOptionValueIndex(genreList,game.genre[1]);
+
+			$("#publisher").val(game.publisher[1]);
+			$("#developer").val(game.developer[1]);
+	
+			if (game.completed[1] === "Yes") {
+				$("#completed_yes").attr("checked","checked");
+			} else {
+				$("#completed_no").attr("checked","checked");
+			};
+
+			// Purchased
+			$("#purchased").val(game.purchased[1]);
+			$("#purchased_amount").val(game.purchased_amount[1]);
+
+
+			// Sold
+			$("#sold").value = game.sold[1];
+			if (game.sold[1] != "n/a") {
+				$("#sold_amount").val(game.sold[1]);
+			};
+
+			if (game.sold_amount[1] != "n/a") {
+				$("#sold_amount").val(game.sold_amount[1]);
+			};
+
+			// Special Notes
+			$("#notes").val(game.notes[1]);
+			
+			// Favorite
+			if (game.favorite[1] === "Yes") {
+				$("#favorite").attr("checked","true");
+			};
+			
+			$("#submit").val("[#] Edit Game");
+			
+			var editAdd = $("#submit");
+			
+			editAdd.click(function() {
+				saveEditedGame(key);
+			});
+
+		};
+		// ##################################
+		// Edit saved game
+		// ##################################
+		
+		
+		// ##################################
+		// Save Edited Game
+		// ##################################
+		function saveEditedGame(e) {
+			saveGame(this.key);
+		};
+		// ##################################
+		// END Save Edited Game
+		// ##################################
+		
+		// ####################################################################
+		// END Update
+		// ####################################################################
+		
+		
+		// ####################################################################
+		// Delete
+		// ####################################################################
+
+		// ##################################
+		// ##################################
+		// Delete saved game
+		// ##################################
+		// ##################################
+		function deleteGame(key) {
+		// Delete game from local storage
+
+			var confirmDelete = confirm("Are you sure you want to delete this game?")
+			if (confirmDelete) {
+				localStorage.removeItem(key);
+				alert("Your game has been deleted.");
+				window.location.reload();
+			} else {
+				alert("Game was not deleted.")
+			}
+			return false;
+		};
+		// ##################################
+		// Delete saved game
+		// ##################################
+			
+
+
+			
+		// ##################################
+		// ##################################
+		// Deleted ALL Game(s) From Local Storage
+		// ##################################
+		// ##################################
+		function deleteGames() {
+			if (localStorage.length === 0){
+				alert("There are no games saved.");
+			}else {
+				localStorage.clear();
+				alert("Your games have been deleted.");
+				window.location.reload();
+				return false;
+			};
+
+		};
+		// ##################################
+		// Deleted ALL Game(s) From Local Storage
+		// ##################################	
+
+		// ####################################################################
+		// END Delete
+		// ####################################################################
+		
+		
+		
+		
+		//
+		// Utiliy Functions
+		//
+		
+		// ##################################
+		// ##################################
+		// Add Example Coupon Data
+		// ##################################
+		// ##################################
+		function exampleCouponData() {
+			// Load example games if there is no data stored
+			for (n in json) {
+				var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
+				localStorage.setItem(id, JSON.stringify(json[n]));
+			};
+
+			displayGames(); // Display example coupons after data has been loaded
+		};
+		// ##################################
+		// Add Example Coupon Data
+		// ##################################
+		
+		
+		// ##################################
+		// ##################################
+		// Hide form and relevant controls when games are displayed
+		// ##################################
+		// ##################################
+		function toggleControls(obj, n) {
+			switch(n) {
+				case "hide":
+					$("#"+obj).css("display","none");
+					// $("#clear_games").css("display","inline");
+					// $("#display_games").css("display","none");
+					// $("#add_coupon").css("display","inline");
+					break;
+					case "show":
+					$("#"+obj).css("display","block");
+					// $("#clear_games").css("display","inline");
+					// $("#display_games").css("display","inline");
+					// $("#add_coupon").css("display","none");
+					// $("#games").css("display","block");
+					break;
+				default:
+					return false;
+
+			};
+		};
+		// ##################################
+		// Hide form and relevant controls when games are displayed
+		// ##################################	
 	
 });
 
-//The functions below can go inside or outside the pageinit function for the page in which it is needed.
-
-var autofillData = function (){
-	 
-};
-
-var getData = function(){
-
-};
-
-var storeData = function(data){
-	
-}; 
-
-var	deleteItem = function (){
-			
-};
-					
-var clearLocal = function(){
-
-};
