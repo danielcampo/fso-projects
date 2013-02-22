@@ -326,3 +326,11 @@ padding: 6px;
 	margin: 0 auto 10px auto;
 }
 
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+#cancel {
+	text-align: center;
+}

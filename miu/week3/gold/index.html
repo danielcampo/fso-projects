@@ -933,7 +933,7 @@ App Description: Keep track of your extensive game library.
 
 						<li>
 							<label for="title">Game Title:</label>
-							<input id="title" type="text" name="title">
+							<input id="title" type="text" name="title" class="required" placeholder="e.g.: Sly Cooper: Thieves in Time">
 						</li>
 						<!-- END Product Name -->
 
@@ -942,13 +942,13 @@ App Description: Keep track of your extensive game library.
 							<legend>Game Details</legend>
 
 								<ul>
-									
-									<li id="platform_list">
+
+									<li id="platform_list" class="required">
 
 									</li>
 									<!-- END Platform -->
 
-									<li id="genre_list">
+									<li id="genre_list" class="required">
 
 									</li>
 									<!-- END Game Genre -->
@@ -956,13 +956,13 @@ App Description: Keep track of your extensive game library.
 
 									<li>
 										<span class="title">Publisher</span>
-										<input id="publisher" name="publisher" type="text">
+										<input id="publisher" name="publisher" type="text" placeholder="e.g.: Sony Computer Entertainment America, Inc.">
 									</li>
 									<!-- END Publisher -->
 
 									<li>
 										<span class="title">Developer</title>
-										<input id="developer" name="developer" type="text">
+										<input id="developer" name="developer" type="text" placeholder="e.g.: Sanzaru Games">
 									</li>
 									<!-- END Publisher -->
 
@@ -976,7 +976,7 @@ App Description: Keep track of your extensive game library.
 
 
 						<li>
-							<fieldset>
+							<fieldset data-role="controlgroup">
 								<legend>Have you completed the game?</legend>
 									<label for="completed_yes">Yes</label>
 									<input id="completed_yes" type="radio" name="completion">
@@ -990,7 +990,7 @@ App Description: Keep track of your extensive game library.
 
 						<li>
 							<fieldset>
-							<legend>Purchased</legend>
+							<legend>Purchase Details</legend>
 								<label for="purhcased">Date Purchased:</label>
 								<input id="purchased" type="date" name="purchased">
 								<span class="hint">When did you purchase the game?</span>
@@ -998,15 +998,20 @@ App Description: Keep track of your extensive game library.
 								<br />
 
 								<label for="purchased_amount">Purchase Amount (USD):</label>
-								<input id="purchased_amount" type="number" name="purchased_amount" step="any" min="0" placeholder="64.19">
+								<input id="purchased_amount" type="number" name="purchased_amount" step="any" min="0" placeholder="e.g.: 64.19">
 								<span class="hint">How much did you pay for the game?</span>
 							</fieldset>
 						</li>
 						<!-- END Date Purchased -->
 
 						<li>
-							<fieldset>
-							<legend>Sold (If Applicable)</legend>
+							<fieldset data-role="controlgroup">
+								<input id="sold_q" type="checkbox" name="sold_q">
+								<label for="sold_q">Sold Game</label>
+								<p class="hint">Check box if you've sold the game.</p>
+							</fieldset>
+							<fieldset id="sold_d">
+							<legend>Sold Details</legend>
 								<label for="sold">Date Sold:</label>
 								<input id="sold" type="date" name="sold">
 								<span class="hint">When did you sell the game?</span>
@@ -1014,7 +1019,7 @@ App Description: Keep track of your extensive game library.
 								<br />
 
 								<label for="sold_amount">Sell Amount (USD):</label>
-								<input id="sold_amount" type="number" name="sold_amount" step="any" min="0" placeholder="30">
+								<input id="sold_amount" type="number" name="sold_amount" step="any" min="0" placeholder="e.g.: 30">
 								<span class="hint">How much did you sell the game for?</span>
 							</fieldset>
 						</li>
@@ -1027,7 +1032,10 @@ App Description: Keep track of your extensive game library.
 						<!-- END Special Notes -->
 
 						<li>
-							<input id="favorite" type="checkbox" value="Yes"> Favorite
+							<fieldset data-role="controlgroup">
+							<input id="favorite" name="favorite" type="checkbox" value="Yes">
+							<label for="favorite">Favorite</label>
+							</fieldset>
 						</li>
 
 					</ul>
@@ -1038,7 +1046,7 @@ App Description: Keep track of your extensive game library.
 				<br />
 
 				<input id="submit" type="submit" value="[+] Add Game">
-				<p><a id="reset" href="#">Cancel</a></p>
+				<p id="cancel"><a href="#add">Cancel</a></p>
 
 			</form>
 
@@ -1081,6 +1089,7 @@ App Description: Keep track of your extensive game library.
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="js/jqm_config.js"></script>
 <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+<script src="js/libs/jquery.validate.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/json.js"></script>
 <!-- END App : Scripts -->
