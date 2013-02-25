@@ -1,0 +1,319 @@
+/*
+Daniel Campo
+FSO - Mobile Development
+Mobile Interfaces & Usability
+
+App Name: Game Collector
+App Description: Keep track of your extensive game library.
+*/
+html {
+	background-color: #f1f1f1;
+}
+
+body {
+	margin: 0 auto;
+}
+
+body * {
+	font-family: 'Helvetica', Arial, sans-serif, serif;
+	font-size: 100%;
+	font-weight: 100;
+
+}
+
+strong {
+	font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 10px;
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+}
+
+h2, h3, h4, h5, h6 {
+	font-weight: 300;
+}
+
+h2 {
+	font-size: 1.2em;
+}
+
+a {
+	color: #a22503
+}
+
+.pagecontent {
+	margin-top: 4px;
+}
+
+body > header {
+	text-align: center;
+}
+
+header[data-role=header] {
+	font-size: .8em;
+	text-align: center;
+}
+
+header[data-role=header] h1 a {
+	color: #f93500 !important;
+	font-size: .65em;
+	font-weight: normal !important;
+	text-decoration: none;
+}
+
+body > header h1 {
+	background-color: #f93500;
+	border-bottom: #a22503 solid 4px;
+	color: #fff;
+	font-weight: normal;
+	font-size: 1em;
+	text-indent: 5px;
+}
+
+body > header a {
+	color: #fff;
+	text-decoration: none;
+}
+
+
+header h1, header h2 {
+	margin: 0;
+	padding: 5px;
+}
+
+section {
+	background-color: #fff;
+	font-size: .85em;
+	padding: 5px;
+}
+
+form fieldset {
+	border: #a22503 dashed thin;
+	border-radius: 10px;
+}
+
+form > fieldset > legend, form > fieldset legend {
+	background-color: #a22503;
+	border-radius: 10px;
+	color: #fff;
+	padding: 5px;
+	text-transform: uppercase;
+}
+
+/* Secondary Fieldset */
+form > fieldset ul fieldset {
+	background-color: #f5f5f5;
+	border: #888 solid thin;
+}
+
+form > fieldset ul legend {
+	background-color: #e1e1e1;
+	color: #000;
+	text-transform: none;
+}
+/* / */
+
+form fieldset > ul {
+	padding-left: 0;
+}
+
+form fieldset > ul > li {
+	border-bottom: #e1e1e1 solid thin;
+	list-style: none;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+form fieldset > ul > li:last-child {
+	border-bottom: none;
+}
+
+form fieldset > ul > li > label {
+	font-weight: 400;
+}
+
+input {
+	border: #ccc solid thin;
+	border-radius: 8px;
+}
+
+form textarea {
+	border: #888 solid thin;
+	border-radius: 10px;
+}
+
+form input[type=submit] {
+	background-color: #f93500;
+	border: 0;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 1.5em;
+	padding: 10px;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+form input[type=submit]:hover {
+	background-color: #a22503;
+}
+
+div[data-role=page] > footer {
+	background-color: #ddd;
+	font-size: x-small;
+	padding: 10px 0;
+	text-align: center;
+}
+
+footer nav a {
+	color: #000;
+	font-size: .85em;
+}
+
+footer nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+footer nav ul li {
+	display: inline;
+	float: left;
+	margin-right: 10px;
+}
+
+
+
+/* Coupon List Output */
+
+#coupons {
+	width: 80%;
+}
+
+#coupons table {
+	margin-bottom: 20px;
+}
+
+#add_coupon {
+	display: none;
+}
+
+/*****************/
+/* Home */
+/*****************/
+#content h2 {
+	color: #000;
+	font-size: 1.5em;
+	margin: 0 0 1px 0;
+	padding: 4px;
+	text-transform: uppercase;
+}
+
+#content, body>footer {
+	padding: 10px;
+}
+
+#cta, #search, #browse {
+	margin-bottom: 15px;
+}
+
+#search, #browse {
+	border: #ccc solid thin;
+}
+
+p {
+	width: 100%;
+}
+
+/* CTA */
+
+#cta img {
+	display: block;
+	height: auto;
+	max-width: 620px;
+	width: 100%;
+}
+
+/* Search */
+#search h2, #browse h2 {
+	background-color: #a12211 !important;
+	color: #fff;
+	border-radius: 30px;
+	padding: 10px 5px;
+	text-indent: 6px;
+	text-shadow: none;
+}
+#search div {
+	background-color: #fafafa;
+	padding: 5px;
+}
+
+#search input {
+	height: 30px;
+}
+
+#search input[type=text] {
+	margin: 0;
+	padding: 0;
+	text-indent: 5px;
+}
+
+#search input[type=submit] {
+	font-size: inherit;
+	padding: 5px;
+}
+
+/* Browse */
+#browse {
+	overflow: hidden;
+}
+
+#browse h2 {
+	background-color: #ffcea3;
+	margin-bottom: 4px;
+}
+
+#browse nav {
+	background-color: #e9e9e9;
+	margin: 0;
+	padding: 0;
+}
+
+#browse ul {
+	margin: 0 auto;
+	padding: 0;
+}
+
+#browse ul li {
+	color: #fff;
+	overflow: hidden;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#browse img {
+	height: 64px;
+	width: 64px;
+}
+
+/* JQM */
+
+/* Fixes search box from being covered by list content */
+.ui-listview-filter-inset {
+	margin: 0 -5px 5px -5px;
+	background: transparent;
+}
+
+/* Better aligns images with text in listview */
+.ui-li-thumb, .ui-listview .ui-li-icon, .ui-li-content {
+float: left;
+margin-right: 10px;
+padding: 6px;
+}
+
+
