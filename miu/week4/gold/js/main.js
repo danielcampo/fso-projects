@@ -133,6 +133,26 @@ $('#add').on('pageinit', function(){
 	/* END Form Building Functions
 	/* ################################ */
 
+	// Set Defaults
+	function setDefaults(input) {
+	    var now = new Date();
+	    var month = (now.getMonth() + 1);
+	    var day = now.getDate();
+	    if(month < 10)
+	        month = "0" + month;
+	    if(day < 10)
+	        day = "0" + day;
+	    var today = now.getFullYear() + '-' + month + '-' + day;
+	    $(input).val(today);
+	};
+	// END Set Defaults
+
+	// Remove Defaults
+	function removeDefaults(input) {
+		$(input).val("");
+	};
+	// END Remove Defaults
+
 	function getOptionText(option,value) {
 		// Cycles through the Genre list array to find a match using the value of the selected option
 		for (n = 0; n < option.length; n++) {
@@ -224,6 +244,9 @@ $('#add').on('pageinit', function(){
 				// Purchased
 				game.purchased = ["Purchased", $("#purchased").val()];
 				game.purchased_amount = ["Purchase Amount", $("#purchased_amount").val()];
+
+				// Free
+				game.free = ["Acquired", $("#free").val()];
 
 				// Sold
 				game.sold = ["Sold", $("#sold").val()];
@@ -351,7 +374,7 @@ $('#add').on('pageinit', function(){
 		// Create the edit and delete links for each store coupon when displayed
 		function makeEditList(key, editGameListRow) {
 
-			// Edit Coupon
+			/* Edit Game
 			var editLinkLi = $("<li></li>");
 			var editLink = $("<a></a>");
 				editLink.href = "#";
@@ -367,6 +390,7 @@ $('#add').on('pageinit', function(){
 
 			editLinkLi.append(editLink);
 			editGameListRow.append(editLinkLi);
+			*/
 
 
 
@@ -434,6 +458,8 @@ $('#add').on('pageinit', function(){
 			$("#purchased").val(game.purchased[1]);
 			$("#purchased_amount").val(game.purchased_amount[1]);
 
+			// Free
+			$("#sold").val(game.free[1]);
 
 			// Sold
 			$("#sold").val(game.sold[1]);
@@ -605,16 +631,39 @@ $('#add').on('pageinit', function(){
 		// ##################################
 
 		function hideConditionals() {
+			$("#purchased_d").hide();
+			$("#free_d").hide();
 			$("#sold_d").hide();
 		};
 		hideConditionals();
 
-		$("#sold_q").change(function() {
+		$("#purchased_q").change(function() {
+			if ($(this).attr("checked")) {
+				$("#purchased_d").slideDown();
+				setDefaults("#purchased");
+			} else {
+				$("#purchased_d").slideUp();
+				removeDefaults("#purchased");
+			}
+		});
 
+		$("#free_q").change(function() {
+			if ($(this).attr("checked")) {
+				$("#free_d").slideDown();
+				setDefaults("#free");
+			} else {
+				$("#free_d").slideUp();
+				removeDefaults("#free");
+			}
+		});
+
+		$("#sold_q").change(function() {
 			if ($(this).attr("checked")) {
 				$("#sold_d").slideDown();
+				setDefaults("#sold");
 			} else {
 				$("#sold_d").slideUp();
+				removeDefaults("#sold");
 			}
 		});
 

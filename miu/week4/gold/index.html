@@ -933,7 +933,7 @@ App Description: Keep track of your extensive game library.
 					<ul>
 
 						<li>
-							<label for="title">Game Title:</label>
+							<label for="title">Game Title:*</label>
 							<input id="title" type="text" name="title" class="required" placeholder="e.g.: Sly Cooper: Thieves in Time">
 						</li>
 						<!-- END Product Name -->
@@ -944,12 +944,12 @@ App Description: Keep track of your extensive game library.
 
 								<ul>
 
-									<li id="platform_list" class="required">
+									<li id="platform_list">
 
 									</li>
 									<!-- END Platform -->
 
-									<li id="genre_list" class="required">
+									<li id="genre_list">
 
 									</li>
 									<!-- END Game Genre -->
@@ -990,7 +990,12 @@ App Description: Keep track of your extensive game library.
 						<!-- END Game Completion -->
 
 						<li>
-							<fieldset>
+							<fieldset data-role="controlgroup">
+								<input id="purchased_q" type="checkbox" name="sold_q">
+								<label for="purchased_q">Purchased Game</label>
+								<p class="hint">Check box if you purchased the game.</p>
+							</fieldset>
+							<fieldset id="purchased_d">
 							<legend>Purchase Details</legend>
 								<label for="purhcased">Date Purchased:</label>
 								<input id="purchased" type="date" name="purchased">
@@ -1004,6 +1009,21 @@ App Description: Keep track of your extensive game library.
 							</fieldset>
 						</li>
 						<!-- END Date Purchased -->
+
+						<li>
+							<fieldset data-role="controlgroup">
+								<input id="free_q" type="checkbox" name="sold_q">
+								<label for="free_q">Free Game</label>
+								<p class="hint">Check box if the game was free.</p>
+							</fieldset>
+							<fieldset id="free_d">
+							<legend>Free Game Details</legend>
+								<label for="free">Date Acquired:</label>
+								<input id="free" type="date" name="free">
+								<span class="hint">When did you receive the free game?</span>
+							</fieldset>
+						</li>
+						<!-- END Date Sold-->
 
 						<li>
 							<fieldset data-role="controlgroup">
@@ -1024,7 +1044,7 @@ App Description: Keep track of your extensive game library.
 								<span class="hint">How much did you sell the game for?</span>
 							</fieldset>
 						</li>
-						<!-- END Date Purchased -->
+						<!-- END Date Sold-->
 
 						<li>
 							<label for="notes">Special Notes</label>
