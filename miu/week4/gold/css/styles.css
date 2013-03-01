@@ -163,7 +163,6 @@ form textarea {
 }
 
 form input[type=submit] {
-	background-color: #f93500;
 	border: 0;
 	border-radius: 10px;
 	color: #fff;
@@ -174,7 +173,6 @@ form input[type=submit] {
 }
 
 form input[type=submit]:hover {
-	background-color: #a22503;
 }
 
 div[data-role=page] > footer {
@@ -233,6 +231,7 @@ footer nav ul li {
 
 #cta, #search, #browse {
 	margin-bottom: 15px;
+	text-align: center;
 }
 
 #search, #browse {
@@ -248,7 +247,6 @@ p {
 #cta img {
 	display: block;
 	height: auto;
-	max-width: 620px;
 	width: 100%;
 }
 

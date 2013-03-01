@@ -792,8 +792,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#664810', end
 /* radius clip workaround for cleaning up corner trapping */
 .ui-corner-all,
 .ui-btn-corner-all {
-	-webkit-background-clip: padding;
-	background-clip: padding-box;
 }
 
 /* Overlay / modal
