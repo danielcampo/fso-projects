@@ -17,10 +17,11 @@ App Description: Keep track of your extensive game library.
 <meta name="robots" content="index, follow" />
 <meta name="viewport" content="user-scalable=no, width=device-width" />
 
-<script src="js/libs/modernizr.custom.min.js"></script>
-
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+<link rel="stylesheet" href="css/theme/gamecollector.css" />
 <link rel="stylesheet" href="css/styles.css">
+
+<script src="js/libs/modernizr.custom.min.js"></script>
 
 <title>Game Collector</title>
 
@@ -48,7 +49,7 @@ App Description: Keep track of your extensive game library.
 
 		<!-- App : Home : Content : CTA -->
 		<section id="cta">
-			<a href="additem.html" data-ajax="false">
+			<a href="#add">
 				<img alt="All of your games. All in one place." src="img/gc_cta.png" title="Game Collector" />
 			</a>
 			<a href="#add" data-role="button" data-icon="plus" data-theme="a">Start Adding Games</a>
@@ -1045,7 +1046,7 @@ App Description: Keep track of your extensive game library.
 
 				<br />
 
-				<input id="submit" type="submit" value="[+] Add Game">
+				<input data-theme="a" id="submit" type="submit" value="[+] Add Game">
 				<p id="cancel"><a href="#add">Cancel</a></p>
 
 			</form>
