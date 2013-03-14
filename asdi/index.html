@@ -11,17 +11,326 @@ File: Index
 
 <html>
 	<head>
-		<title></title>
+		<title>Game Collector</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+		<link rel="stylesheet" href="css/theme/gamecollector.css" />
 		<link rel="stylesheet" href="css/main.css">
 	</head>
 
 	<body>
-		<div id="main">
+		<!-- App : Home -->
+		<div id="home" data-role="page">
+
+
+			<!-- App : Home : Header -->
+			<header data-role="header" data-position="fixed">
+				<hgroup>
+					<h1>
+						<a href="#home"><img height="25" src="img/gc_logo.png" width="160" /></a>
+					</h1>
+				</hgroup>
+			</header>
+			<!-- END App : Home : Header -->
+
+
+			<!-- App : Home : Body -->
+			<div id="home_content" class="pagecontent">
+
+				<!-- App : Home : Content : CTA -->
+				<section id="cta">
+					<a href="#add">
+						<img alt="All of your games. All in one place." src="img/gc_cta.png" title="Game Collector" />
+					</a>
+
+					<a href="#add" data-role="button" data-icon="plus" data-theme="a">Start Adding Games</a>
+				</section>
+				<!-- END App : Home : Content : CTA -->
+
+				<section id="home_info">
+					<h2>Purpose</h2>
+
+					<p>Game Collector is essentially an inventory keeping application that is strictly tailored for games. Categorize your games by genre, publisher, developer and your favorites.</p>
+				</section>
+
+			</div>
+			<!-- END App : Home : Body -->
+
+
+			<!-- App : Home : Footer -->
+			<footer data-role="footer">
+				<nav data-role="navbar" data-position="fixed">
+					<ul>
+						<li>
+							<a href="#display" data-icon="grid" data-transition="slide">Display Games</a>
+						</li>
+						<li>
+							<a href="#add" data-icon="plus" data-transition="slide">Add a Game</a>
+						</li>
+
+					</ul>
+				</nav>
+				<p>Copyright &copy;2013 Daniel Campo. All Rights Reserved.</p>
+			</footer>
+			<!-- END App : Home : Footer -->
+
+		</div>
+		<!-- END App : Home -->
+
+		<!-- ############################################################# -->
+		<!-- ############################################################# -->
+		<!-- ############################################################# -->
+		<!-- ############################################################# -->
+		<!-- App : Add -->
+		<div id="add" data-role="page" data-add-back-btn="true" data-transition="slide">
+
+			<!-- App : Add : Header -->
+			<header data-role="header" data-position="fixed">
+				<hgroup>
+					<h1>
+						<a href="index.html"><img height="25" src="img/gc_logo.png" width="160" /></a>
+					</h1>
+				</hgroup>
+			</header>
+			<!-- END App : Add : Header -->
+
+			<!-- App : Add : Body -->
+			<div id="content">
+
+				<!-- App : Add : Form -->
+				<section id="game_form">
+
+					<form action="" id="gameForm" method="post">
+
+						<fieldset>
+
+							<legend>Add a Game</legend>
+							<p>* denotes required field</p>
+
+							<ul>
+
+								<li>
+									<label for="title">Game Title:*</label>
+									<input id="title" type="text" name="title" class="required" placeholder="e.g.: Sly Cooper: Thieves in Time">
+								</li>
+								<!-- END Product Name -->
+
+								<li>
+									<fieldset>
+									<legend>Game Details</legend>
+
+										<ul>
+
+											<li id="platform_list"></li>
+											<!-- END Platform -->
+
+											<li id="genre_list"></li>
+											<!-- END Game Genre -->
+
+
+											<li>
+												<span class="title">Publisher</span>
+												<input id="publisher" name="publisher" type="text" placeholder="e.g.: Sony Computer Entertainment America, Inc.">
+											</li>
+											<!-- END Publisher -->
+
+											<li>
+												<span class="title">Developer</title>
+												<input id="developer" name="developer" type="text" placeholder="e.g.: Sanzaru Games">
+											</li>
+											<!-- END Publisher -->
+
+
+										</ul>
+
+									</fieldset>
+								</li>
+								<!-- END Game Details -->
+
+
+
+								<li>
+									<fieldset data-role="controlgroup">
+										<legend>Have you completed the game?</legend>
+											<label for="completed_yes">Yes</label>
+											<input id="completed_yes" type="radio" name="completion">
+
+											<label for="completed_no">No</label>
+											<input id="completed_no" type="radio" name="completion">
+									</fieldset>
+
+								</li>
+								<!-- END Game Completion -->
+
+								<li>
+									<fieldset data-role="controlgroup">
+										<input id="purchased_q" type="checkbox" name="sold_q">
+										<label for="purchased_q">Purchased Game</label>
+										<p class="hint">Check box if you purchased the game.</p>
+									</fieldset>
+									<fieldset id="purchased_d">
+									<legend>Purchase Details</legend>
+										<label for="purhcased">Date Purchased:</label>
+										<input id="purchased" type="date" name="purchased">
+										<span class="hint">When did you purchase the game?</span>
+
+										<br />
+
+										<label for="purchased_amount">Purchase Amount (USD):</label>
+										<input id="purchased_amount" type="number" name="purchased_amount" step="any" min="0" placeholder="e.g.: 64.19">
+										<span class="hint">How much did you pay for the game?</span>
+									</fieldset>
+								</li>
+								<!-- END Date Purchased -->
+
+								<li>
+									<fieldset data-role="controlgroup">
+										<input id="free_q" type="checkbox" name="sold_q">
+										<label for="free_q">Free Game</label>
+										<p class="hint">Check box if the game was free.</p>
+									</fieldset>
+									<fieldset id="free_d">
+									<legend>Free Game Details</legend>
+										<label for="free">Date Acquired:</label>
+										<input id="free" type="date" name="free">
+										<span class="hint">When did you receive the free game?</span>
+									</fieldset>
+								</li>
+								<!-- END Date Sold-->
+
+								<li>
+									<fieldset data-role="controlgroup">
+										<input id="sold_q" type="checkbox" name="sold_q">
+										<label for="sold_q">Sold Game</label>
+										<p class="hint">Check box if you've sold the game.</p>
+									</fieldset>
+									<fieldset id="sold_d">
+									<legend>Sold Details</legend>
+										<label for="sold">Date Sold:</label>
+										<input id="sold" type="date" name="sold">
+										<span class="hint">When did you sell the game?</span>
+
+										<br />
+
+										<label for="sold_amount">Sell Amount (USD):</label>
+										<input id="sold_amount" type="number" name="sold_amount" step="any" min="0" placeholder="e.g.: 30">
+										<span class="hint">How much did you sell the game for?</span>
+									</fieldset>
+								</li>
+								<!-- END Date Sold-->
+
+								<li>
+									<label for="notes">Special Notes</label>
+									<textarea id="notes"></textarea>
+								</li>
+								<!-- END Special Notes -->
+
+								<li>
+									<fieldset data-role="controlgroup">
+									<input id="favorite" name="favorite" type="checkbox" value="Yes">
+									<label for="favorite">Favorite</label>
+									</fieldset>
+								</li>
+
+							</ul>
+
+						</fieldset>
+						<!-- END Game Details -->
+
+						<br />
+
+						<input data-theme="a" id="submit" type="submit" value="[+] Add Game">
+						<p id="cancel"><a href="#add">Cancel</a></p>
+
+					</form>
+
+				</section>
+				<!-- END App : Add : Form -->
+
+			</div>
+			<!-- END App : Add : Body -->
+
+			<!-- App : Add : Footer -->
+			<footer data-role="footer">
+				<nav data-role="navbar" data-position="fixed">
+					<ul>
+						<li>
+							<a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a>
+						</li>
+						<li>
+							<a id="display_games" href="#display" data-icon="grid">Display Games</a>
+						</li>
+						<li>
+							<a id="clear_games" href="#clear_games" data-icon="delete">Clear Games</a>
+						</li>
+
+					</ul>
+				</nav>
+				<p>Copyright &copy;2013 Daniel Campo. All Rights Reserved.</p>
+			</footer>
+			<!-- END App : Add : Footer -->
 
 
 		</div>
-		<!-- END #main -->
+		<!-- END App : Add -->
+		<!-- ############################################################# -->
+		<!-- ############################################################# -->
+		<!-- ############################################################# -->
+		<!-- ############################################################# -->
+
+		<div id="display" data-role="page" data-add-back-btn="true" data-transition="slide">
+
+			<!-- App : Display : Header -->
+			<header data-role="header" data-position="fixed">
+				<hgroup>
+					<h1>
+						<a href="index.html"><img height="25" src="img/gc_logo.png" width="160" /></a>
+					</h1>
+				</hgroup>
+			</header>
+			<!-- END App : Display : Header -->
+
+			<!-- App : Display : Body -->
+			<div id="content">
+
+				<section id="games_list"></section>
+
+			</div>
+			<!-- END App : Display : Body -->
+
+			<!-- App : Display : Footer -->
+			<footer data-role="footer">
+				<nav data-role="navbar" data-position="fixed">
+					<ul>
+						<li>
+							<a href="#home" data-icon="home" data-transition="slide" data-direction="reverse">Home</a>
+						</li>
+						<li>
+							<a id="add_games" href="#add" data-icon="plus">Add Games</a>
+						</li>
+						<li>
+							<a id="clear_games" href="#clear_games" data-icon="delete">Clear Games</a>
+						</li>
+
+					</ul>
+				</nav>
+				<p>Copyright &copy;2013 Daniel Campo. All Rights Reserved.</p>
+			</footer>
+			<!-- END App : Display : Footer -->
+
+
+		</div>
+		<!-- END App : Display -->
+		<!-- ############################################################# -->
+		<!-- ############################################################# -->
+		<!-- ############################################################# -->
+		<!-- ############################################################# -->
+
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="js/jqm_config.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script src="js/libs/jquery.validate.min.js"></script>
 		<script src="js/main.js"></script>
+		<script src="js/json.js"></script>
 	</body>
 </html>
 
