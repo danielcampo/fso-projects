@@ -476,7 +476,7 @@ function makeEditList(key, editGameListRow) {
 		editLink.href = "#";
 		editLink.key = key; // Key value of the display coupon
 
-		editLink.click(function() {
+		editLink.on("click",function() {
 			editGame(key);
 		});
 
@@ -496,7 +496,7 @@ function makeEditList(key, editGameListRow) {
 		deleteLink.href = "#";
 		deleteLink.key = key; // Key value of the display gameGenres
 
-		deleteLink.click(function() {
+		deleteLink.on("click", function() {
 			deleteGame(key);
 		});
 
@@ -580,7 +580,7 @@ function editGame(key) {
 	var editSubmit = $("#submit")
 		editSubmit.val("[#] Edit Game");
 
-	$("#submit").click(function() {
+	$("#submit").on("click",function() {
 		saveEditedGame(key);
 	});
 
@@ -670,7 +670,7 @@ function deleteGames() {
 // Cancel
 // ##################################
 // ##################################
-$("#cancel a").click(function() {
+$("#cancel a").on("click",function() {
 	window.location.reload();
 });
 // ##################################
