@@ -260,7 +260,7 @@ File: Index
 							<a id="display_games" href="#display" data-icon="grid">Display Games</a>
 						</li>
 						<li>
-							<a id="clear_games" href="#clear_games" data-icon="delete">Clear Games</a>
+							<a class="clear_games" href="#clear_games" data-icon="delete">Clear Games</a>
 						</li>
 
 					</ul>
@@ -292,6 +292,18 @@ File: Index
 			<!-- App : Display : Body -->
 			<div id="content">
 
+				<section id="games_load">
+					<p>There are no games saved.</p>
+					<p>Please add your games manually or select one of the import options below</p>
+					<ul data-role="listview" data-inset="true">
+						<li>
+							<a href="#" id="games_load_json" data-role="button">Import from JSON</a>
+						</li>
+						<li>
+							<a href="#" id="games_load_csv" data-role="button">Import from CSV</a>
+						</li>
+					</ul>
+				</section>
 				<section id="games_list"></section>
 
 			</div>
@@ -308,7 +320,7 @@ File: Index
 							<a id="add_games" href="#add" data-icon="plus">Add Games</a>
 						</li>
 						<li>
-							<a id="clear_games" href="#clear_games" data-icon="delete">Clear Games</a>
+							<a class="clear_games" href="#clear_games" data-icon="delete">Clear Games</a>
 						</li>
 
 					</ul>
@@ -325,12 +337,12 @@ File: Index
 		<!-- ############################################################# -->
 		<!-- ############################################################# -->
 
-		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="js/libs/jquery-1.8.2.min.js"></script>
 		<script src="js/jqm_config.js"></script>
-		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script src="js/libs/jquery.mobile-1.2.0.min.js"></script>
 		<script src="js/libs/jquery.validate.min.js"></script>
+		<script src="js/libs/jquery.csv-0.71.min.js"></script>
 		<script src="js/main.js"></script>
-		<script src="js/json.js"></script>
 	</body>
 </html>
 

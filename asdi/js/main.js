@@ -261,8 +261,8 @@ $('#add').on('pageinit', function(){
 
 
 	function hideConditionals() {
-		$("#purchased_d").hide();
 		$("#free_d").hide();
+		$("#purchased_d").hide();
 		$("#sold_d").hide();
 	};
 	hideConditionals();
@@ -349,7 +349,14 @@ $('#add').on('pageinit', function(){
 // ####################################################################
 
 $('#display').on('pageinit', function(){
+	// display games if there are games in local storage
 	displayGames();
+
+	// clear #games_list from previously loaded games
+	$("#games_list").empty();
+
+	$("#games_load_json").on("click", loadGamesDataJSON);
+	$("#games_load_csv").on("click", loadGamesDataCSV);
 });
 // ####################################################################
 // ####################################################################
@@ -389,9 +396,10 @@ $('#display').on('pageinit', function(){
 function displayGames() {
 
 	if (localStorage.length === 0) {
-		alert("There are no games saved so examples were added.");
-		exampleGameData();
+
 	} else {
+
+	$("#games_load").slideUp();
 
 	// Create the Games List DIV
 	var gameListDiv = $("<div></div>");
@@ -679,20 +687,101 @@ $("#cancel a").on("click",function() {
 
 // ##################################
 // ##################################
-// Add Example Coupon Data
+// Load Games Using AJAX
 // ##################################
 // ##################################
-function exampleGameData() {
-	// Load example games if there is no data stored
-	for (n in json) {
-		var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
-		localStorage.setItem(id, JSON.stringify(json[n]));
-	};
+function loadGamesDataJSON() {
+    $.ajax({
+        type: "GET",
+        url: "data/data.js",
+        success: function(data) {processDataJSON(data);}
+     });
 
-	displayGames(); // Display example coupons after data has been loaded
+     function processDataJSON(data) {
+
+		// Load example games if there is no data stored
+		for (n in json) {
+			var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
+			localStorage.setItem(id, JSON.stringify(json[n]));
+		};
+
+		var displayGamesNow = confirm("Your games have been loaded. View them now?");
+
+		if (displayGamesNow) {
+			$("#games_load").slideUp();
+			displayGames(); // Display example coupons after data has been loaded
+		} else {
+			alert("Your games will not be displayed");
+		};
+
+	};
 };
 // ##################################
-// END Add Example Coupon Data
+// END Load Games Using AJAX
+// ##################################
+
+
+// ##################################
+// ##################################
+//	Load Games Using CSV
+// ##################################
+// ##################################
+function loadGamesDataCSV() {
+    $.ajax({
+        type: "GET",
+        url: "data/data.csv",
+        success: function(data) {processDataCSV(data);}
+     });
+
+	function processDataCSV(data) {
+		    var record_num = 12;  // or however many elements there are in each row
+
+		    // creates multiple arrays with each new line of data
+		    var dataLines = data.split(';');
+
+		    // array with input titles
+		    var dataHeaders = dataLines[0].split(',');
+
+		    var dataEntriesOnly = dataLines;
+		    	dataEntriesOnly.splice(0,1);
+
+		    var dataCSV = [];
+
+		    for (i=0; i<dataHeaders.length; i++) {
+		    	var dataEntriesSingle = dataEntriesOnly[i].split(',');
+			    console.log(dataEntriesSingle[i]);
+			   /*
+ var dataEntries = dataEntriesOnly[i].split(',');
+			    console.log(dataHeaders[i]+" : "+dataEntries[i]);
+			    console.log("");
+*/
+		    }
+
+/*
+		    // creates array with each game detail item
+		    var entries = dataLines[0].split(',');
+
+		    console.log(entries);
+
+		    var lines = [];
+
+		    // creates an array with each header title
+		    var headings = entries.splice(0,record_num);
+
+		    while (entries.length>0) {
+		        var tarr = [];
+		        for (var j=0; j<record_num; j++) {
+			        console.log(headings[i]+" : "+entries[i]);
+		           tarr.push(headings[j]+":"+entries.shift());
+		        }
+		        lines.push(tarr);
+		    console.log(lines);
+		    }
+*/
+	    }
+};
+// ##################################
+// END Load Games Using CSV
 // ##################################
 
 
@@ -704,7 +793,7 @@ function exampleGameData() {
 // ##################################
 
 /* Clear Games */
-$("#clear_games").click(deleteGames);
+$(".clear_games").click(deleteGames);
 
 // ##################################
 // Event Listeners
