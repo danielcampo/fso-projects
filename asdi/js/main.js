@@ -11,8 +11,8 @@ var platformList = [
 	["platform_3ds","3DS / DS"],
 	["platform_ios","iOS"],
 	["platform_pc","PC"],
-	["platform_ps3","PlayStation 3"],
 	["platform_psvitapsp","PlayStation Vita / PSP"],
+	["platform_ps3","PlayStation 3"],
 	["platform_wii", "Wii / Wii U"],
 	["platform_xbox360", "XBOX 360"]
 ];
@@ -57,11 +57,11 @@ $('#add').on('pageinit', function(){
 			platformSelect.attr("name","platform");
 
 		for (n = 0; n < platformList.length; n++) {
-			createOption = $("<option></option>");
+			var createOption = $("<option></option>");
 				createOption.attr("value", platformList[n][0]);
 
 			// Option Text
-			optionText = platformList[n][1];
+			var optionText = platformList[n][1];
 
 			// Append Option Text
 			createOption.append(optionText);
@@ -100,7 +100,7 @@ $('#add').on('pageinit', function(){
 			genreLabel.attr("for","genre");
 
 		var genreLabelText = "Genre ";
-		genreLabel.append(genreLabelText);
+			genreLabel.append(genreLabelText);
 
 		$("#genre_list").append(genreLabel);
 
@@ -110,11 +110,11 @@ $('#add').on('pageinit', function(){
 			genreSelect.attr("name","genre");
 
 		for (n = 0; n < genreList.length; n++) {
-			createOption = $("<option></option>");
+			var createOption = $("<option></option>");
 				createOption.attr("value", genreList[n][0]);
 
 			// Option Text
-			optionText = genreList[n][1];
+			var optionText = genreList[n][1];
 
 			// Append Option Text
 			createOption.append(optionText);
@@ -721,34 +721,32 @@ function loadGamesDataCSV() {
 		var lines = [];
 
 		for (var i=1; i<dataLines.length; i++) {
-			var data = dataLines[i].split(',');
-	
-			if (data.length == headers.length) {
-				
-				var temp_tarr = [];
-				var tarr = [];
-				
+
+			var dataInfo = dataLines[i].split(','),
+				temp_tarr =[],
+				tarr = [];
+			
+			// !important: if the number of fields inputted don't match the number of headers the entry gets skipped
+			if (dataInfo.length == headers.length) {
+							
 				// create separate arrays for each field name and corresponding user data
 				for (var j=0; j<headers.length; j++) {	
+					tarr = [];
 					
 					// create [field name, user data] array 
-					temp_tarr.push([headers[j],data[j]]);
+					temp_tarr.push([headers[j],dataInfo[j]]);
 					
 					// push to final array
 					tarr.push(temp_tarr);
-				}
-				lines.push(tarr);
-				
-				// console.log("interval: "+j);
-			}
+				};
 			
-		}
+				lines.push(tarr);
+			};
+		};
 		
 		for (n in lines) {
-			if (n != 0) {
-				var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
-				localStorage.setItem(id, JSON.stringify(lines[n][0]));
-			};
+			var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
+			localStorage.setItem(id, JSON.stringify(lines[n][0]));
 		};
 		
 		displayGamesNow();
@@ -764,9 +762,9 @@ function loadGamesDataCSV() {
 		
 			// Make sure items were saved
 			if (localStorage.length != 0) {
-				confirm("Your games have been loaded. View them now?");
+				var displayGamesNowConfirm = confirm("Your games have been loaded. View them now?");
 
-				if (displayGamesNow) {
+				if (displayGamesNowConfirm) {
 					$("#games_load").slideUp();
 					displayGames(); // Display example coupons after data has been loaded
 				} else {
