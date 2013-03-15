@@ -352,9 +352,6 @@ $('#display').on('pageinit', function(){
 	// display games if there are games in local storage
 	displayGames();
 
-	// clear #games_list from previously loaded games
-	$("#games_list").empty();
-
 	$("#games_load_json").on("click", loadGamesDataJSON);
 	$("#games_load_csv").on("click", loadGamesDataCSV);
 });
