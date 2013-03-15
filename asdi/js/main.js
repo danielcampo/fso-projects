@@ -395,11 +395,9 @@ $('#display').on('pageinit', function(){
 // ##################################
 function displayGames() {
 
-	if (localStorage.length === 0) {
-
-	} else {
-
-	$("#games_load").slideUp();
+	if (localStorage.length != 0) {
+		$("#games_load").slideUp();
+	};
 
 	// Create the Games List DIV
 	var gameListDiv = $("<div></div>");
@@ -459,12 +457,10 @@ function displayGames() {
 
 
 			makeEditList(localStorage.key(i), editGameListLi); // Callback to function that creates the edit game link list.
-		}
+		};
 
 		return false;
-	}
-
-}
+};
 // ##################################
 // Display Game(s) From Local Storage
 // ##################################
