@@ -693,7 +693,7 @@ $("#cancel a").on("click",function() {
 function loadGamesDataJSON() {
     $.ajax({
         type: "GET",
-        url: "data/data.js",
+        url: "xhr/data.js",
         success: function(data) {processDataJSON(data);}
      });
 
@@ -729,7 +729,7 @@ function loadGamesDataJSON() {
 function loadGamesDataCSV() {
     $.ajax({
         type: "GET",
-        url: "data/data.csv",
+        url: "xhr/data.csv",
         success: function(data) {processDataCSV(data);}
      });
 
