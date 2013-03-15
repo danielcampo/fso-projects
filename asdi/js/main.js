@@ -6,7 +6,16 @@ Advanced Scalable Data Infrastructures - 1303
 App : Game Collector
 File: Main JS
 */
-
+var platformList = [
+	["platform_choose","Choose a Platform"],
+	["platform_3ds","3DS / DS"],
+	["platform_ios","iOS"],
+	["platform_pc","PC"],
+	["platform_ps3","PlayStation 3"],
+	["platform_psvitapsp","PlayStation Vita / PSP"],
+	["platform_wii", "Wii / Wii U"],
+	["platform_xbox360", "XBOX 360"]
+];
 
 $('#add').on('pageinit', function(){
 
@@ -31,17 +40,6 @@ $('#add').on('pageinit', function(){
 	/* Form Building Functions */
 	/* ################################ */
 	/* ################################ */
-	var platformList = [
-		["platform_choose","Choose a Platform"],
-		["platform_3ds","3DS / DS"],
-		["platform_ios","iOS"],
-		["platform_pc","PC"],
-		["platform_ps3","PlayStation 3"],
-		["platform_psvitapsp","PlayStation Vita / PSP"],
-		["platform_wii", "Wii / Wii U"],
-		["platform_xbox360", "XBOX 360"]
-	];
-
 	function createPlatformList() {
 
 		// Label
@@ -697,16 +695,7 @@ function loadGamesDataJSON() {
 			var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
 			localStorage.setItem(id, JSON.stringify(json[n]));
 		};
-
-		var displayGamesNow = confirm("Your games have been loaded. View them now?");
-
-		if (displayGamesNow) {
-			$("#games_load").slideUp();
-			displayGames(); // Display example coupons after data has been loaded
-		} else {
-			alert("Your games will not be displayed");
-		};
-
+		displayGamesNow();	
 	};
 };
 // ##################################
@@ -725,59 +714,67 @@ function loadGamesDataCSV() {
         url: "xhr/data.csv",
         success: function(data) {processDataCSV(data);}
      });
-
+	 
 	function processDataCSV(data) {
-		    var record_num = 12;  // or however many elements there are in each row
+		var dataLines = data.split('\n');
+		var headers = dataLines[0].split(',');
+		var lines = [];
 
-		    // creates multiple arrays with each new line of data
-		    var dataLines = data.split(';');
+		for (var i=1; i<dataLines.length; i++) {
+			var data = dataLines[i].split(',');
+	
+			if (data.length == headers.length) {
+				
+				var temp_tarr = [];
+				var tarr = [];
+				
+				// create separate arrays for each field name and corresponding user data
+				for (var j=0; j<headers.length; j++) {	
+					
+					// create [field name, user data] array 
+					temp_tarr.push([headers[j],data[j]]);
+					
+					// push to final array
+					tarr.push(temp_tarr);
+				}
+				lines.push(tarr);
+				
+				// console.log("interval: "+j);
+			}
+			
+		}
+		
+		for (n in lines) {
+			if (n != 0) {
+				var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
+				localStorage.setItem(id, JSON.stringify(lines[n][0]));
+			};
+		};
+		
+		displayGamesNow();
+	}
+}
 
-		    // array with input titles
-		    var dataHeaders = dataLines[0].split(',');
-
-		    var dataEntriesOnly = dataLines;
-		    	dataEntriesOnly.splice(0,1);
-
-		    var dataCSV = [];
-
-		    for (i=0; i<dataHeaders.length; i++) {
-		    	var dataEntriesSingle = dataEntriesOnly[i].split(',');
-			    console.log(dataEntriesSingle[i]);
-			   /*
- var dataEntries = dataEntriesOnly[i].split(',');
-			    console.log(dataHeaders[i]+" : "+dataEntries[i]);
-			    console.log("");
-*/
-		    }
-
-/*
-		    // creates array with each game detail item
-		    var entries = dataLines[0].split(',');
-
-		    console.log(entries);
-
-		    var lines = [];
-
-		    // creates an array with each header title
-		    var headings = entries.splice(0,record_num);
-
-		    while (entries.length>0) {
-		        var tarr = [];
-		        for (var j=0; j<record_num; j++) {
-			        console.log(headings[i]+" : "+entries[i]);
-		           tarr.push(headings[j]+":"+entries.shift());
-		        }
-		        lines.push(tarr);
-		    console.log(lines);
-		    }
-*/
-	    }
-};
 // ##################################
 // END Load Games Using CSV
 // ##################################
 
 
+		function displayGamesNow() { 
+		
+			// Make sure items were saved
+			if (localStorage.length != 0) {
+				confirm("Your games have been loaded. View them now?");
+
+				if (displayGamesNow) {
+					$("#games_load").slideUp();
+					displayGames(); // Display example coupons after data has been loaded
+				} else {
+					alert("Your games will not be displayed");
+				};
+			};
+		
+		};
 
 // ##################################
 // ##################################
