@@ -1,0 +1,10 @@
+{
+  "env": {
+    "local": {
+      "db": "http://127.0.0.1:5984/asdi"
+    },
+    "cloudant": {
+      "db": "http://iffeseventroodinguntsest:NwyTVPCQf2khi6XLMMPdnRPi@dcampo.cloudant.com/gamekeeper"
+    }    
+  }
+}

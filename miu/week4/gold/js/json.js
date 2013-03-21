@@ -123,7 +123,7 @@ var json = {
 		"sold": ["Sold Date", ""],
 		"sold_amount": ["Sold Amount", ""],
 		"notes": ["Special Notes", ""],
-		"favorite": ["Favorite", ""]
+		"favorite": ["Favorite", "No"]
 	},
 	"game9": {
 		"title": ["Title:", "Mass Effect 3"],
@@ -137,7 +137,7 @@ var json = {
 		"sold": ["Sold Date", ""],
 		"sold_amount": ["Sold Amount", ""],
 		"notes": ["Special Notes", ""],
-		"favorite": ["Favorite", ""]
+		"favorite": ["Favorite", "No"]
 	},
 	"game10": {
 		"title": ["Title:", "Mass Effect 2"],
@@ -207,7 +207,7 @@ var json = {
 		"sold": ["Sold Date", ""],
 		"sold_amount": ["Sold Amount", ""],
 		"notes": ["Special Notes", ""],
-		"favorite": ["Favorite", ""]
+		"favorite": ["Favorite", "No"]
 	},
 	"game15": {
 		"title": ["Title:", "Spy Mouse"],
@@ -291,6 +291,6 @@ var json = {
 		"sold": ["Sold Date", ""],
 		"sold_amount": ["Sold Amount", ""],
 		"notes": ["Special Notes", ""],
-		"favorite": ["Favorite", ""]
+		"favorite": ["Favorite", "No"]
 	}
 };
