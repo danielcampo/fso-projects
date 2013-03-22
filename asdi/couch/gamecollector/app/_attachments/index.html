@@ -13,8 +13,8 @@ File: Index
 	<head>
 		<title>Game Collector</title>
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-		<link rel="stylesheet" href="css/theme/gamecollector.css" />
-		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="style/gamecollector.css" />
+		<link rel="stylesheet" href="style/main.css">
 	</head>
 
 	<body>
@@ -26,7 +26,7 @@ File: Index
 			<header data-role="header" data-position="fixed">
 				<hgroup>
 					<h1>
-						<a href="#home"><img height="25" src="img/gc_logo.png" width="160" /></a>
+						<a href="#home"><img height="25" src="style/images/gc_logo.png" width="160" /></a>
 					</h1>
 				</hgroup>
 			</header>
@@ -39,7 +39,7 @@ File: Index
 				<!-- App : Home : Content : CTA -->
 				<section id="cta">
 					<a href="#add">
-						<img alt="All of your games. All in one place." src="img/gc_cta.png" title="Game Collector" />
+						<img alt="All of your games. All in one place." src="style/images/gc_cta.png" title="Game Collector" />
 					</a>
 
 					<a href="#add" data-role="button" data-icon="plus" data-theme="a">Start Adding Games</a>
@@ -87,7 +87,7 @@ File: Index
 			<header data-role="header" data-position="fixed">
 				<hgroup>
 					<h1>
-						<a href="index.html"><img height="25" src="img/gc_logo.png" width="160" /></a>
+						<a href="index.html"><img height="25" src="style/images/gc_logo.png" width="160" /></a>
 					</h1>
 				</hgroup>
 			</header>
@@ -283,7 +283,7 @@ File: Index
 			<header data-role="header" data-position="fixed">
 				<hgroup>
 					<h1>
-						<a href="index.html"><img height="25" src="img/gc_logo.png" width="160" /></a>
+						<a href="index.html"><img height="25" src="style/images/gc_logo.png" width="160" /></a>
 					</h1>
 				</hgroup>
 			</header>
@@ -297,10 +297,7 @@ File: Index
 					<p>Please add your games manually or select one of the import options below</p>
 					<ul data-role="listview" data-inset="true">
 						<li>
-							<a href="#" id="games_load_json" data-role="button">Import from JSON</a>
-						</li>
-						<li>
-							<a href="#" id="games_load_csv" data-role="button">Import from CSV</a>
+							<a href="#" id="games_load_db_json" data-role="button">Import from DB JSON</a>
 						</li>
 					</ul>
 				</section>
@@ -341,7 +338,6 @@ File: Index
 		<script src="js/jqm_config.js"></script>
 		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
-		<script src="js/libs/jquery.csv-0.71.min.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

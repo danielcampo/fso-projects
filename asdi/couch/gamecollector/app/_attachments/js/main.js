@@ -350,8 +350,7 @@ $('#display').on('pageinit', function(){
 	// display games if there are games in local storage
 	displayGames();
 
-	$("#games_load_json").on("click", loadGamesDataJSON);
-	$("#games_load_csv").on("click", loadGamesDataCSV);
+	$("#games_load_db_json").on("click", loadGamesDataDBJSON);
 });
 // ####################################################################
 // ####################################################################
@@ -681,21 +680,63 @@ $("#cancel a").on("click",function() {
 // Load Games Using AJAX
 // ##################################
 // ##################################
-function loadGamesDataJSON() {
+function loadGamesDataDBJSON() {
     $.ajax({
         type: "GET",
-        url: "xhr/data.js",
-        success: function(data) {processDataJSON(data);}
+        url: "_view/games",
+        dataType: "json",
+        success: function(data) {processDataDBJSON(data);}
      });
 
-     function processDataJSON(data) {
+     function processDataDBJSON(data) {
 
-		// Load example games if there is no data stored
-		for (n in json) {
-			var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
-			localStorage.setItem(id, JSON.stringify(json[n]));
-		};
-		displayGamesNow();
+	var gameListDiv = $("<div></div>");
+		gameListDiv.attr("id", "games");
+
+		// Create Game List UL
+		var gameListUl = $("<ul></ul>");
+			gameListDiv.append(gameListUl); // Add UL to Games List DIV
+
+		// Add Games List DIV to Games List SECTION
+		$("#games_list").append(gameListDiv);
+
+
+					// Load example games if there is no data stored
+					$.each(data.rows, function(index, value) {
+
+						var title = $("<li>" + value.value.title[0] + " " + value.value.title[1] + "</li>"),
+							platform = $("<li>" + value.value.platform[0] + " " + value.value.platform[1] + "</li>"),
+							genre = $("<li>" + value.value.genre[0] + " " + value.value.genre[1] + "</li>"),
+							publisher = $("<li>" + value.value.publisher[0] + " " + value.value.publisher[1] + "</li>"),
+							developer = $("<li>" + value.value.developer[0] + " " + value.value.developer[1] + "</li>"),
+							completed = $("<li>" + value.value.completed[0] + " " + value.value.completed[1] + "</li>"),
+							purchased = $("<li>" + value.value.purchased[0] + " " + value.value.purchased[1] + "</li>"),
+							purchased_amount = $("<li>" + value.value.purchased_amount[0] + " " + value.value.purchased_amount[1] + "</li>"),
+							sold = $("<li>" + value.value.sold[0] + " " + value.value.sold[1] + "</li>"),
+							sold_amount = $("<li>" + value.value.sold_amount[0] + " " + value.value.sold_amount[1] + "</li>"),
+							notes = $("<li>" + value.value.notes[0] + " " + value.value.notes[1] + "</li>"),
+							favorite = $("<li>" + value.value.favorite[0] + " " + value.value.favorite[1] + "</li>"),
+							spacer = $("<li> </li>");
+
+
+						gameListUl.append(title);
+						gameListUl.append(platform);
+						gameListUl.append(genre);
+						gameListUl.append(publisher);
+						gameListUl.append(developer);
+						gameListUl.append(completed);
+						gameListUl.append(purchased);
+						gameListUl.append(purchased_amount);
+						gameListUl.append(sold);
+						gameListUl.append(sold_amount);
+						gameListUl.append(notes);
+						gameListUl.append(favorite);
+						gameListUl.append(spacer);
+
+
+					});
+
+
 	};
 };
 // ##################################
@@ -703,61 +744,73 @@ function loadGamesDataJSON() {
 // ##################################
 
 
-// ##################################
-// ##################################
-//	Load Games Using CSV
-// ##################################
-// ##################################
-function loadGamesDataCSV() {
-    $.ajax({
-        type: "GET",
-        url: "xhr/data.csv",
-        success: function(data) {processDataCSV(data);}
-     });
+function displayGamesDB() {
+	// Create the Games List DIV
+	var gameListDiv = $("<div></div>");
+		gameListDiv.attr("id", "games");
 
-	function processDataCSV(data) {
-		var dataLines = data.split('\n');
-		var headers = dataLines[0].split(',');
-		var lines = [];
+	// Create Game List UL
+	var gameListUl = $("<ol></ol>");
 
-		for (var i=1; i<dataLines.length; i++) {
+		// Add UL to Games List DIV
+		gameListDiv.append(gameListUl);
 
-			var dataInfo = dataLines[i].split(','),
-				temp_tarr =[],
-				tarr = [];
+		// Add Games List DIV to Games List SECTION
+		$("#games_list").append(gameListDiv);
 
-			// !important: if the number of fields inputted don't match the number of headers the entry gets skipped
-			if (dataInfo.length == headers.length) {
+	for(var i = 0, storageLength = localStorage.length; i < storageLength; i++) {
 
-				// create separate arrays for each field name and corresponding user data
-				for (var j=0; j<headers.length; j++) {
-					tarr = [];
+		// Add New Row to Table
+		var makeLi = $("<li></li>");
+		gameListUl.append(makeLi);
 
-					// create [field name, user data] array
-					temp_tarr.push([headers[j],dataInfo[j]]);
 
-					// push to final array
-					tarr.push(temp_tarr);
-				};
 
-				lines.push(tarr);
-			};
+		// Link List
+		var editGameListLi = $("<li></li>");
+		var key = localStorage.key(i);
+		var value = localStorage.getItem(key);
+		var obj = JSON.parse(value);
+
+
+		var makeSubList = $("<ul></ul>");
+		makeLi.append(makeSubList);
+
+		// getImage(obj.genre[1], makeSubList);
+
+			for(var n in obj) {
+
+				// Add New Row to Table
+				var li_optionName = $("<li></li>");
+				makeSubList.append(li_optionName);
+
+					var optName = "<strong>"+obj[n][0]+"</strong>";
+					li_optionName.html(optName);
+
+					var li_optionValue = $("<li></li>");
+					makeSubList.append(li_optionValue);
+
+					var optValue = obj[n][1];
+					if (optValue == "") {
+						li_optionValue.html("n/a");
+					} else {
+						li_optionValue.html(optValue);
+					};
+
+
+				makeSubList.append(editGameListLi);
+			}
+
+
+			makeEditList(localStorage.key(i), editGameListLi); // Callback to function that creates the edit game link list.
 		};
-
-		for (n in lines) {
-			var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
-			localStorage.setItem(id, JSON.stringify(lines[n][0]));
-		};
-
-		displayGamesNow();
-	}
 }
 
 // ##################################
-// END Load Games Using CSV
 // ##################################
-
-
+// Display Games Immediately After JSON Load
+// ##################################
+// ##################################
 		function displayGamesNow() {
 
 			// Make sure items were saved
@@ -773,6 +826,9 @@ function loadGamesDataCSV() {
 			};
 
 		};
+// ##################################
+// END Display Games Immediately After JSON Load
+// ##################################
 
 // ##################################
 // ##################################
