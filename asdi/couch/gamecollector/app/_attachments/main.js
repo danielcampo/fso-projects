@@ -217,7 +217,7 @@ $('#add').on('pageinit', function() {
 		// Label & Value Will Be Stored.
 			// Append _game prefix and make lowercase
 
-			if (!data) {
+			if (data != undefined) {
 				var id = "game_" + $("#title").val();
 				id = id.replace(" ","_");
 				id = id.toLowerCase();
@@ -227,7 +227,9 @@ $('#add').on('pageinit', function() {
 
 			var game = {};
 
-			game._id = "game_" + $("#title").val();
+			game._id = id;
+			game._rev = data._rev;
+
 			game.title = ["Title", $("#title").val()];
 
 			game.platform = ["Platform", getOptionText(platformList,$("#platform").val())];
@@ -404,7 +406,7 @@ function makeEditList(doc, editGameListRow) {
 
 		// Create Listener for Edit Link
 		editLink.on("click",function() {
-			editGame(doc);
+			editSavedGame(doc);
 		});
 
 	var editText = "Edit Game";
@@ -457,7 +459,7 @@ function makeEditList(doc, editGameListRow) {
 // Edit saved game
 // ##################################
 // ##################################
-function editGame(doc) {
+function editSavedGame(doc) {
 // Edit saved game's details
     $.ajax({
         type: "GET",
@@ -472,9 +474,9 @@ function editGame(doc) {
 	    // populate form fields with data from local storage
 		$("#title").val(data.title[1]);
 
-		$("#platform").selectedIndex = getOptionValueIndex(platformList,data.platform[1]);
+		$("#platform").prop("selectedIndex",getOptionValueIndex(platformList,data.platform[1]));
 
-		$("#genre").selectedIndex = getOptionValueIndex(genreList,data.genre[1]);
+		$("#genre").prop("selectedIndex",getOptionValueIndex(genreList,data.genre[1]));
 
 		$("#publisher").val(data.publisher[1]);
 		$("#developer").val(data.developer[1]);
