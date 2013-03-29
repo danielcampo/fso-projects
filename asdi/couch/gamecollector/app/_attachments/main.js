@@ -17,11 +17,26 @@ var platformList = [
 	["platform_xbox360", "XBOX 360"]
 ];
 
+var genreList = [
+	["genre_choose","Choose a Genre"],
+	["genre_action","Action"],
+	["genre_adventure","Adventure"],
+	["genre_dancemusic","Dance / Music"],
+	["genre_fighting","Fighting"],
+	["genre_platform","Platform"],
+	["genre_puzzle","Puzzle"],
+	["genre_rpg","RPG"],
+	["genre_shooter","Shooter"],
+	["genre_simulation","Simulation"],
+	["genre_sports","Sports"],
+	["genre_strategy","Strategy"]
+];
 
 
 /***********/
 /* Couch */
 /**********/
+/*
 $("#home").on("pageinit", function() {
 	$.couch.db("asdi").view("gamecollector/games", {
 		success: function(data) {
@@ -43,6 +58,7 @@ $("#home").on("pageinit", function() {
 	});
 
 });
+*/
 
 var urlVars = function() {
 	var urlData = $($.mobile.activePage).data("url");
@@ -77,7 +93,7 @@ $("#games").live("pageshow", function() {
 /* END Couch */
 /**********/
 
-$('#add').on('pageinit', function(){
+$('#add').on('pageinit', function() {
 
 	/* ################################ */
 	/* ################################ */
@@ -138,21 +154,6 @@ $('#add').on('pageinit', function(){
 	createPlatformList();
 	// END Platform List
 
-	var genreList = [
-		["genre_choose","Choose a Genre"],
-		["genre_action","Action"],
-		["genre_adventure","Adventure"],
-		["genre_dancemusic","Dance / Music"],
-		["genre_fighting","Fighting"],
-		["genre_platform","Platform"],
-		["genre_puzzle","Puzzle"],
-		["genre_rpg","RPG"],
-		["genre_shooter","Shooter"],
-		["genre_simulation","Simulation"],
-		["genre_sports","Sports"],
-		["genre_strategy","Strategy"]
-	];
-
 	function createGenreList() {
 
 		// Label
@@ -193,57 +194,17 @@ $('#add').on('pageinit', function(){
 	/* END Form Building Functions
 	/* ################################ */
 
-	// Set Defaults
-	function setDefaults(input) {
-	    var now = new Date();
-	    var month = (now.getMonth() + 1);
-	    var day = now.getDate();
-	    if(month < 10)
-	        month = "0" + month;
-	    if(day < 10)
-	        day = "0" + day;
-	    var today = now.getFullYear() + '-' + month + '-' + day;
-	    $(input).val(today);
-	};
-	// END Set Defaults
 
-	// Remove Defaults
-	function removeDefaults(input) {
-		$(input).val("");
-	};
-	// END Remove Defaults
+});
+// END #add
 
-	function getOptionText(option,value) {
-		// Cycles through the Genre list array to find a match using the value of the selected option
-		for (n = 0; n < option.length; n++) {
-			if (option[n].indexOf(value) != -1) {
-				text = option[n][1];
-				return text;
-			};
-		};
-	};
-
-	function getOptionValue(option,value) {
-	// Cycles through the Genre list array to find a match using the value of the selected option
-		for (n = 0; n < option.length; n++) {
-			if (option[n].indexOf(value) != -1) {
-				text = option[n][0];
-				return text;
-			};
-		};
-	};
-
-	function getOptionValueIndex(option,value) {
-	// Cycles through the Genre list array to find a match using the value of the selected option
-		for (n = 0; n < option.length; n++) {
-			if (option[n].indexOf(value) != -1) {
-				return n;
-			};
-		};
-	};
 
 	// ####################################################################
+	// ####################################################################
+	// ####################################################################
 	// Create
+	// ####################################################################
+	// ####################################################################
 	// ####################################################################
 
 	// ##################################
@@ -252,22 +213,18 @@ $('#add').on('pageinit', function(){
 	// ##################################
 	// ##################################
 	function saveGame(data) {
-		//if (!key) {
-			var id = Math.round(new Date().getTime() / 1000);
-		/* } else {
-			var id = key;
-		};
-		*/
 		// Store Form Fields Value Into an Object
 		// Label & Value Will Be Stored.
-
-		var game = {};
-
 			// Append _game prefix and make lowercase
-			var id = "game_" + $("#title").val();
+			if (!data) {
+				var id = "game_" + $("#title").val();
 				id = id.replace(" ","_");
 				id = id.toLowerCase();
+			} else {
+				var id = data._id;
+			}
 
+			var game = {};
 
 			game._id = id;
 			game.title = ["Title", $("#title").val()];
@@ -322,7 +279,7 @@ $('#add').on('pageinit', function(){
 
 		alert("Game Has Been Saved!");
 
-		window.location.reload();
+//		window.location.reload();
 
 	};
 	// ##################################
@@ -330,49 +287,13 @@ $('#add').on('pageinit', function(){
 	// ##################################
 
 	// ####################################################################
+	// ####################################################################
+	// ####################################################################
 	// END Create
 	// ####################################################################
+	// ####################################################################
+	// ####################################################################
 
-
-
-	function hideConditionals() {
-		$("#free_d").hide();
-		$("#purchased_d").hide();
-		$("#sold_d").hide();
-	};
-	hideConditionals();
-
-	$("#purchased_q").change(function() {
-		if ($(this).attr("checked")) {
-			$("#purchased_d").slideDown();
-			setDefaults("#purchased");
-		} else {
-			$("#purchased_d").slideUp();
-			removeDefaults("#purchased");
-		}
-	});
-
-	$("#free_q").change(function() {
-		if ($(this).attr("checked")) {
-			$("#free_d").slideDown();
-			setDefaults("#free");
-		} else {
-			$("#free_d").slideUp();
-			removeDefaults("#free");
-		}
-	});
-
-	$("#sold_q").change(function() {
-		if ($(this).attr("checked")) {
-			$("#sold_d").slideDown();
-			setDefaults("#sold");
-		} else {
-			$("#sold_d").slideUp();
-			removeDefaults("#sold");
-		}
-	});
-
-});
 // ####################################################################
 // ####################################################################
 // ####################################################################
@@ -428,6 +349,7 @@ $('#display').on('pageinit', function(){
 	$("#games_load").slideDown();
 
 	$("#games_load_db_json").on("click", loadGamesDataDBJSON);
+	$("#games_load_single").on("click", loadSingleGame);
 });
 // ####################################################################
 // ####################################################################
@@ -470,23 +392,23 @@ $('#display').on('pageinit', function(){
 // Create the edit and delete links for each store coupon when displayed
 function makeEditList(doc, editGameListRow) {
 
-	/* Edit Game
+	// Edit Game
 	var editLinkLi = $("<li></li>");
 	var editLink = $("<a></a>");
-		editLink.href = "#";
-		editLink.key = key; // Key value of the display coupon
+		editLink.attr("href","#add");
+		editLink.key = doc; // Key value of the display coupon
 
 		editLink.on("click",function() {
-			editGame(key);
+			editGame(doc);
 		});
 
 	var editText = "Edit Game";
 
 	editLink.html(editText);
+	$(editLink).css("cursor","pointer"); // CSS
 
 	editLinkLi.append(editLink);
 	editGameListRow.append(editLinkLi);
-	*/
 
 
 
@@ -528,62 +450,74 @@ function makeEditList(doc, editGameListRow) {
 // Edit saved game
 // ##################################
 // ##################################
-function editGame(key) {
+function editGame(doc) {
 // Edit saved game's details
+    $.ajax({
+        type: "GET",
+        url: "/asdi/" + doc._id,
+        dataType: "json",
+        success: function(data) {processEditGameData(data);}
+     });
 
-	// Grab the data from our item in Local Storage
-	var value = localStorage.getItem(key);
-	var game = JSON.parse(value);
+    function processEditGameData(data) {
 
-	// populate form fields with data from local storage
-	$("#title").val(game.title[1]);
+	    // populate form fields with data from local storage
+		$("#title").val(data.title[1]);
 
-	$("#platform").selectedIndex = getOptionValueIndex(platformList,game.platform[1]);
+		$("#platform").selectedIndex = getOptionValueIndex(platformList,data.platform[1]);
 
-	$("#genre").selectedIndex = getOptionValueIndex(genreList,game.genre[1]);
+		$("#genre").selectedIndex = getOptionValueIndex(genreList,data.genre[1]);
 
-	$("#publisher").val(game.publisher[1]);
-	$("#developer").val(game.developer[1]);
+		$("#publisher").val(data.publisher[1]);
+		$("#developer").val(data.developer[1]);
 
-	if (game.completed[1] === "Yes") {
-		$("#completed_yes").attr("checked",true).checkboxradio("refresh");
-	} else {
-		$("#completed_no").attr("checked",true).checkboxradio("refresh");
-	};
+		if (data.completed[1] === "Yes") {
+			$("#completed_yes").attr("checked",true).checkboxradio("refresh");
+		} else {
+			$("#completed_no").attr("checked",true).checkboxradio("refresh");
+		};
 
-	// Purchased
-	$("#purchased").val(game.purchased[1]);
-	$("#purchased_amount").val(game.purchased_amount[1]);
+		// Purchased
+		if (data.purchased[1] != "") {
+			$("#purchased_q").attr("checked",true).checkboxradio("refresh");
+			$("#purchased_d").css("display","block");
+			$("#purchased_amount").val(data.purchased[1]);
+		};
+		$("#purchased").val(data.purchased[1]);
+		$("#purchased_amount").val(data.purchased_amount[1]);
 
-	// Free
-	$("#sold").val(game.free[1]);
+		// Free
+		/* 	$("#free").val(data.free[1]); */
 
-	// Sold
-	$("#sold").val(game.sold[1]);
+		// Sold
+		$("#sold").val(data.sold[1]);
 
-	if (game.sold[1] != "n/a") {
-		$("#sold_q").attr("checked",true).checkboxradio("refresh");
-		$("#sold_d").css("display","block");
-		$("#sold_amount").val(game.sold[1]);
-	};
+		if (data.sold[1] != "") {
+			$("#sold_q").attr("checked",true).checkboxradio("refresh");
+			$("#sold_d").css("display","block");
+			$("#sold_amount").val(data.sold[1]);
+		};
 
-	if (game.sold_amount[1] != "n/a") {
-		$("#sold_amount").val(game.sold_amount[1]);
-	};
+		if (data.sold_amount[1] != "") {
+			$("#sold_amount").val(data.sold_amount[1]);
+		};
 
-	// Special Notes
-	$("#notes").val(game.notes[1]);
+		// Special Notes
+		$("#notes").val(data.notes[1]);
 
-	// Favorite
-	if (game.favorite[1] === "Yes") {
-		$("#favorite").attr("checked","true");
+		// Favorite
+		if (data.favorite[1] === "Yes") {
+			$("#favorite").attr("checked","true");
+		};
+
+
 	};
 
 	var editSubmit = $("#submit")
 		editSubmit.val("[#] Edit Game");
 
 	$("#submit").on("click",function() {
-		saveEditedGame(key);
+		saveEditedGame(doc);
 	});
 
 };
@@ -595,8 +529,8 @@ function editGame(key) {
 // ##################################
 // Save Edited Game
 // ##################################
-function saveEditedGame(key) {
-	saveGame(key);
+function saveEditedGame(doc) {
+	saveGame(doc);
 };
 // ##################################
 // END Save Edited Game
@@ -694,6 +628,8 @@ $("#cancel a").on("click",function() {
 // ##################################
 // ##################################
 function loadGamesDataDBJSON() {
+$("#games_list_ul").listview("refresh");
+
     $.ajax({
         type: "GET",
         url: "_view/games",
@@ -796,7 +732,7 @@ function loadGamesDataDBJSON() {
 
 				};
 
-									$("#games_list_ul").listview("refresh");
+				$("#games_list_ul").listview("refresh");
 
 
 			};
@@ -806,6 +742,123 @@ function loadGamesDataDBJSON() {
 // ##################################
 // END Load Games from Couch App
 // ##################################
+
+
+
+
+// ##################################
+// ##################################
+// Load Games from Couch App
+// ##################################
+// ##################################
+function loadSingleGame() {
+    $.ajax({
+        type: "GET",
+        url: "/asdi/game_angry_birds",
+        dataType: "json",
+        success: function(data) {processSingleGame(data);}
+     });
+
+    function processSingleGame(data) {
+
+
+    		$("#games_load").slideUp();
+
+			var gameListDiv = $("<div></div>");
+				gameListDiv.attr("id", "games");
+
+			// Create Game List UL
+			var gameListUl = $("<ul></ul>");
+				gameListDiv.append(gameListUl); // Add UL to Games List DIV
+
+			// Add Games List DIV to Games List SECTION
+			$("#games_list").append(gameListDiv);
+
+				var games_records = [];
+
+					var game_record = {};
+						game_record._id = data.id,
+						game_record._rev = data._rev
+
+					games_records.push(game_record);
+
+				// Array to Hold All Games
+				var games_single = [];
+
+				var game = {};
+					game.title = data.title,
+					game.platform = data.platform,
+					game.genre = data.genre,
+					game.publisher = data.publisher,
+					game.developer = data.developer,
+					game.completed = data.completed,
+					game.purchased = data.purchased,
+					game.purchased_amount = data.purchased_amount,
+					game.sold = data.sold,
+					game.sold_amount = data.sold_amount,
+					game.notes = data.notes,
+					game.favorite = data.favorite;
+
+				games_single.push(game);
+
+
+				// Add Each Game to Full Games List
+				for (var i = 0; i < games_single.length; i++) {
+					var gamesListLi = $("<li></li>");
+					$("#games_list_ul").append(gamesListLi);
+
+					$(gamesListLi).append("<li>" + games_single[i].title[1]  + "<br /><span class=\"option_platform\">Platform: " + games_single[i].platform[1] + "</li>");
+
+					// Create Single Game UL
+					var gamesSubList = $("<ul></ul>");
+						gamesSubList.attr("class","game");
+
+						// Append to Full Games List
+						$(gamesListLi).append(gamesSubList);
+
+					for (n in games_single[i]) {
+
+						var gamesSubListLi = $("<li></li>");
+						$(gamesSubList).append(gamesSubListLi);
+
+						var optionName = games_single[i][n][0],
+							optionDetail = games_single[i][n][1];
+
+							if (!optionDetail) { optionDetail = "N/A"; }
+
+						$(gamesSubListLi).append("<strong class=\"option_name\">" + optionName + "</strong>: <span class=\"option_detail\">" + optionDetail + "</span>");
+					}
+
+					var doc = {};
+						doc = {
+							_id: games_records[i]._id,
+							_rev: games_records[i]._rev
+						};
+
+
+					// Add Edit List
+					makeEditList(doc, gamesSubListLi);
+
+
+					$(".game").css("marginBottom","20px");
+					$(".game").css("listStyleType","none");
+					$(".game").css("paddingLeft","0");
+
+
+				};
+
+				$("#games_list_ul").listview("refresh");
+
+			};
+
+};
+// ##################################
+// END Load Games from Couch App
+// ##################################
+
+
+
+
 
 
 // ##################################
@@ -820,5 +873,104 @@ $(".clear_games").click(deleteGames);
 // ##################################
 // Event Listeners
 // ##################################
+	function getOptionValueIndex(option,value) {
+	// Cycles through the Genre list array to find a match using the value of the selected option
+		for (n = 0; n < option.length; n++) {
+			if (option[n].indexOf(value) != -1) {
+				return n;
+			};
+		};
+	};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Set Defaults
+	function setDefaults(input) {
+	    var now = new Date();
+	    var month = (now.getMonth() + 1);
+	    var day = now.getDate();
+	    if(month < 10)
+	        month = "0" + month;
+	    if(day < 10)
+	        day = "0" + day;
+	    var today = now.getFullYear() + '-' + month + '-' + day;
+	    $(input).val(today);
+	};
+	// END Set Defaults
+
+	// Remove Defaults
+	function removeDefaults(input) {
+		$(input).val("");
+	};
+	// END Remove Defaults
+
+	function getOptionText(option,value) {
+		// Cycles through the Genre list array to find a match using the value of the selected option
+		for (n = 0; n < option.length; n++) {
+			if (option[n].indexOf(value) != -1) {
+				text = option[n][1];
+				return text;
+			};
+		};
+	};
+
+	function getOptionValue(option,value) {
+	// Cycles through the Genre list array to find a match using the value of the selected option
+		for (n = 0; n < option.length; n++) {
+			if (option[n].indexOf(value) != -1) {
+				text = option[n][0];
+				return text;
+			};
+		};
+	};
+
+
+	function hideConditionals() {
+		$("#free_d").hide();
+		$("#purchased_d").hide();
+		$("#sold_d").hide();
+	};
+	hideConditionals();
+
+	$("#purchased_q").change(function() {
+		if ($(this).attr("checked")) {
+			$("#purchased_d").slideDown();
+			setDefaults("#purchased");
+		} else {
+			$("#purchased_d").slideUp();
+			removeDefaults("#purchased");
+		}
+	});
+
+	$("#free_q").change(function() {
+		if ($(this).attr("checked")) {
+			$("#free_d").slideDown();
+			setDefaults("#free");
+		} else {
+			$("#free_d").slideUp();
+			removeDefaults("#free");
+		}
+	});
+
+	$("#sold_q").change(function() {
+		if ($(this).attr("checked")) {
+			$("#sold_d").slideDown();
+			setDefaults("#sold");
+		} else {
+			$("#sold_d").slideUp();
+			removeDefaults("#sold");
+		}
+	});
 
