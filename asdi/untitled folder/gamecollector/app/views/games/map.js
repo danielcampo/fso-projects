@@ -1,7 +1,6 @@
 function (doc) {
 	if (doc._id.substr(0,5) === "game_") {
 		emit(doc._id.substr(5), {
-			"_rev": doc._rev,
 			"title": doc.title,
 			"platform" : doc.platform,
 			"genre": doc.genre,

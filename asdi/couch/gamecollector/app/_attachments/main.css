@@ -1,0 +1,320 @@
+/*
+Daniel Campo
+FSO - Mobile Development
+Advanced Scalable Data Infrastructures - 1303
+
+App : Game Collector
+File: Main Styles
+*/
+
+* {
+	text-shadow: none;
+}
+
+html, body, .ui-page {
+background: rgb(255,255,255); /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkM2QzZDMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(211,211,211,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(211,211,211,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(211,211,211,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(211,211,211,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(211,211,211,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(211,211,211,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d3d3d3',GradientType=0 ); /* IE6-8 */
+}
+
+body {
+	margin: 0 auto;
+}
+
+body * {
+	font-family: 'Helvetica', Arial, sans-serif, serif;
+	font-size: 100%;
+	font-weight: 100;
+
+}
+
+strong {
+	font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 10px;
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: 400;
+	text-transform: uppercase;
+	letter-spacing: .05em;
+}
+
+h2, h3, h4, h5, h6 {
+	font-weight: 300;
+}
+
+h2 {
+	font-size: 1.2em;
+}
+
+a {
+	color: #a22503
+}
+
+.pagecontent {
+	margin-top: 4px;
+}
+
+body > header {
+	text-align: center;
+}
+
+header[data-role=header] {
+	font-size: .8em;
+	text-align: center;
+}
+
+header[data-role=header] h1 a {
+	color: #f93500 !important;
+	font-size: .65em;
+	font-weight: normal !important;
+	text-decoration: none;
+}
+
+body > header h1 {
+	background-color: #f93500;
+	border-bottom: #a22503 solid 4px;
+	color: #fff;
+	font-weight: normal;
+	font-size: 1em;
+	text-indent: 5px;
+}
+
+body > header a {
+	color: #fff;
+	text-decoration: none;
+}
+
+
+header h1, header h2 {
+	margin: 0;
+	padding: 5px;
+}
+
+section {
+	font-size: .85em;
+	padding: 5px;
+}
+
+form fieldset {
+	border: #a22503 dashed thin;
+	border-radius: 10px;
+	box-shadow: 0 0 7px #777;
+	padding: 5px !important;
+}
+
+form > fieldset > legend, form > fieldset legend {
+	background-color: #a22503;
+	border-radius: 10px;
+	color: #fff;
+	padding: 5px;
+	text-transform: uppercase;
+}
+
+/* Secondary Fieldset */
+form > fieldset ul fieldset {
+	background-color: #f5f5f5;
+	border: #888 solid thin;
+}
+
+form > fieldset ul legend {
+	background-color: #e1e1e1;
+	color: #000;
+	text-transform: none;
+}
+/* / */
+
+form fieldset > ul {
+	padding-left: 0;
+}
+
+form fieldset > ul > li {
+	border-bottom: #e1e1e1 solid thin;
+	list-style: none;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+form fieldset > ul > li:last-child {
+	border-bottom: none;
+}
+
+form fieldset > ul > li > label {
+	font-weight: 400;
+}
+
+input {
+	border: #ccc solid thin;
+	border-radius: 8px;
+}
+
+form textarea {
+	border: #888 solid thin;
+	border-radius: 10px;
+}
+
+form input[type=submit] {
+	border: 0;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 1.5em;
+	padding: 10px;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+form input[type=submit]:hover {
+}
+
+div[data-role=page] > footer {
+	background-color: #ddd;
+	font-size: x-small;
+	padding: 10px 0;
+	text-align: center;
+}
+
+footer nav a {
+	color: #000;
+	font-size: .85em;
+}
+
+footer nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+footer nav ul li {
+	display: inline;
+	float: left;
+	margin-right: 10px;
+}
+
+
+/*****************/
+/* Home */
+/*****************/
+#content h2 {
+	color: #000;
+	font-size: 1.5em;
+	margin: 0 0 1px 0;
+	padding: 4px;
+	text-transform: uppercase;
+}
+
+#content, body>footer {
+	padding: 10px;
+}
+
+#cta, #search, #browse {
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+#search, #browse {
+	border: #ccc solid thin;
+}
+
+p {
+	width: 100%;
+}
+
+/* CTA */
+
+#cta img {
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+#home_info h2 {
+	border-bottom: #ccc solid thin;
+}
+
+#home_info h2, #home_info p {
+	font-family: "Courier New";
+}
+
+
+
+
+/* JQM */
+
+/* Fixes search box from being covered by list content */
+.ui-listview-filter-inset {
+	margin: 0 -5px 5px -5px;
+	background: transparent;
+}
+
+/* Better aligns images with text in listview */
+.ui-li-thumb, .ui-listview .ui-li-icon, .ui-li-content {
+float: left;
+margin-right: 10px;
+padding: 6px;
+}
+
+
+.hint {
+	color: #888;
+	display: inline-block;
+	font-size: small;
+	margin: 0 auto 10px auto;
+}
+
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+#cancel {
+	text-align: center;
+}
+
+/* Games List */
+#games ol {
+	margin: 0;
+	padding: 0;
+	padding-left: 1em;
+}
+
+#games ol li ul {
+	border: #ccc solid thin;
+	border-radius: 16px;
+	list-style: none;
+	margin: 0;
+	margin-bottom: 16px;
+	padding: 10px;
+}
+
+#games ol li ul li {
+	margin-bottom: 10px;
+	padding: 5px;
+}
+
+#games ol li ul li:nth-child(2n-1) {
+	background-color: #ccc;
+}
+
+#games ol li ul li:last-child {
+	background-color: #a22503;
+	padding-bottom: 2px;
+}
+
+#games ol li ul li:last-child a {
+	color: #fff;
+}
+
+.option_platform {
+	color: #777;
+	font-size: small;
+}

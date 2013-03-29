@@ -12,9 +12,9 @@ File: Index
 <html>
 	<head>
 		<title>Game Collector</title>
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-		<link rel="stylesheet" href="style/gamecollector.css" />
-		<link rel="stylesheet" href="style/main.css">
+		<link rel="stylesheet" href="jquery.mobile-1.2.0.min.css" />
+		<link rel="stylesheet" href="gamecollector.css" />
+		<link rel="stylesheet" href="main.css">
 	</head>
 
 	<body>
@@ -26,7 +26,7 @@ File: Index
 			<header data-role="header" data-position="fixed">
 				<hgroup>
 					<h1>
-						<a href="#home"><img height="25" src="style/images/gc_logo.png" width="160" /></a>
+						<a href="#home"><img height="25" src="gc_logo.png" width="160" /></a>
 					</h1>
 				</hgroup>
 			</header>
@@ -39,7 +39,7 @@ File: Index
 				<!-- App : Home : Content : CTA -->
 				<section id="cta">
 					<a href="#add">
-						<img alt="All of your games. All in one place." src="style/images/gc_cta.png" title="Game Collector" />
+						<img alt="All of your games. All in one place." src="gc_cta.png" title="Game Collector" />
 					</a>
 
 					<a href="#add" data-role="button" data-icon="plus" data-theme="a">Start Adding Games</a>
@@ -51,6 +51,10 @@ File: Index
 
 					<p>Game Collector is essentially an inventory keeping application that is strictly tailored for games. Categorize your games by genre, publisher, developer and your favorites.</p>
 				</section>
+
+				<!-- App : Home : Items -->
+				<section id="homeitems"></section>
+				<!-- END App : Home : Items -->
 
 			</div>
 			<!-- END App : Home : Body -->
@@ -87,7 +91,7 @@ File: Index
 			<header data-role="header" data-position="fixed">
 				<hgroup>
 					<h1>
-						<a href="index.html"><img height="25" src="style/images/gc_logo.png" width="160" /></a>
+						<a href="index.html"><img height="25" src="gc_logo.png" width="160" /></a>
 					</h1>
 				</hgroup>
 			</header>
@@ -283,7 +287,7 @@ File: Index
 			<header data-role="header" data-position="fixed">
 				<hgroup>
 					<h1>
-						<a href="index.html"><img height="25" src="style/images/gc_logo.png" width="160" /></a>
+						<a href="index.html"><img height="25" src="gc_logo.png" width="160" /></a>
 					</h1>
 				</hgroup>
 			</header>
@@ -293,7 +297,6 @@ File: Index
 			<div id="content">
 
 				<section id="games_load">
-					<p>There are no games saved.</p>
 					<p>Please add your games manually or select one of the import options below</p>
 					<ul data-role="listview" data-inset="true">
 						<li>
@@ -301,7 +304,10 @@ File: Index
 						</li>
 					</ul>
 				</section>
-				<section id="games_list"></section>
+
+				<section id="games_list">
+					<ul id="games_list_ul" data-role="listview" data-inset="true"></ul>
+				</section>
 
 			</div>
 			<!-- END App : Display : Body -->
@@ -334,11 +340,12 @@ File: Index
 		<!-- ############################################################# -->
 		<!-- ############################################################# -->
 
-		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-		<script src="js/jqm_config.js"></script>
-		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.0/jquery.validate.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="jquery-1.8.2.min.js"></script>
+		<script src="jqm_config.js"></script>
+		<script src="jquery.mobile-1.2.0.min.js"></script>
+		<script src="jquery.validate.min.js"></script>
+		<script src="jquery.couch.js"></script>
+		<script src="main.js"></script>
 	</body>
 </html>
 
