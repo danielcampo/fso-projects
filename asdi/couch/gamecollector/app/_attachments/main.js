@@ -273,16 +273,15 @@ $('#add').on('pageinit', function() {
 		// Save Date into Local Storage: Stringify converts Coupon object to a string for local storage capability.
 		$.couch.db("gamecollector").saveDoc(game, {
 		    success: function(data) {
+			    alert("Game Has Been Saved!");
+			    location.reload();
 		        console.log(data);
 		    },
 		    error: function(status) {
+		    	alert("There was an error saving your game. Please try again.");
 		        console.log(status);
 		    }
 		});
-
-		alert("Game Has Been Saved!");
-
-		location.reload();
 
 	};
 	// ##################################
@@ -523,8 +522,9 @@ function editSavedGame(doc) {
 
 	};
 
-	var editSubmit = $("#submit")
+	var editSubmit = $("#submit");
 		editSubmit.val("[#] Edit Game");
+		editSubmit.button("refresh");
 
 	$("#submit").on("click",function() {
 		saveEditedGame(doc);
@@ -568,15 +568,20 @@ function deleteGame(doc) {
 
 		$.couch.db("gamecollector").removeDoc(doc, {
 		     success: function(data) {
+				alert("Your game has been deleted.");
+				$.mobile.changePage("#display");
+
+				$("#games_list_ul").html("");
+				loadGamesDataDBJSON();
+
 		         console.log(data);
 		    },
 		    error: function(status) {
+		    	alert("There was an error. Please try again.");
 		        console.log(status);
 		    }
 		});
 
-		alert("Your game has been deleted.");
-		location.reload();
 	} else {
 		alert("Game was not deleted.")
 	}
