@@ -239,7 +239,7 @@ $('#add').on('pageinit', function() {
 			game.publisher = ["Publisher", $("#publisher").val()];
 			game.developer = ["Developer", $("#developer").val()];
 
-			if ($("#completed_yes").checked) {
+			if ($("#completed_yes").is(":checked")) {
 				game.completed = ["Completed", "Yes"];
 			} else {
 				game.completed = ["Completed", "No"];
@@ -263,7 +263,7 @@ $('#add').on('pageinit', function() {
 			game.notes = ["Special Notes", $("#notes").val()];
 
 			// Favorite
-			if ($("#favorite").checked) {
+			if ($("#favorite").is(":checked")) {
 				game.favorite = ["Favorite", "Yes"];
 			} else {
 				game.favorite = ["Favorite", "No"];
@@ -516,7 +516,7 @@ function editSavedGame(doc) {
 
 		// Favorite
 		if (data.favorite[1] === "Yes") {
-			$("#favorite").attr("checked","true");
+			$("#favorite").attr("checked","true").checkboxradio("refresh");
 		};
 
 
@@ -524,11 +524,12 @@ function editSavedGame(doc) {
 
 	var editSubmit = $("#submit");
 		editSubmit.val("[#] Edit Game");
-		editSubmit.button("refresh");
 
 	$("#submit").on("click",function() {
 		saveEditedGame(doc);
 	});
+
+		editSubmit.button("refresh");
 
 };
 // ##################################
