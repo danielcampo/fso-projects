@@ -38,7 +38,7 @@ var genreList = [
 /**********/
 /*
 $("#home").on("pageinit", function() {
-	$.couch.db("asdi").view("gamecollector/games", {
+	$.couch.db("gamecollector").view("gamecollector/games", {
 		success: function(data) {
 
 			$("homeitems").empty();
@@ -82,7 +82,7 @@ $("#games").live("pageshow", function() {
 	var platform = urlVars()["platform"];
 	console.log(platform);
 
-	$.couch.db("asdi").view("gamecollector/games", {
+	$.couch.db("gamecollector").view("gamecollector/games", {
 		platform: "platform:" + platform
 	});
 
@@ -209,13 +209,14 @@ $('#add').on('pageinit', function() {
 
 	// ##################################
 	// ##################################
-	// Save Game to Local Storage
+	// Save Game
 	// ##################################
 	// ##################################
 	function saveGame(data) {
 		// Store Form Fields Value Into an Object
 		// Label & Value Will Be Stored.
 			// Append _game prefix and make lowercase
+
 			if (!data) {
 				var id = "game_" + $("#title").val();
 				id = id.replace(" ","_");
@@ -226,7 +227,7 @@ $('#add').on('pageinit', function() {
 
 			var game = {};
 
-			game._id = id;
+			game._id = "game_" + $("#title").val();
 			game.title = ["Title", $("#title").val()];
 
 			game.platform = ["Platform", getOptionText(platformList,$("#platform").val())];
@@ -246,10 +247,10 @@ $('#add').on('pageinit', function() {
 			game.purchased = ["Purchased", $("#purchased").val()];
 			game.purchased_amount = ["Purchase Amount", $("#purchased_amount").val()];
 
-/*
+			/*
 			// Free
 			game.free = ["Acquired", $("#free").val()];
-*/
+			*/
 
 			// Sold
 			game.sold = ["Sold", $("#sold").val()];
@@ -268,7 +269,7 @@ $('#add').on('pageinit', function() {
 
 
 		// Save Date into Local Storage: Stringify converts Coupon object to a string for local storage capability.
-		$.couch.db("asdi").saveDoc(game, {
+		$.couch.db("gamecollector").saveDoc(game, {
 		    success: function(data) {
 		        console.log(data);
 		    },
@@ -279,11 +280,11 @@ $('#add').on('pageinit', function() {
 
 		alert("Game Has Been Saved!");
 
-//		window.location.reload();
+		location.reload();
 
 	};
 	// ##################################
-	// Save Game to Local Storage
+	// Save Game
 	// ##################################
 
 	// ####################################################################
@@ -392,12 +393,16 @@ $('#display').on('pageinit', function(){
 // Create the edit and delete links for each store coupon when displayed
 function makeEditList(doc, editGameListRow) {
 
+	var editMenuDivider = $("<li data-role=\"list-divider\"></li>");
+		editGameListRow.append(editMenuDivider);
+
 	// Edit Game
-	var editLinkLi = $("<li></li>");
+	var editLinkLi = $("<li data-icon=\"gear\" data-iconpos=\"left\"></li>");
 	var editLink = $("<a></a>");
 		editLink.attr("href","#add");
 		editLink.key = doc; // Key value of the display coupon
 
+		// Create Listener for Edit Link
 		editLink.on("click",function() {
 			editGame(doc);
 		});
@@ -413,13 +418,14 @@ function makeEditList(doc, editGameListRow) {
 
 
 	// Delete Game
-	var deleteLinkLi = $("<li></li>");
+	var deleteLinkLi = $("<li data-icon=\"delete\" data-iconpos=\"left\"></li>");
 	var deleteLink = $("<a></a>");
 		deleteLink.href = "#";
 		deleteLink.doc = doc; // Key value of the display gameGenres
 
 		$(deleteLink).css("cursor","pointer"); // CSS
 
+		// Create Listener for Delete Link
 		deleteLink.on("click", function() {
 			deleteGame(doc);
 		});
@@ -428,6 +434,7 @@ function makeEditList(doc, editGameListRow) {
 		deleteLink.html(deleteText);
 
 	deleteLinkLi.append(deleteLink);
+
 	editGameListRow.append(deleteLinkLi);
 
 };
@@ -454,9 +461,10 @@ function editGame(doc) {
 // Edit saved game's details
     $.ajax({
         type: "GET",
-        url: "/asdi/" + doc._id,
+        url: "/gamecollector/" + doc._id,
         dataType: "json",
-        success: function(data) {processEditGameData(data);}
+        cache: false,
+        success: function(data) { processEditGameData(data); }
      });
 
     function processEditGameData(data) {
@@ -556,7 +564,7 @@ function deleteGame(doc) {
 	var confirmDelete = confirm("Are you sure you want to delete this game?")
 	if (confirmDelete) {
 
-		$.couch.db("asdi").removeDoc(doc, {
+		$.couch.db("gamecollector").removeDoc(doc, {
 		     success: function(data) {
 		         console.log(data);
 		    },
@@ -566,7 +574,7 @@ function deleteGame(doc) {
 		});
 
 		alert("Your game has been deleted.");
-		window.location.reload();
+		location.reload();
 	} else {
 		alert("Game was not deleted.")
 	}
@@ -586,11 +594,11 @@ function deleteGame(doc) {
 // ##################################
 function deleteGames() {
 	if (localStorage.length === 0){
-		alert("There are no games saved.");
+		alert("This feature has been disabled.");
 	} else {
 		localStorage.clear();
 		alert("Your games have been deleted.");
-		window.location.reload();
+		location.reload();
 		return false;
 	};
 
@@ -616,7 +624,7 @@ function deleteGames() {
 // ##################################
 // ##################################
 $("#cancel a").on("click",function() {
-	window.location.reload();
+	location.reload();
 });
 // ##################################
 // END Cancel
@@ -634,6 +642,7 @@ $("#games_list_ul").listview("refresh");
         type: "GET",
         url: "_view/games",
         dataType: "json",
+        cache: false,
         success: function(data) {processDataDBJSON(data);}
      });
 
@@ -643,7 +652,7 @@ $("#games_list_ul").listview("refresh");
 	    alert("Unable to load games. There are no games saved.");
     } else {
 
-    		$("#games_load").slideUp();
+    		$("#games_list_ul").html("");
 
 			var gameListDiv = $("<div></div>");
 				gameListDiv.attr("id", "games");
@@ -692,6 +701,7 @@ $("#games_list_ul").listview("refresh");
 					var gamesListLi = $("<li></li>");
 					$("#games_list_ul").append(gamesListLi);
 
+					// Game Header
 					$(gamesListLi).append("<li>" + games[i].title[1]  + "<br /><span class=\"option_platform\">Platform: " + games[i].platform[1] + "</li>");
 
 					// Create Single Game UL
@@ -722,7 +732,7 @@ $("#games_list_ul").listview("refresh");
 
 
 					// Add Edit List
-					makeEditList(doc, gamesSubListLi);
+					makeEditList(doc, gamesSubList);
 
 
 					$(".game").css("marginBottom","20px");
@@ -754,15 +764,15 @@ $("#games_list_ul").listview("refresh");
 function loadSingleGame() {
     $.ajax({
         type: "GET",
-        url: "/asdi/game_angry_birds",
+        url: "/gamecollector/game_angry_birds",
         dataType: "json",
+        cache: false,
         success: function(data) {processSingleGame(data);}
      });
 
     function processSingleGame(data) {
 
-
-    		$("#games_load").slideUp();
+    		$("#games_list_ul").html("");
 
 			var gameListDiv = $("<div></div>");
 				gameListDiv.attr("id", "games");
@@ -835,9 +845,8 @@ function loadSingleGame() {
 							_rev: games_records[i]._rev
 						};
 
-
 					// Add Edit List
-					makeEditList(doc, gamesSubListLi);
+					makeEditList(doc, gamesSubList);
 
 
 					$(".game").css("marginBottom","20px");
@@ -973,4 +982,7 @@ $(".clear_games").click(deleteGames);
 			removeDefaults("#sold");
 		}
 	});
+
+
+
 
