@@ -17,7 +17,24 @@ var platformList = [
 	["platform_xbox360", "XBOX 360"]
 ];
 
-$('#add').on('pageinit', function(){
+var genreList = [
+	["genre_choose","Choose a Genre"],
+	["genre_action","Action"],
+	["genre_adventure","Adventure"],
+	["genre_dancemusic","Dance / Music"],
+	["genre_fighting","Fighting"],
+	["genre_platform","Platform"],
+	["genre_puzzle","Puzzle"],
+	["genre_rpg","RPG"],
+	["genre_shooter","Shooter"],
+	["genre_simulation","Simulation"],
+	["genre_sports","Sports"],
+	["genre_strategy","Strategy"]
+];
+
+
+$('#add').on('pageinit', function()	{
+
 
 	/* ################################ */
 	/* ################################ */
@@ -30,7 +47,7 @@ $('#add').on('pageinit', function(){
 		},
 		submitHandler: function() {
 			var data = myForm.serializeArray();
-				saveGame(data);
+				saveGame(data,"");
 			}
 		});
 
@@ -77,21 +94,6 @@ $('#add').on('pageinit', function(){
 
 	createPlatformList();
 	// END Platform List
-
-	var genreList = [
-		["genre_choose","Choose a Genre"],
-		["genre_action","Action"],
-		["genre_adventure","Adventure"],
-		["genre_dancemusic","Dance / Music"],
-		["genre_fighting","Fighting"],
-		["genre_platform","Platform"],
-		["genre_puzzle","Puzzle"],
-		["genre_rpg","RPG"],
-		["genre_shooter","Shooter"],
-		["genre_simulation","Simulation"],
-		["genre_sports","Sports"],
-		["genre_strategy","Strategy"]
-	];
 
 	function createGenreList() {
 
@@ -153,110 +155,6 @@ $('#add').on('pageinit', function(){
 	};
 	// END Remove Defaults
 
-	function getOptionText(option,value) {
-		// Cycles through the Genre list array to find a match using the value of the selected option
-		for (n = 0; n < option.length; n++) {
-			if (option[n].indexOf(value) != -1) {
-				text = option[n][1];
-				return text;
-			};
-		};
-	};
-
-	function getOptionValue(option,value) {
-	// Cycles through the Genre list array to find a match using the value of the selected option
-		for (n = 0; n < option.length; n++) {
-			if (option[n].indexOf(value) != -1) {
-				text = option[n][0];
-				return text;
-			};
-		};
-	};
-
-	function getOptionValueIndex(option,value) {
-	// Cycles through the Genre list array to find a match using the value of the selected option
-		for (n = 0; n < option.length; n++) {
-			if (option[n].indexOf(value) != -1) {
-				return n;
-			};
-		};
-	};
-
-	// ####################################################################
-	// Create
-	// ####################################################################
-
-	// ##################################
-	// ##################################
-	// Save Game to Local Storage
-	// ##################################
-	// ##################################
-	function saveGame(data) {
-		//if (!key) {
-			var id = Math.round(new Date().getTime() / 1000);
-		/* } else {
-			var id = key;
-		};
-		*/
-		// Store Form Fields Value Into an Object
-		// Label & Value Will Be Stored.
-
-		var game = {};
-
-			game.title = ["Title", $("#title").val()];
-
-			game.platform = ["Platform", getOptionText(platformList,$("#platform").val())];
-
-			game.genre = ["Genre", getOptionText(genreList,$("#genre").val())];
-
-			game.publisher = ["Publisher", $("#publisher").val()];
-			game.developer = ["Developer", $("#developer").val()];
-
-			if ($("#completed_yes").checked) {
-				game.completed = ["Completed", "Yes"];
-			} else {
-				game.completed = ["Completed", "No"];
-			};
-
-			// Purchased
-			game.purchased = ["Purchased", $("#purchased").val()];
-			game.purchased_amount = ["Purchase Amount", $("#purchased_amount").val()];
-
-			// Free
-			game.free = ["Acquired", $("#free").val()];
-
-			// Sold
-			game.sold = ["Sold", $("#sold").val()];
-			game.sold_amount = ["Sold Amount", $("#sold_amount").val()];
-
-
-			// Special Notes
-			game.notes = ["Special Notes", $("#notes").val()];
-
-			// Favorite
-			if ($("#favorite").checked) {
-				game.favorite = ["Favorite", "Yes"];
-			} else {
-				game.favorite = ["Favorite", "No"];
-			};
-
-		// Save Date into Local Storage: Stringify converts Coupon object to a string for local storage capability.
-		localStorage.setItem(id, JSON.stringify(game));
-
-		alert("Game Has Been Saved!");
-
-		window.location.reload();
-
-	};
-	// ##################################
-	// Save Game to Local Storage
-	// ##################################
-
-	// ####################################################################
-	// END Create
-	// ####################################################################
-
-
 
 	function hideConditionals() {
 		$("#free_d").hide();
@@ -296,6 +194,180 @@ $('#add').on('pageinit', function(){
 	});
 
 });
+
+	// ####################################################################
+	// Create
+	// ####################################################################
+
+	// ##################################
+	// ##################################
+	// Save Game to Local Storage
+	// ##################################
+	// ##################################
+	function saveGame(data,key) {
+		if (!key) {
+			var id = Math.round(new Date().getTime() / 1000);
+		} else {
+			var id = key;
+		};
+
+		// Store Form Fields Value Into an Object
+		// Label & Value Will Be Stored.
+
+		var game = {};
+
+			game.title = ["Title", $("#title").val()];
+
+			game.platform = ["Platform", getOptionText(platformList,$("#platform").val())];
+
+			game.genre = ["Genre", getOptionText(genreList,$("#genre").val())];
+
+			game.publisher = ["Publisher", $("#publisher").val()];
+			game.developer = ["Developer", $("#developer").val()];
+
+			if ($("#completed_yes").checked) {
+				game.completed = ["Completed", "Yes"];
+			} else {
+				game.completed = ["Completed", "No"];
+			};
+
+			// Purchased
+			game.purchased = ["Purchased", $("#purchased").val()];
+			game.purchased_amount = ["Purchase Amount", $("#purchased_amount").val()];
+
+			// Free
+			game.free = ["Acquired", $("#free").val()];
+
+			// Sold
+			game.sold = ["Sold", $("#sold").val()];
+			game.sold_amount = ["Sold Amount", $("#sold_amount").val()];
+
+
+			// Special Notes
+			game.notes = ["Special Notes", $("#notes").val()];
+
+			// Favorite
+			if ($("#favorite").is(":checked")) {
+				game.favorite = ["Favorite", "Yes"];
+			} else {
+				game.favorite = ["Favorite", "No"];
+			};
+
+		// Save Date into Local Storage: Stringify converts Coupon object to a string for local storage capability.
+		localStorage.setItem(id, JSON.stringify(game));
+
+		alert("Game Has Been Saved!");
+
+		window.location.reload();
+
+	};
+	// ##################################
+	// Save Game to Local Storage
+	// ##################################
+
+	// ####################################################################
+	// END Create
+	// ####################################################################
+
+
+// ####################################################################
+// Update
+// ####################################################################
+
+// ##################################
+// ##################################
+// Edit saved game
+// ##################################
+// ##################################
+function editGame(key) {
+// Edit saved game's details
+
+	// Grab the data from our item in Local Storage
+	var value = localStorage.getItem(key);
+	var game = JSON.parse(value);
+
+	// populate form fields with data from local storage
+	$("#title").val(game.title[1]);
+
+	$("#platform").prop("selectedIndex",getOptionValueIndex(platformList,game.platform[1]));
+
+	$("#genre").prop("selectedIndex",getOptionValueIndex(genreList,game.genre[1]));
+
+	$("#publisher").val(game.publisher[1]);
+	$("#developer").val(game.developer[1]);
+
+	if (game.completed[1] === "Yes") {
+		$("#completed_yes").attr("checked",true).checkboxradio("refresh");
+	} else {
+		$("#completed_no").attr("checked",true).checkboxradio("refresh");
+	};
+
+	// Purchased
+	if (game.purchased[1] != "n/a") {
+		$("#purchased_q").attr("checked",true).checkboxradio("refresh");
+		$("#purchased_d").css("display","block");
+		$("#purchased").val(game.purchased[1]);
+	};
+
+	if (game.purchased_amount[1] != "n/a") {
+		$("#purchased_amount").val(game.purchased_amount[1]);
+	};
+
+/*
+	// Free
+	$("#free_d").val(game.free[1]);
+*/
+
+	// Sold
+	$("#sold").val(game.sold[1]);
+
+	if (game.sold[1] != "n/a") {
+		$("#sold_q").attr("checked",true).checkboxradio("refresh");
+		$("#sold_d").css("display","block");
+		$("#sold").val(game.sold[1]);
+	};
+
+	if (game.sold_amount[1] != "n/a") {
+		$("#sold_amount").val(game.sold_amount[1]);
+	};
+
+	// Special Notes
+	$("#notes").val(game.notes[1]);
+
+	// Favorite
+	if (game.favorite[1] === "Yes") {
+		$("#favorite").attr("checked","true").checkboxradio("refresh");
+	};
+
+	var editSubmit = $("#submit");
+		editSubmit.text("[#] Edit Game");
+
+		editSubmit.on("click",function() {
+			saveEditedGame(key);
+			return false;
+		});
+
+};
+// ##################################
+// Edit saved game
+// ##################################
+
+
+// ##################################
+// Save Edited Game
+// ##################################
+function saveEditedGame(key) {
+	saveGame("",key);
+};
+// ##################################
+// END Save Edited Game
+// ##################################
+
+// ####################################################################
+// END Update
+// ####################################################################
+
+
 // ####################################################################
 // ####################################################################
 // ####################################################################
@@ -469,10 +541,10 @@ function displayGames() {
 // Create the edit and delete links for each store coupon when displayed
 function makeEditList(key, editGameListRow) {
 
-	/* Edit Game
-	var editLinkLi = $("<li></li>");
+	// Edit Game
+	var editLinkLi = $("<li class=\"edit\"></li>");
 	var editLink = $("<a></a>");
-		editLink.href = "#";
+		editLink.attr("href","#add");
 		editLink.key = key; // Key value of the display coupon
 
 		editLink.on("click",function() {
@@ -480,17 +552,16 @@ function makeEditList(key, editGameListRow) {
 		});
 
 	var editText = "Edit Game";
-
-	editLink.html(editText);
+		editLink.html(editText);
 
 	editLinkLi.append(editLink);
 	editGameListRow.append(editLinkLi);
-	*/
+
 
 
 
 	// Delete Game
-	var deleteLinkLi = $("<li></li>");
+	var deleteLinkLi = $("<li class=\"delete\"></li>");
 	var deleteLink = $("<a></a>");
 		deleteLink.href = "#";
 		deleteLink.key = key; // Key value of the display gameGenres
@@ -505,6 +576,11 @@ function makeEditList(key, editGameListRow) {
 	deleteLinkLi.append(deleteLink);
 	editGameListRow.append(deleteLinkLi);
 
+	$(".edit").css("cursor","pointer");
+	$(".delete").css("cursor","pointer");
+
+
+
 };
 // ##################################
 // Make edit coupon link list
@@ -515,93 +591,6 @@ function makeEditList(key, editGameListRow) {
 // END Read
 // ####################################################################
 
-
-// ####################################################################
-// Update
-// ####################################################################
-
-// ##################################
-// ##################################
-// Edit saved game
-// ##################################
-// ##################################
-function editGame(key) {
-// Edit saved game's details
-
-	// Grab the data from our item in Local Storage
-	var value = localStorage.getItem(key);
-	var game = JSON.parse(value);
-
-	// populate form fields with data from local storage
-	$("#title").val(game.title[1]);
-
-	$("#platform").selectedIndex = getOptionValueIndex(platformList,game.platform[1]);
-
-	$("#genre").selectedIndex = getOptionValueIndex(genreList,game.genre[1]);
-
-	$("#publisher").val(game.publisher[1]);
-	$("#developer").val(game.developer[1]);
-
-	if (game.completed[1] === "Yes") {
-		$("#completed_yes").attr("checked",true).checkboxradio("refresh");
-	} else {
-		$("#completed_no").attr("checked",true).checkboxradio("refresh");
-	};
-
-	// Purchased
-	$("#purchased").val(game.purchased[1]);
-	$("#purchased_amount").val(game.purchased_amount[1]);
-
-	// Free
-	$("#sold").val(game.free[1]);
-
-	// Sold
-	$("#sold").val(game.sold[1]);
-
-	if (game.sold[1] != "n/a") {
-		$("#sold_q").attr("checked",true).checkboxradio("refresh");
-		$("#sold_d").css("display","block");
-		$("#sold_amount").val(game.sold[1]);
-	};
-
-	if (game.sold_amount[1] != "n/a") {
-		$("#sold_amount").val(game.sold_amount[1]);
-	};
-
-	// Special Notes
-	$("#notes").val(game.notes[1]);
-
-	// Favorite
-	if (game.favorite[1] === "Yes") {
-		$("#favorite").attr("checked","true");
-	};
-
-	var editSubmit = $("#submit")
-		editSubmit.val("[#] Edit Game");
-
-	$("#submit").on("click",function() {
-		saveEditedGame(key);
-	});
-
-};
-// ##################################
-// Edit saved game
-// ##################################
-
-
-// ##################################
-// Save Edited Game
-// ##################################
-function saveEditedGame(key) {
-	saveGame(key);
-};
-// ##################################
-// END Save Edited Game
-// ##################################
-
-// ####################################################################
-// END Update
-// ####################################################################
 
 
 // ####################################################################
@@ -695,7 +684,7 @@ function loadGamesDataJSON() {
 			var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
 			localStorage.setItem(id, JSON.stringify(json[n]));
 		};
-		displayGamesNow();	
+		displayGamesNow();
 	};
 };
 // ##################################
@@ -714,7 +703,7 @@ function loadGamesDataCSV() {
         url: "xhr/data.csv",
         success: function(data) {processDataCSV(data);}
      });
-	 
+
 	function processDataCSV(data) {
 		var dataLines = data.split('\n');
 		var headers = dataLines[0].split(',');
@@ -725,30 +714,30 @@ function loadGamesDataCSV() {
 			var dataInfo = dataLines[i].split(','),
 				temp_tarr =[],
 				tarr = [];
-			
+
 			// !important: if the number of fields inputted don't match the number of headers the entry gets skipped
 			if (dataInfo.length == headers.length) {
-							
+
 				// create separate arrays for each field name and corresponding user data
-				for (var j=0; j<headers.length; j++) {	
+				for (var j=0; j<headers.length; j++) {
 					tarr = [];
-					
-					// create [field name, user data] array 
+
+					// create [field name, user data] array
 					temp_tarr.push([headers[j],dataInfo[j]]);
-					
+
 					// push to final array
 					tarr.push(temp_tarr);
 				};
-			
+
 				lines.push(tarr);
 			};
 		};
-		
+
 		for (n in lines) {
 			var id = Math.floor(Math.random()*100000001); // Could not use timestamp since data is populated instantly
 			localStorage.setItem(id, JSON.stringify(lines[n][0]));
 		};
-		
+
 		displayGamesNow();
 	}
 }
@@ -758,8 +747,8 @@ function loadGamesDataCSV() {
 // ##################################
 
 
-		function displayGamesNow() { 
-		
+		function displayGamesNow() {
+
 			// Make sure items were saved
 			if (localStorage.length != 0) {
 				var displayGamesNowConfirm = confirm("Your games have been loaded. View them now?");
@@ -771,7 +760,7 @@ function loadGamesDataCSV() {
 					alert("Your games will not be displayed");
 				};
 			};
-		
+
 		};
 
 // ##################################
@@ -787,4 +776,33 @@ $(".clear_games").click(deleteGames);
 // Event Listeners
 // ##################################
 
+// Misc. Functions
+function getOptionText(option,value) {
+	// Cycles through the Genre list array to find a match using the value of the selected option
+	for (n = 0; n < option.length; n++) {
+		if (option[n].indexOf(value) != -1) {
+			text = option[n][1];
+			return text;
+		};
+	};
+};
+
+function getOptionValue(option,value) {
+// Cycles through the Genre list array to find a match using the value of the selected option
+	for (n = 0; n < option.length; n++) {
+		if (option[n].indexOf(value) != -1) {
+			text = option[n][0];
+			return text;
+		};
+	};
+};
+
+function getOptionValueIndex(option,value) {
+// Cycles through the Genre list array to find a match using the value of the selected option
+	for (n = 0; n < option.length; n++) {
+		if (option[n].indexOf(value) != -1) {
+			return n;
+		};
+	};
+};
 
