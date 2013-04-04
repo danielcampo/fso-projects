@@ -8,8 +8,8 @@ var json = {
 		"completed": ["Completed", "Yes"],
 		"purchased": ["Purchase Date", "2012-03-29"],
 		"purchased_amount": ["Purchase Amount", "59.99"],
-		"sold": ["Sold Date", ""],
-		"sold_amount": ["Sold Amount", ""],
+		"sold": ["Sold Date", "n/a"],
+		"sold_amount": ["Sold Amount", "n/a"],
 		"notes": ["Special Notes", "Platinum trophy obtained"],
 		"favorite": ["Favorite", "Yes"]
 	},
@@ -22,14 +22,14 @@ var json = {
 		"completed": ["Completed", "No"],
 		"purchased": ["Purchase Date", "2012-07-22"],
 		"purchased_amount": ["Purchase Amount", "0"],
-		"sold": ["Sold Date", ""],
-		"sold_amount": ["Sold Amount", ""],
+		"sold": ["Sold Date", "n/a"],
+		"sold_amount": ["Sold Amount", "n/a"],
 		"notes": ["Special Notes", "Still in beta"],
 		"favorite": ["Favorite", "No"]
 	},
 	"game3": {
 		"title": ["Title", "Sound Shapes"],
-		"platform" : ["Platform", "PlayStation Vita"],
+		"platform" : ["Platform", "PlayStation Vita / PSP"],
 		"genre": ["Genre", "Platform"],
 		"publisher": ["Publisher", "Sony Computer Entertainment America, Inc."],
 		"developer": ["Developer", "Queasy Games"],
@@ -50,8 +50,8 @@ var json = {
 		"completed": ["Completed", "No"],
 		"purchased": ["Purchase Date", "2013-01-10"],
 		"purchased_amount": ["Purchase Amount", "0"],
-		"sold": ["Sold Date", ""],
-		"sold_amount": ["Sold Amount", ""],
+		"sold": ["Sold Date", "n/a"],
+		"sold_amount": ["Sold Amount", "n/a"],
 		"notes": ["Special Notes", "Cross-buy title"],
 		"favorite": ["Favorite", "No"]
 	},
@@ -64,8 +64,8 @@ var json = {
 		"completed": ["Completed", "Yes"],
 		"purchased": ["Purchase Date", "2010-08-10"],
 		"purchased_amount": ["Purchase Amount", "59.99"],
-		"sold": ["Sold Date", ""],
-		"sold_amount": ["Sold Amount", ""],
+		"sold": ["Sold Date", "n/a"],
+		"sold_amount": ["Sold Amount", "n/a"],
 		"notes": ["Special Notes", ""],
 		"favorite": ["Favorite", "No"]
 	},
@@ -78,8 +78,8 @@ var json = {
 		"completed": ["Completed", "No"],
 		"purchased": ["Purchase Date", "2012-03-20"],
 		"purchased_amount": ["Purchase Amount", "59.99"],
-		"sold": ["Sold Date", ""],
-		"sold_amount": ["Sold Amount", ""],
+		"sold": ["Sold Date", "n/a"],
+		"sold_amount": ["Sold Amount", "n/a"],
 		"notes": ["Special Notes", ""],
 		"favorite": ["Favorite", "No"]
 	}
