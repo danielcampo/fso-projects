@@ -131,10 +131,6 @@ nav a:hover {
     padding: 30px 0;
 }
 
-.main article {
-	border-bottom: #ccc solid 2px;
-}
-
 .main article h1 {
     font-size: 2em;
     text-decoration: underline;
@@ -166,9 +162,58 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
 
+/* Twitter */
+#api_twitter_data_list>footer {
+	border-top: #E44D26 solid thin;
+	margin-bottom: 20px;
+	padding-bottom: 5px;
+	text-align: right;
+}
 
+.tw_current_display {
+	display: block;
+	font-size: x-small;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+}
 
+.tw_tweet {
+	border: #F16529 dashed thin;
+	border-radius: 16px;
+	list-style: none;
+	margin-bottom: 20px;
+	padding: 10px;
+}
 
+.tw_tweet header {
+	border-bottom: #ccc solid thin;
+	margin-bottom: 5px;
+	overflow: hidden;
+	padding-bottom: 5px;
+}
+
+.tw_tweet article {
+	margin-bottom: 5px;
+}
+
+.tw_tweet .tw_tweet_avatar {
+	float: left;
+	margin-right: 10px;
+}
+
+.tw_username, .tw_username a {
+	color: #777;
+	font-size: small;
+}
+
+.tw_tweet .tw_tweet_created {
+	color: #aaa;
+	font-size: small;
+}
+
+.tw_tweet footer {
+	border-top: #ccc solid 1px;
+}
 
 
 
