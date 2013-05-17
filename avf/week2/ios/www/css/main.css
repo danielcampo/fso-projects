@@ -163,21 +163,21 @@ nav a:hover {
    ========================================================================== */
 
 /* Twitter */
-#api_twitter_data_list>footer {
+#api_twitter_data_list>footer, #api_giantbomb_data_list>footer {
 	border-top: #E44D26 solid thin;
 	margin-bottom: 20px;
 	padding-bottom: 5px;
 	text-align: right;
 }
 
-.tw_current_display {
+.tw_current_display, .gb_current_display {
 	display: block;
 	font-size: x-small;
 	margin-bottom: 10px;
 	text-transform: uppercase;
 }
 
-.tw_tweet {
+.tw_tweet, .gb_game {
 	border: #F16529 dashed thin;
 	border-radius: 16px;
 	list-style: none;
@@ -185,33 +185,33 @@ nav a:hover {
 	padding: 10px;
 }
 
-.tw_tweet header {
+.tw_tweet header, .gb_game header {
 	border-bottom: #ccc solid thin;
 	margin-bottom: 5px;
 	overflow: hidden;
 	padding-bottom: 5px;
 }
 
-.tw_tweet article {
+.tw_tweet article, .gb_game article {
 	margin-bottom: 5px;
 }
 
-.tw_tweet .tw_tweet_avatar {
+.tw_tweet .tw_tweet_avatar, .gb_game .gb_game_avatar {
 	float: left;
 	margin-right: 10px;
 }
 
-.tw_username, .tw_username a {
+.tw_username, .tw_username a, .gb_gameplats, .gb_gameplats a {
 	color: #777;
 	font-size: small;
 }
 
-.tw_tweet .tw_tweet_created {
+.tw_tweet .tw_tweet_created, .gb_game .gb_game_release {
 	color: #aaa;
 	font-size: small;
 }
 
-.tw_tweet footer {
+.tw_tweet footer, .gb_game footer {
 	border-top: #ccc solid 1px;
 }
 
@@ -219,7 +219,10 @@ nav a:hover {
 
 
 
-
+.tw_tweet_avatar img, .gb_game_avatar img {
+	height: auto;
+	width: 48px;
+}
 
 
 
