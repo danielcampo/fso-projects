@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>AVF Demo App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">AVF Demo App</h1>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                <section>
+                    <h2>iOS / Android Native Feature Demos</h2>
+                    <ul class="list_grid">
+                    	<li>
+                    		<a href="#">Camera</a> <span class="platformSupport">(Android + iOS)</span>
+                    	</li>
+                    	<li>
+                    		<a href="#">Contacts</a>
+                    	</li>
+                    	<li>
+                    		<a href="#">Connection</a> <span class="platformSupport">(Android + iOS)</span>
+                    	</li>
+                    	<li>
+                    		<a href="#">InAppBrowser</a>
+                    	</li>
+                    	<li>
+                    		<a href="#">Storage</a> <span class="platformSupport">(Android + iOS)</span>
+                    	</li>
+
+                    </ul>
+                </section>
+                <section>
+                    <h2>JSON-P Data APIs</h2>
+                    <ul>
+                    	<li>
+                    		<a id="api_twitter" href="#">Twitter</a>
+                    		<div id="api_twitter_container">
+
+	                    		<section id="api_twitter_data">
+	                    			<div id="api_twitter_data_status"></div>
+	                    			<!-- ########### -->
+	                    			<!-- twitter -->
+		                    		<section id="api_twitter_data_list"></section>
+		                    		<!-- END twitter -->
+	                    			<!-- ########### -->
+	                    		</section>
+
+                    		</div>
+                    	</li>
+                    	<li>
+                    		<a href="http://www.giantbomb.com/api/">Giant Bomb Game API</a>
+                    	</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Research</h2>
+                    <ul>
+                    	<li>
+                    		<a href="http://en.wikipedia.org/wiki/JSONP">What is JSONP</a>
+                    	</li>
+                    	<li>
+                    		<a href="https://dev.twitter.com/docs/api/1.1">Twitter API Resources</a>
+                    	</li>
+                    </ul>
+                </section>
+
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>&copy;2013 Daniel Campo | FSO | AVF1305</h3>
+            </footer>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
