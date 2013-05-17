@@ -30,55 +30,72 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
 
-                <article>
-                    <section>
-                        <h2>iOS / Android Native Feature Demos</h2>
-                        <ul class="list_grid">
-                        	<li>
-                        		<a href="#">Camera</a> <span class="platformSupport">(Android + iOS)</span>
-                        	</li>
-                        	<li>
-                        		<a href="#">Contacts</a>
-                        	</li>
-                        	<li>
-                        		<a href="#">Connection</a> <span class="platformSupport">(Android + iOS)</span>
-                        	</li>
-                        	<li>
-                        		<a href="#">InAppBrowser</a>
-                        	</li>
-                        	<li>
-                        		<a href="#">Storage</a> <span class="platformSupport">(Android + iOS)</span>
-                        	</li>
+                <section>
+                    <h2>iOS / Android Native Feature Demos</h2>
+                    <ul class="list_grid">
+                    	<li>
+                    		<a href="#">Camera</a> <span class="platformSupport">(Android + iOS)</span>
+                    	</li>
+                    	<li>
+                    		<a href="#">Contacts</a>
+                    	</li>
+                    	<li>
+                    		<a href="#">Connection</a> <span class="platformSupport">(Android + iOS)</span>
+                    	</li>
+                    	<li>
+                    		<a href="#">InAppBrowser</a>
+                    	</li>
+                    	<li>
+                    		<a href="#">Storage</a> <span class="platformSupport">(Android + iOS)</span>
+                    	</li>
 
-                        </ul>
-                    </section>
-                </article>
-                <article>
-                    <section>
-                        <h2>JSON-P Data APIs</h2>
-                        <ul>
-                        	<li>
-                        		<a href="https://dev.twitter.com/docs/api">The Twitter REST API</a>
-                        	</li>
-                        	<li>
-                        		<a href="http://www.giantbomb.com/api/">Giant Bomb Game API</a>
-                        	</li>
-                        </ul>
-                    </section>
-                </article>
-                <article>
-                    <section>
-                        <h2>Research</h2>
-                        <ul>
-                        	<li>
-                        		<a href="http://en.wikipedia.org/wiki/JSONP">What is JSONP</a>
-                        	</li>
-                        	<li>
-                        		<a href="https://dev.twitter.com/docs/api/1.1">Twitter API Resources</a>
-                        	</li>
-                        </ul>
-                    </section>
-                </article>
+                    </ul>
+                </section>
+                <section>
+                    <h2>JSON-P Data APIs</h2>
+                    <ul>
+                    	<li>
+                    		<a id="api_twitter" href="#">Twitter</a>
+                    		<div id="api_twitter_container">
+
+	                    		<section id="api_twitter_data">
+	                    			<div id="api_twitter_data_status"></div>
+	                    			<!-- ########### -->
+	                    			<!-- twitter -->
+		                    		<section id="api_twitter_data_list"></section>
+		                    		<!-- END twitter -->
+	                    			<!-- ########### -->
+	                    		</section>
+
+                    		</div>
+                    	</li>
+                    	<li>
+                    		<a id="api_giantbomb" href="#">Giant Bomb</a>
+							<div id="api_giantbomb_data_status"></div>
+                    		<div id="api_giantbomb_container">
+	                    		<section id="api_giantbomb_data">
+	                    			<!-- ########### -->
+	                    			<!-- giantbomb -->
+		                    		<section id="api_giantbomb_data_list"></section>
+		                    		<!-- END giantbomb -->
+	                    			<!-- ########### -->
+	                    		</section>
+
+                    		</div>
+                    	</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Research</h2>
+                    <ul>
+                    	<li>
+                    		<a href="http://en.wikipedia.org/wiki/JSONP">What is JSONP</a>
+                    	</li>
+                    	<li>
+                    		<a href="https://dev.twitter.com/docs/api/1.1">Twitter API Resources</a>
+                    	</li>
+                    </ul>
+                </section>
 
             </div> <!-- #main -->
         </div> <!-- #main-container -->
@@ -89,17 +106,9 @@
             </footer>
         </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 
-        <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
     </body>
 </html>
