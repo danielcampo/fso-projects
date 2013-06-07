@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
                BuildableName = "gameCollector_ios.app"
-               BlueprintName = "gameCollector_ios"
+               BlueprintName = "Game Collector"
                ReferencedContainer = "container:gameCollector_ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "gameCollector_ios.app"
-            BlueprintName = "gameCollector_ios"
+            BlueprintName = "Game Collector"
             ReferencedContainer = "container:gameCollector_ios.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -53,7 +53,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "gameCollector_ios.app"
-            BlueprintName = "gameCollector_ios"
+            BlueprintName = "Game Collector"
             ReferencedContainer = "container:gameCollector_ios.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,7 +71,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
             BuildableName = "gameCollector_ios.app"
-            BlueprintName = "gameCollector_ios"
+            BlueprintName = "Game Collector"
             ReferencedContainer = "container:gameCollector_ios.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
