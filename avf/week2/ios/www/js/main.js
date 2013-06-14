@@ -20,7 +20,6 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 			$('#api_instagram_data').slideDown(); //show instagram container
 			$.getJSON('https://api.instagram.com/v1/tags/playstation/media/recent?access_token=36527161.6b20cd8.9e1d6a3874074510b7cc0884fc25b89b&count=4&callback=?',
 				function(data) {
-					console.log(data);
 					loadInstagram(data.data);
 				}
 			);
@@ -38,7 +37,6 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 			);
 
 			for (i = 0; i < data.length; i++) {
-				console.log(data[i]);
 				var insta_media_avatar = data[i].user.profile_picture,
 					insta_media_user = data[i].user.full_name,
 					insta_media_username = data[i].user.username,
