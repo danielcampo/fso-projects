@@ -18,7 +18,7 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 		$('#api_twitter_data_status').html('Loading Tweets...');
 		if ($('#api_twitter_data_list').children('div').hasClass('tw_tweet') != true) { //prevent list from being loaded once already loaded
 			$('#api_twitter_data').slideDown(); //show twitter container
-			$.getJSON('https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4&callback=jquery',
+			$.getJSON('https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4',
 				function(data) {
 					loadTwitter(data);
 				}
