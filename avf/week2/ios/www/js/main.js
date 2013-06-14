@@ -75,11 +75,11 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 				'</footer>'
 			);
 
-			showTwitter();
+			showInstagram();
 		};
 
 	//show instagram data
-	function showTwitter() {
+	function showInstagram() {
 		$('#api_instagram_data_status').html(''); //clear loading message
 		$('#api_instagram_data_list').delay(800).slideDown();
 		$('#api_instagram').scrollY();
