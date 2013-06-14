@@ -162,22 +162,22 @@ nav a:hover {
    Author's custom styles
    ========================================================================== */
 
-/* Twitter */
-#api_twitter_data_list>footer, #api_giantbomb_data_list>footer {
+/* Instagram */
+#api_instagram_data_list>footer, #api_giantbomb_data_list>footer {
 	border-top: #E44D26 solid thin;
 	margin-bottom: 20px;
 	padding-bottom: 5px;
 	text-align: right;
 }
 
-.tw_current_display, .gb_current_display {
+.insta_current_display, .gb_current_display {
 	display: block;
 	font-size: x-small;
 	margin-bottom: 10px;
 	text-transform: uppercase;
 }
 
-.tw_tweet, .gb_game {
+.insta_media, .gb_game {
 	border: #F16529 dashed thin;
 	border-radius: 16px;
 	list-style: none;
@@ -185,41 +185,47 @@ nav a:hover {
 	padding: 10px;
 }
 
-.tw_tweet header, .gb_game header {
+.insta_media header, .gb_game header {
 	border-bottom: #ccc solid thin;
 	margin-bottom: 5px;
 	overflow: hidden;
 	padding-bottom: 5px;
 }
 
-.tw_tweet article, .gb_game article {
+.insta_media article, .gb_game article {
 	margin-bottom: 5px;
 }
 
-.tw_tweet .tw_tweet_avatar, .gb_game .gb_game_avatar {
+.insta_media .insta_media_avatar, .gb_game .gb_game_avatar {
 	float: left;
 	margin-right: 10px;
 }
 
-.tw_username, .tw_username a, .gb_gameplats, .gb_gameplats a {
+.insta_username, .insta_username a, .gb_gameplats, .gb_gameplats a {
 	color: #777;
 	font-size: small;
 }
 
-.tw_tweet .tw_tweet_created, .gb_game .gb_game_release {
+.insta_media .insta_media_created, .gb_game .gb_game_release {
 	color: #aaa;
 	font-size: small;
 }
 
-.tw_tweet footer, .gb_game footer {
+.insta_media footer, .gb_game footer {
 	border-top: #ccc solid 1px;
+	text-align: right;
 }
 
+.insta_media article {
+	text-align: center;
+}
 
+.insta_media_image {
+	height: 60%;
+	width: 60%;
+}
 
-
-
-.tw_tweet_avatar img, .gb_game_avatar img {
+.insta_media_avatar img, .gb_game_avatar img {
 	height: auto;
 	width: 48px;
 }

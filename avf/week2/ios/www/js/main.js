@@ -7,20 +7,21 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 
 	// ################################################################
 	// ################################################################
-	//twitter
+	//instagram
 
-	$('#api_twitter_data').css('display','none'); //hide twitter container
-	$('#api_twitter_data_list').css('display','none'); //hide twitter container
+	$('#api_instagram_data').css('display','none'); //hide instagram container
+	$('#api_instagram_data_list').css('display','none'); //hide instagram container
 
-	//open twitter data
-	$('#api_twitter').on('click', function(e) {
+	//open instagram data
+	$('#api_instagram').on('click', function(e) {
 		e.preventDefault();
-		$('#api_twitter_data_status').html('Loading Tweets...');
-		if ($('#api_twitter_data_list').children('div').hasClass('tw_tweet') != true) { //prevent list from being loaded once already loaded
-			$('#api_twitter_data').slideDown(); //show twitter container
-			$.getJSON('https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4',
+		$('#api_instagram_data_status').html('Loading Media...');
+		if ($('#api_instagram_data_list').children('div').hasClass('insta_media') != true) { //prevent list from being loaded once already loaded
+			$('#api_instagram_data').slideDown(); //show instagram container
+			$.getJSON('https://api.instagram.com/v1/tags/playstation/media/recent?access_token=36527161.6b20cd8.9e1d6a3874074510b7cc0884fc25b89b&count=4&callback=?',
 				function(data) {
-					loadTwitter(data);
+					console.log(data);
+					loadInstagram(data.data);
 				}
 			);
 		} else {
@@ -28,68 +29,74 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 		};
 	});
 
-		//load tweets
-		function loadTwitter(data) {
-			$('#api_twitter_data_list').append(
+		//load photos
+		function loadInstagram(data) {
+			$('#api_instagram_data_list').append(
 				'<header>' +
-					'<span class="tw_current_display">Displaying latest tweets for: "' + data.query + '"</span>' +
+					'<span class="insta_current_display">Displaying latest media for tags including: PlayStation</span>' +
 				'</header>'
 			);
 
-			for (i = 0; i < data.results.length; i++) {
-				var tw_tweet_avatar = data.results[i].profile_image_url,
-					tw_tweet_user = data.results[i].from_user_name,
-					tw_tweet_username = data.results[i].from_user,
-					tw_tweet_text = data.results[i].text,
-					tw_tweet_created = data.results[i].created_at.substring(0,25);
+			for (i = 0; i < data.length; i++) {
+				console.log(data[i]);
+				var insta_media_avatar = data[i].user.profile_picture,
+					insta_media_user = data[i].user.full_name,
+					insta_media_username = data[i].user.username,
+					insta_media_image = data[i].images.standard_resolution.url,
+					insta_media_link = data[i].link;
+				
+				var	insta_media_created = new Date(data[i].created_time*1000),
+					insta_media_created_month = insta_media_created.getUTCMonth() + 1,
+					insta_media_created_day = insta_media_created.getUTCDay(),
+					insta_media_created_year = insta_media_created.getUTCFullYear();
 
-				$('#api_twitter_data_list').append(
-					'<div class="tw_tweet">' +
+				$('#api_instagram_data_list').append(
+					'<div class="insta_media">' +
 						'<header>' +
-							'<div class="tw_tweet_avatar">' +
-								'<img src="' + tw_tweet_avatar + '" />' +
+							'<div class="insta_media_avatar">' +
+								'<img src="' + insta_media_avatar + '" />' +
 							'</div>' +
-							'<div class="tw_tweet_user">' +
-								tw_tweet_user + '<br /><span class="tw_username">(<a href="http://twitter.com/' + tw_tweet_username + '">@' + tw_tweet_username + '</a>)</span><br />' +
+							'<div class="insta_media_user">' +
+								insta_media_user + '<br /><span class="insta_username">(<a href="http://instagram.com/' + insta_media_username + '">@' + insta_media_username + '</a>)</span><br />' +
 							'</div>' +
 						'</header>' +
 						'<article>' +
-							tw_tweet_text +
+							'<a href="' + insta_media_link + '"><img class="insta_media_image" src="' + insta_media_image + '" /></a>' +
 						'</article>' +
 						'<footer>' +
-							'<span class="tw_tweet_created">' + tw_tweet_created + '</span>' +
+							'<span class="insta_media_created">Posted: ' + insta_media_created_month + '/' + insta_media_created_day + '/' + insta_media_created_year + '</span>' +
 						'</footer>' +
 
 					'</div>'
 				);
 			};
 
-			$('#api_twitter_data_list').append(
+			$('#api_instagram_data_list').append(
 				'<footer>' +
-					'<a class="api_twitter_close" href="#">[x] close</a>' +
+					'<a class="api_instagram_close" href="#">[x] close</a>' +
 				'</footer>'
 			);
 
 			showTwitter();
 		};
 
-	//show twitter data
+	//show instagram data
 	function showTwitter() {
-		$('#api_twitter_data_status').html(''); //clear loading message
-		$('#api_twitter_data_list').delay(800).slideDown();
-		$('#api_twitter').scrollY();
+		$('#api_instagram_data_status').html(''); //clear loading message
+		$('#api_instagram_data_list').delay(800).slideDown();
+		$('#api_instagram').scrollY();
 	};
 
-	//close twitter data
-	$('#api_twitter_data_list').on('click', '.api_twitter_close', function(e) {
+	//close instagram data
+	$('#api_instagram_data_list').on('click', '.api_instagram_close', function(e) {
 		e.preventDefault();
-		$('#api_twitter_data').slideUp(400,clearTwitter); //clear twitter data list once animation is complete
+		$('#api_instagram_data').slideUp(400,clearTwitter); //clear instagram data list once animation is complete
 			function clearTwitter() {
-				$('#api_twitter_data_list').html('');
+				$('#api_instagram_data_list').html('');
 			};
 	});
 
-	//END twitter
+	//END instagram
 	// ################################################################
 	// ################################################################
 
