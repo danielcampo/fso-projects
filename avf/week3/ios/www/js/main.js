@@ -2,9 +2,7 @@
 $(function() {
 
 	//scroll page to object top offset
-	$.fn.scrollY = function(speed,offset) {
-	var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrollOffset=elementOffset.top-offset}else{scrollOffset=elementOffset.top}$("html, body").animate({scrollTop:scrollOffset},speed)
-	};
+	$.fn.scrollY = function(speed,offset) {var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrollOffset=elementOffset.top-offset}else{scrollOffset=elementOffset.top}$("html, body").animate({scrollTop:scrollOffset},speed)};
 
 	// ################################################################
 	// ################################################################
@@ -220,18 +218,6 @@ $(function() {
 					$('#api_giantbomb_data_list').html('');
 				};
 		});
-
-
-//---
-// Native Features
-//---
-    // Cordova is ready to be used!
-    //
-    function onDeviceReady() {
-		// Insert Native Feature Defaults Here
-    }
-
-    onDeviceReady();
 // ################################################################
 // ################################################################
 
@@ -291,7 +277,7 @@ function accessStorage() {
 
 // ################################################################
 // ################################################################
-// inAppBrowser
+// InAppBrowser
 $('#browser').click(function() {
 	$(this).append(
 		'<div>' +
@@ -299,7 +285,7 @@ $('#browser').click(function() {
 		'</div>'
 	);
 });
-
+// end InAppBrowser
 // ################################################################
 // ################################################################
 
@@ -332,6 +318,7 @@ function onSuccess(imageData) {
 function onFail(message) {
 	alert('Failed because: ' + message);
 };
+// end Camera
 // ################################################################
 // ################################################################
 
@@ -360,7 +347,31 @@ function checkConnection() {
     	'</div>'
     );
 };
+// end Connection
 // ################################################################
 // ################################################################
+
+
+// ################################################################
+// ################################################################
+// Contacts
+function contactsOnSuccess(contacts) {
+    alert('Found ' + contacts.length + ' contacts.');
+};
+
+function contactsOnError(contactError) {
+    alert('Contact Not Found!');
+};
+
+// find all contacts with 'Bob' in any name field
+var options = new ContactFindOptions();
+options.filter="Bob";
+options.multiple=true;
+var fields = ["displayName", "name"];
+navigator.contacts.find(fields, onSuccess, onError, options);
+// end Contacts
+// ################################################################
+// ################################################################
+
 
 }); // end script

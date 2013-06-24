@@ -12,6 +12,7 @@ textarea {
 
 body {
     font-size: 1em;
+    font-weight: 100;
     line-height: 1.4;
 }
 
@@ -61,7 +62,17 @@ textarea {
    ========================================================================== */
 
 body {
-    font: 16px/26px Helvetica, Helvetica Neue, Arial;
+    font: 16px/26px 'Helvetica Neue', Helvetica, Arial;
+    font-weight: 200;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 1.2em;
 }
 
 .wrapper {
@@ -69,22 +80,69 @@ body {
     margin: 0 5%;
 }
 
+a {
+	color: #e44d26;
+}
+
+ul {
+	background-color: #ffe8cc;
+	border-radius: 16px;
+	list-style: none;
+	padding-left: 0;
+}
+
+ul li {
+	border-bottom: #af8928 solid thin;
+	padding: 5px 0 5px 5px;
+}
+
+ul li:first-child {
+	border-radius: 16px 16px 0 0;
+}
+
+ul li:last-child {
+	border-radius: 0 0 16px 16px;
+}
+
+ul li:hover {
+	background-color: #f16529;
+}
+
+ul li:hover span {
+	color: silver;
+}
+
+ul li:hover a {
+	color: #fff;
+}
+
+ul li:last-child {
+	border-bottom: 0;
+}
+
+ul a {
+	display: block;
+	text-decoration: none;
+}
+
+
 /* ===================
     ALL: Orange Theme
    =================== */
 
 .header-container {
-    border-bottom: 20px solid #e44d26;
+    border-bottom: 5px solid #e44d26;
 }
 
 .footer-container,
 .main aside {
-    border-top: 20px solid #e44d26;
+    border-top: 5px solid #e44d26;
 }
 
 .header-container,
 .footer-container,
 .main aside {
+	font-size: .75em;
     background: #f16529;
 }
 
@@ -126,9 +184,17 @@ nav a:hover {
 /* ==============
     MOBILE: Main
    ============== */
+.header-container, .footer-container {
+	text-align: center;
+}
+
+.header-container h1 {
+	margin: 5px 0;
+}
 
 .main {
-    padding: 30px 0;
+	margin-bottom: 40px;
+    padding: 10px 0;
 }
 
 .main article h1 {
@@ -145,11 +211,21 @@ nav a:hover {
     padding: 0px 5% 10px;
 }
 
-.footer-container footer {
-    color: white;
-    padding: 20px 0;
+.footer-container {
+	font-weight: 100;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
 
+.footer-container h3 {
+	margin: 5px;
+}
+
+.footer-container footer {
+    color: white;
+    padding: 2px 0;
+}
 /* ===============
     ALL: IE Fixes
    =============== */
