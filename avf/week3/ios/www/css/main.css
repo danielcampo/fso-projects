@@ -85,44 +85,58 @@ a {
 }
 
 ul {
-	background-color: #ffe8cc;
 	border-radius: 16px;
 	list-style: none;
 	padding-left: 0;
 }
 
-ul li {
+section > ul {
+	background-color: #ffe8cc;
+}
+
+section > ul li {
 	border-bottom: #af8928 solid thin;
 	padding: 5px 0 5px 5px;
 }
 
-ul li:first-child {
+section > ul li:first-child {
 	border-radius: 16px 16px 0 0;
 }
 
-ul li:last-child {
+section > ul li:last-child {
 	border-radius: 0 0 16px 16px;
 }
 
-ul li:hover {
+section > ul li:hover {
 	background-color: #f16529;
 }
 
-ul li:hover span {
+section > ul li:hover > span {
 	color: silver;
 }
 
-ul li:hover a {
+section > ul li:hover a {
 	color: #fff;
 }
 
-ul li:last-child {
+section > ul li:last-child {
 	border-bottom: 0;
 }
 
-ul a {
+section > ul a {
 	display: block;
 	text-decoration: none;
+}
+
+#contactsList {
+	background-color: #fff;
+	width: 98%;
+}
+
+#contactsList a {
+	color: #000;
+	display: block;
+	width: 100%;
 }
 
 
@@ -246,6 +260,14 @@ nav a:hover {
 	text-align: right;
 }
 
+#api_instagram_data_list {
+	width: 98%;
+}
+
+#api_instagram_data_list > li {
+	background-color: #fff;
+}
+
 .insta_current_display, .gb_current_display {
 	display: block;
 	font-size: x-small;
@@ -286,6 +308,7 @@ nav a:hover {
 
 .insta_username, .insta_username a, .gb_gameplats, .gb_gameplats a {
 	color: #777;
+	display: inline;
 	font-size: small;
 }
 

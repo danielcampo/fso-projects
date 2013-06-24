@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="css/main.css">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="cordova-2.7.0.js" charset="utf-8"></script>
     </head>
     <body>
         <div class="header-container">
@@ -26,25 +27,25 @@
         <div class="main-container">
             <div class="main wrapper clearfix">
 
-                <section>
+                <section id="nativeFeatures">
                 	<header>
 	                    <h2>iOS / Android Native Feature Demos</h2>
                 	</header>
                     <ul class="list_grid">
-                    	<li>
-                    		<a href="#">Camera</a> <span class="platformSupport">(Android + iOS)</span>
+                    	<li id="camera">
+                    		<a href="#">Camera <span class="platformSupport">(Android + iOS)</span></a>
                     	</li>
-                    	<li>
-                    		<a href="#">Connection</a> <span class="platformSupport">(Android + iOS)</span>
+                    	<li id="connection">
+                    		<a href="#">Connection <span class="platformSupport">(Android + iOS)</span></a>
                     	</li>
-                    	<li>
+                    	<li id="contacts">
                     		<a href="#">Contacts</a>
                     	</li>
-                    	<li>
+                    	<li id="browser">
                     		<a href="#">InAppBrowser</a>
                     	</li>
-                    	<li>
-                    		<a href="#">Storage</a> <span class="platformSupport">(Android + iOS)</span>
+                    	<li id="storage">
+                    		<a href="#">Storage <span class="platformSupport">(Android + iOS)</span></a>
                     	</li>
                     </ul>
                 </section>
@@ -96,6 +97,9 @@
                     	</li>
                     	<li>
                     		<a href="https://dev.instagram.com/docs/api/1.1">Twitter API Resources</a>
+                    	</li>
+                    	<li>
+                    		<a href="http://docs.phonegap.com/en/2.8.0/index.html">PhoneGap API Reference</a>
                     	</li>
                     </ul>
                 </section>

@@ -356,7 +356,45 @@ function checkConnection() {
 // ################################################################
 // Contacts
 function contactsOnSuccess(contacts) {
-    alert('Found ' + contacts.length + ' contacts.');
+
+	function contactsList(contacts) {
+
+		var pageLimit = 5;
+
+		$('#contacts').append(
+			'<ul id="contactsList">'
+		);
+
+			for (i = 0; i < pageLimit; i++) {
+				var contact_display = contacts[i].displayName;
+/* 					contact_email = contacts[i].emails[0]; */
+
+				$('#contactsList').append(
+					'<li>' +
+						'<div class="contact">' +
+/*
+							'<table>' +
+								'<tbody>' +
+									'<tr>' +
+										'<td>' +
+*/
+											'<a href="mailto:test@test.com"><span class="contact_displayName">' + contact_display + '</span></a>' +
+/*
+										'</td>' +
+									'</tr>' +
+								'</tbody>' +
+							'</table>' +
+*/
+						'</div>' +
+					'</li>'
+				);
+			};
+	};
+	$("#contacts").append(
+		'</ul>'
+	);
+
+	contactsList(contacts);
 };
 
 function contactsOnError(contactError) {
@@ -364,11 +402,16 @@ function contactsOnError(contactError) {
 };
 
 // find all contacts with 'Bob' in any name field
-var options = new ContactFindOptions();
-options.filter="Bob";
-options.multiple=true;
-var fields = ["displayName", "name"];
-navigator.contacts.find(fields, onSuccess, onError, options);
+$('#contacts a').click(function() {
+	var options = new ContactFindOptions();
+	options.filter= '';
+	options.multiple=true;
+
+	filter = ['displayName'];
+
+
+	navigator.contacts.find(filter, contactsOnSuccess, contactsOnError, options);
+});
 // end Contacts
 // ################################################################
 // ################################################################

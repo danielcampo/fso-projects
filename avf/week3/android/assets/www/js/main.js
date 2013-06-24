@@ -1,9 +1,8 @@
 // Daniel Campo | FSO | AVF1306
 $(function() {
 
-$.fn.scrollY = function(speed,offset) {
-var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrollOffset=elementOffset.top-offset}else{scrollOffset=elementOffset.top}$("html, body").animate({scrollTop:scrollOffset},speed)
-};
+	//scroll page to object top offset
+	$.fn.scrollY = function(speed,offset) {var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrollOffset=elementOffset.top-offset}else{scrollOffset=elementOffset.top}$("html, body").animate({scrollTop:scrollOffset},speed)};
 
 	// ################################################################
 	// ################################################################
@@ -20,6 +19,7 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 			$('#api_instagram_data').slideDown(); //show instagram container
 			$.getJSON('https://api.instagram.com/v1/tags/playstation/media/recent?access_token=36527161.6b20cd8.9e1d6a3874074510b7cc0884fc25b89b&count=4&callback=?',
 				function(data) {
+					console.log(data);
 					loadInstagram(data.data);
 				}
 			);
@@ -33,7 +33,8 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 			$('#api_instagram_data_list').append(
 				'<header>' +
 					'<span class="insta_current_display">Displaying latest media for tags including: PlayStation</span>' +
-				'</header>'
+				'</header>' +
+				'<ul>'
 			);
 
 			for (i = 0; i < data.length; i++) {
@@ -42,44 +43,64 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 					insta_media_username = data[i].user.username,
 					insta_media_image = data[i].images.standard_resolution.url,
 					insta_media_link = data[i].link;
-				
+
 				var	insta_media_created = new Date(data[i].created_time*1000),
 					insta_media_created_month = insta_media_created.getUTCMonth() + 1,
 					insta_media_created_day = insta_media_created.getUTCDay(),
 					insta_media_created_year = insta_media_created.getUTCFullYear();
 
 				$('#api_instagram_data_list').append(
-					'<div class="insta_media">' +
-						'<header>' +
-							'<div class="insta_media_avatar">' +
-								'<img src="' + insta_media_avatar + '" />' +
-							'</div>' +
-							'<div class="insta_media_user">' +
-								insta_media_user + '<br /><span class="insta_username">(<a href="http://instagram.com/' + insta_media_username + '">@' + insta_media_username + '</a>)</span><br />' +
-							'</div>' +
-						'</header>' +
-						'<article>' +
-							'<a href="' + insta_media_link + '"><img class="insta_media_image" src="' + insta_media_image + '" /></a>' +
-						'</article>' +
-						'<footer>' +
-							'<span class="insta_media_created">Posted: ' + insta_media_created_month + '/' + insta_media_created_day + '/' + insta_media_created_year + '</span>' +
-						'</footer>' +
+					'<li>' +
+						'<div class="insta_media">' +
+							'<header>' +
+								'<div class="insta_media_avatar">' +
+									'<img src="' + insta_media_avatar + '" />' +
+								'</div>' +
+								'<div class="insta_media_user">' +
+									'<span>' + insta_media_user + '</span><br /><span class="insta_username">(<a href="http://instagram.com/' + insta_media_username + '">@' + insta_media_username + '</a>)</span><br />' +
+								'</div>' +
+							'</header>' +
+							'<article>' +
+								'<a class="insta_media_link" href="' + insta_media_link + '"><img class="insta_media_image" src="' + insta_media_image + '" /></a>' +
+							'</article>' +
+							'<footer>' +
+								'<span class="insta_media_created">Posted: ' + insta_media_created_month + '/' + insta_media_created_day + '/' + insta_media_created_year + '</span>' +
+							'</footer>' +
 
-					'</div>'
+						'</div>' +
+					'</li>'
 				);
 			};
 
 			$('#api_instagram_data_list').append(
+				'</ul>' +
 				'<footer>' +
 					'<a class="api_instagram_close" href="#">[x] close</a>' +
 				'</footer>'
 			);
 
-			showTwitter();
-		};
+
+	// --------------------------------------------------------
+	// --------------------------------------------------------
+	// Native Feature : InAppBrowser
+	// --------------------------------------------------------
+    $('.insta_media a').on('click', inAppBrowser);
+
+    function inAppBrowser(e) {
+		e.preventDefault();
+		var media_link = $(this).attr('href');
+		var ref = window.open(media_link, '_blank', 'location=no');
+    }
+	// --------------------------------------------------------
+	// --------------------------------------------------------
+	// --------------------------------------------------------
+
+		showInstagram();
+
+	}; // end loadInstagram()
 
 	//show instagram data
-	function showTwitter() {
+	function showInstagram() {
 		$('#api_instagram_data_status').html(''); //clear loading message
 		$('#api_instagram_data_list').delay(800).slideDown();
 		$('#api_instagram').scrollY();
@@ -93,7 +114,6 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 				$('#api_instagram_data_list').html('');
 			};
 	});
-
 	//END instagram
 	// ################################################################
 	// ################################################################
@@ -198,6 +218,203 @@ var scrollOffset;var elementOffset=$(this).offset();if(offset!==undefined){scrol
 					$('#api_giantbomb_data_list').html('');
 				};
 		});
+// ################################################################
+// ################################################################
 
-//end
+
+// ################################################################
+// ################################################################
+// Storage
+$('#storage a').on('click', accessStorage);
+
+function accessStorage() {
+    function populateDB(tx) {
+        tx.executeSql('DROP TABLE IF EXISTS GC');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS GC (id unique, data)');
+        tx.executeSql('INSERT INTO GC (id, data) VALUES (1, "Title", "Platform")');
+        tx.executeSql('INSERT INTO GC (id, data) VALUES (2, "Sound Shapes", "PlayStation Vita")');
+    }
+
+    // Query the database
+    //
+    function queryDB(tx) {
+        tx.executeSql('SELECT * FROM GC', [], querySuccess, errorCB);
+    }
+
+    // Query the success callback
+    //
+    function querySuccess(tx, results) {
+        console.log("Returned rows = " + results.rows.length);
+        console.log(results.rows);
+        // this will be true since it was a select statement and so rowsAffected was 0
+        if (!results.rowsAffected) {
+            console.log('No rows affected!');
+            return false;
+        }
+        // for an insert statement, this property will return the ID of the last inserted row
+        console.log("Last inserted row ID = " + results.insertId);
+    }
+
+    // Transaction error callback
+    //
+    function errorCB(err) {
+        console.log("Error processing SQL: "+err.code);
+    }
+
+    // Transaction success callback
+    //
+    function successCB() {
+        var db = window.openDatabase("gc_db", "1.0", "Game Collector", 200000);
+        db.transaction(queryDB, errorCB);
+    }
+
+    var db = window.openDatabase("gc_db", "1.0", "Game Collector", 200000);
+    db.transaction(populateDB, errorCB, successCB);
+	console.log(db);
+};
+// ################################################################
+// ################################################################
+
+// ################################################################
+// ################################################################
+// InAppBrowser
+$('#browser').click(function() {
+	$(this).append(
+		'<div>' +
+			'<p>Click on Instagram thumbnails to test browser.</p>' +
+		'</div>'
+	);
 });
+// end InAppBrowser
+// ################################################################
+// ################################################################
+
+
+// ################################################################
+// ################################################################
+// Camera
+$('#camera a').on('click', capturePicture);
+
+function capturePicture() {
+
+	navigator.camera.getPicture(onSuccess, onFail, {
+		quality: 50,
+	    destinationType: Camera.DestinationType.FILE_URI,
+	    correctOrientation: true
+	 });
+};
+
+function onSuccess(imageData) {
+	$('#camera').append(
+		'<div>' +
+			'Your photo: <img height="100" id="myImage" src="" width="100" />' +
+		'</div>'
+	);
+	var image = document.getElementById('myImage');
+	image.src = imageData;
+	alert($('#myImage').attr('src'));
+};
+
+function onFail(message) {
+	alert('Failed because: ' + message);
+};
+// end Camera
+// ################################################################
+// ################################################################
+
+
+// ################################################################
+// ################################################################
+// Connection
+$('#connection a').on('click', checkConnection);
+
+function checkConnection() {
+    var networkState = navigator.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.CELL]     = 'Cell generic connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    $('#connection').append(
+    	'<div>' +
+    		'Your connection: <span class="connectionType">' + states[networkState] + '</span>' +
+    	'</div>'
+    );
+};
+// end Connection
+// ################################################################
+// ################################################################
+
+
+// ################################################################
+// ################################################################
+// Contacts
+function contactsOnSuccess(contacts) {
+
+	function contactsList(contacts) {
+
+		var pageLimit = 5;
+
+		$('#contacts').append(
+			'<ul id="contactsList">'
+		);
+
+			for (i = 0; i < pageLimit; i++) {
+				var contact_display = contacts[i].displayName;
+/* 					contact_email = contacts[i].emails[0]; */
+
+				$('#contactsList').append(
+					'<li>' +
+						'<div class="contact">' +
+/*
+							'<table>' +
+								'<tbody>' +
+									'<tr>' +
+										'<td>' +
+*/
+											'<a href="mailto:test@test.com"><span class="contact_displayName">' + contact_display + '</span></a>' +
+/*
+										'</td>' +
+									'</tr>' +
+								'</tbody>' +
+							'</table>' +
+*/
+						'</div>' +
+					'</li>'
+				);
+			};
+	};
+	$("#contacts").append(
+		'</ul>'
+	);
+
+	contactsList(contacts);
+};
+
+function contactsOnError(contactError) {
+    alert('Contact Not Found!');
+};
+
+// find all contacts with 'Bob' in any name field
+$('#contacts a').click(function() {
+	var options = new ContactFindOptions();
+	options.filter= '';
+	options.multiple=true;
+
+	filter = ['displayName'];
+
+
+	navigator.contacts.find(filter, contactsOnSuccess, contactsOnError, options);
+});
+// end Contacts
+// ################################################################
+// ################################################################
+
+
+}); // end script
