@@ -116,7 +116,7 @@ section > ul li:hover > span {
 }
 
 section > ul li:hover a {
-	color: #fff;
+	color: #777;
 }
 
 section > ul li:last-child {
@@ -336,7 +336,15 @@ nav a:hover {
 	width: 48px;
 }
 
+.camera_photo {
+	height: auto;
+	width: 150px;
+}
 
+#video {
+	height: auto;
+	width: 100%;
+}
 
 
 

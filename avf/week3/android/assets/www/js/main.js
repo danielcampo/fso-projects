@@ -278,7 +278,7 @@ function accessStorage() {
 // ################################################################
 // ################################################################
 // InAppBrowser
-$('#browser').click(function() {
+$('#browser').on('click', function() {
 	$(this).append(
 		'<div>' +
 			'<p>Click on Instagram thumbnails to test browser.</p>' +
@@ -307,12 +307,11 @@ function capturePicture() {
 function onSuccess(imageData) {
 	$('#camera').append(
 		'<div>' +
-			'Your photo: <img height="100" id="myImage" src="" width="100" />' +
+			'Your photo: <img class="camera_photo" id="myImage" src="" />' +
 		'</div>'
 	);
 	var image = document.getElementById('myImage');
 	image.src = imageData;
-	alert($('#myImage').attr('src'));
 };
 
 function onFail(message) {
@@ -402,7 +401,7 @@ function contactsOnError(contactError) {
 };
 
 // find all contacts with 'Bob' in any name field
-$('#contacts a').click(function() {
+$('#contacts a').on('click', function() {
 	var options = new ContactFindOptions();
 	options.filter= '';
 	options.multiple=true;
@@ -416,5 +415,8 @@ $('#contacts a').click(function() {
 // ################################################################
 // ################################################################
 
+$('#video').on('click', function() {
+	this.play();
+});
 
 }); // end script
