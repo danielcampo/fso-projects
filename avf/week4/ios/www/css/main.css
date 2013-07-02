@@ -428,7 +428,7 @@ nav a:hover {
     }
 }
 
-.platformSupport {
+#nativeFeatures ul li span {
 	color: gray;
 	font-size: small;
 }
